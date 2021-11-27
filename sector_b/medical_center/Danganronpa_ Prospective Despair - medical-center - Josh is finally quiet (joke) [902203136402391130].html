@@ -1,0 +1,4770 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - Josh is finally quiet (joke)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">medical-center / Josh is finally quiet (joke)</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="902203138302423062" id="message-902203138302423062" title="Message sent: 25-Oct-21 10:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span> for when you&#39;re back)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="902219563624697876" id="message-902219563624697876" title="Message sent: 25-Oct-21 11:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Josh. He’s just on the medical bed I presume. Just lying there...</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902219577331679292" id="message-902219577331679292" title="Message sent: 25-Oct-21 11:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Ame/Est55#7858">@Est</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="902219746857070662" id="message-902219746857070662" title="Message sent: 25-Oct-21 11:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Antomy checks his temperature amongst other things, doing some basic medical checkups, checking for injuries amongst other things.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="902219914289492018" id="message-902219914289492018" title="Message sent: 25-Oct-21 11:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Probably just some bruising around the first and apart from that he’s just incredibly incredibly stressed out. Surprised he ain’t had a heart attack</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="902220275851096106" id="message-902220275851096106" title="Message sent: 25-Oct-21 11:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He applies some stuff to his fists and now has some tea ready for when Josh wakes up, sitting next to him, sometimes nudging a little.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="902220505271115828" id="message-902220505271115828" title="Message sent: 25-Oct-21 11:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Mmm....wh...what the...FUCK BRO WHAT THE-...” <em>Josh randomly shoots up, quickly leaning up on the bed</em> “What the...” <em>he’s breathing really heavily. Practically hyperventilating</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="902221062421491712" id="message-902221062421491712" title="Message sent: 25-Oct-21 11:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh, you&#39;re awake now, mister Soha! Welcome back to reality, ehe! Here&#39;s some tea to calm down, and remember to take deep breaths!&quot;
+<em>With a smile, he takes the teacup, handing it to Josh along with pointing out the milk and sugar in case.</em>
+<em>The flowers stare at Josh as he awakens.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="902221319532322867" id="message-902221319532322867" title="Message sent: 25-Oct-21 11:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro this ain’t r-right! Man why are you frickin so happy anyway! What the fuck is going on?! F-fuck get those flowers away from me man!” <em>panic panic</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="902221378240020501" id="message-902221378240020501" title="Message sent: 25-Oct-21 11:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(happy antomy is scary…</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902221425295917086" id="message-902221425295917086" title="Message sent: 25-Oct-21 11:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(not scary maybe- but unsettling. wrong.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="902221624886034443" id="message-902221624886034443" title="Message sent: 25-Oct-21 11:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Huh? You asked me to be all happy-happy around you, mr Soha! And don&#39;t worry, I already watered the flowers, so they&#39;re happy too! Just take deeeeep breaths, okay?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902221694796726303" id="message-902221694796726303" title="Message sent: 25-Oct-21 11:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;After me, inhale, 1, 2, 3, exhale.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="902221785418829894" id="message-902221785418829894" title="Message sent: 25-Oct-21 11:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(if it didn’t feel wrong i’d very much enjoy happy antomy</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="902221850220826674" id="message-902221850220826674" title="Message sent: 25-Oct-21 11:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“1 2 3 go fuck your self man how the fuck am I meant to frickin breathe after that?! Did you hear that bullshit man? You were in the- then you just frickin- what the fuck bro I frickin can’t!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="902221864192061511" id="message-902221864192061511" title="Message sent: 25-Oct-21 11:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(You too can get happy Antomy at the low price of asking him)</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="star">
+                                <img class="emoji emoji--small" alt="⭐" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/2b50-BBB4A.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="902222047512518696" id="message-902222047512518696" title="Message sent: 25-Oct-21 11:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Anto &quot;Um... I didn&#39;t hear anything, you just kinda started yelling and shouting? I was knocked out for a bit so maybe it happened before I woke up, my apologies!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="902222053149650995" id="message-902222053149650995" title="Message sent: 25-Oct-21 11:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Gasp)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="902222104773136424" id="message-902222104773136424" title="Message sent: 25-Oct-21 11:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I USED THE TUPPER COMMAND FML)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="902222226454110218" id="message-902222226454110218" title="Message sent: 25-Oct-21 11:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro- you were frickin knocked out?!? How the fuck bro how?!? And how am I meant to just frickin go normal like that shit never happens I’m just- that was- FUCK!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="902222537419804693" id="message-902222537419804693" title="Message sent: 25-Oct-21 11:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Yeah, I don&#39;t know why, as well... I just kinda you know, bam, knocked out! So what happened, so I can help as best as I can?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="902222744094122005" id="message-902222744094122005" title="Message sent: 25-Oct-21 11:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro it ain’t the same shit when I know you ain’t wantin to help you’re just doin what you gotta do man...just...man I ain’t able to unhear that shit! The fuckin flowers spoke to me man and the shit they said was horrible!!!!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 11:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="902222970850779166" id="message-902222970850779166" title="Message sent: 25-Oct-21 11:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Huh? Flowers can&#39;t talk, silly! Did you eat something bad, maybe? Just take a moment to relax and drink some tea, alright?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="902225071018479626" id="message-902225071018479626" title="Message sent: 25-Oct-21 12:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Annnnd I fuckin hate you man. No way you didn’t see any of that shit man! No way! How am I meant to relax when now it’s possible I’m going crazy!!!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="902225314900504596" id="message-902225314900504596" title="Message sent: 25-Oct-21 12:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hm... it&#39;s better to just not think about it, in the end, right?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="902225516566831235" id="message-902225516566831235" title="Message sent: 25-Oct-21 12:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro that’s easy for you to frickin say you barely gotta do your own thinkin cause everyone tells ya what to do!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="902225727313813524" id="message-902225727313813524" title="Message sent: 25-Oct-21 12:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Do you wish to request for anything? Want something to eat, perhaps? Maybe it&#39;ll help you calm down!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="902225933644222544" id="message-902225933644222544" title="Message sent: 25-Oct-21 12:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro I ain’t gonna be able to eat some food and then be better man! The human brain don’t work like that bro!  I just don’t know what to frickin do cause then flowers are fuckin everywhere and I just walked into the room and saw ya knocked out and what the fuck bro what the fuck!” <em>josh resumes panic </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="902227975561441350" id="message-902227975561441350" title="Message sent: 25-Oct-21 12:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hey, deep breaths, okay? Inhale, 1, 2, 3, exhale, and you&#39;ll be calm if you just continue doing that!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="902228157485154344" id="message-902228157485154344" title="Message sent: 25-Oct-21 12:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro why do you care if I’m frickin calm? Ain’t you meant to want me dead or some shit?!?”</span>
+
+                                <span class="chatlog__edited-timestamp" title="25-Oct-21 12:12 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="902228972081913856" id="message-902228972081913856" title="Message sent: 25-Oct-21 12:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I want to help you all to feel well and alright, I&#39;d hate for people to be unsatisfied and upset! And someone panicking is definitely not something happy, so please, breaaaaathe and caaaaalm down!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="902229466401607701" id="message-902229466401607701" title="Message sent: 25-Oct-21 12:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“F-fine then maybe I will!” <em>Josh says as he starts to shakily breathe. He’s struggling to do so though</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="902229618344464384" id="message-902229618344464384" title="Message sent: 25-Oct-21 12:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Breathe iiiin... breathe oooout...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="902230213939843072" id="message-902230213939843072" title="Message sent: 25-Oct-21 12:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“F-fuck I can’t bro I fuckin can’t! I feel like my frickin head is about to explode man!”</span>
+
+                                <span class="chatlog__edited-timestamp" title="25-Oct-21 12:20 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="902230616991485952" id="message-902230616991485952" title="Message sent: 25-Oct-21 12:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Calm down, you&#39;ve gotta be more relaxed and less tense, okay? Want me to give you a massage?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="902230791973638224" id="message-902230791973638224" title="Message sent: 25-Oct-21 12:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Fuck bro don’t you dare frickin touch me man! I ain’t able to relax!!! Have you ever been stressed? Man I don’t think so!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="902235415833100318" id="message-902235415833100318" title="Message sent: 25-Oct-21 12:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hm... take some time to lie down and process everything, then! I&#39;ll stay reaaally quiet!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="902237729885126686" id="message-902237729885126686" title="Message sent: 25-Oct-21 12:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro how the fuck am I meant to process the fact that I heard fuckin plants talking to me!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 12:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="902239280255098880" id="message-902239280255098880" title="Message sent: 25-Oct-21 12:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Mmm... you heard plants talking to you, maybe you&#39;re a plant-whisperer, now!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 05:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="902310053019795546" id="message-902310053019795546" title="Message sent: 25-Oct-21 05:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Fuck you bro. There ain’t no spinning this off as cool man that was frickin uncalled for”</span>
+
+                                <span class="chatlog__edited-timestamp" title="25-Oct-21 05:38 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 06:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="902318177860591696" id="message-902318177860591696" title="Message sent: 25-Oct-21 06:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I was joking, don&#39;t worry, hehe!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 07:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="902335799243198464" id="message-902335799243198464" title="Message sent: 25-Oct-21 07:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Man are the flowers just frickin normal to you?!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 07:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="902336034522673163" id="message-902336034522673163" title="Message sent: 25-Oct-21 07:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;They&#39;re flowers, so we&#39;ve gotta protect the flora! Destroying the nature from the cave is no good!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 07:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="902337227743432786" id="message-902337227743432786" title="Message sent: 25-Oct-21 07:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Fuck the flora bro...frickin burn em....I request it man.....”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 07:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="902337889218727956" id="message-902337889218727956" title="Message sent: 25-Oct-21 07:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;No can do, burning the plants can cause a wide-spread fire which is super duper dangerous!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 07:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="902343772686405713" id="message-902343772686405713" title="Message sent: 25-Oct-21 07:52 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“And bein in a frickin death game ain’t dangerous? Since when did ya care about my h-health man....”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="902348293969948692" id="message-902348293969948692" title="Message sent: 25-Oct-21 08:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I’m tasked with caring for your healthy since always! If you’re sick for example, I’ll nurse you back to full health!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="902348758598184961" id="message-902348758598184961" title="Message sent: 25-Oct-21 08:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Well....bro...nurse this...cause this are going Wack again....” <em>Josh’s eyes look spaced out. He’s passed out again as his head falls back onto the bed and his eyes close</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="902348985254162442" id="message-902348985254162442" title="Message sent: 25-Oct-21 08:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Passed out again, it seems! I’ll prepare some more tea!”
+<em>He turns on the kettle, the water boiling able to be heard.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="902349998971314208" id="message-902349998971314208" title="Message sent: 25-Oct-21 08:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>not too long after</em> “Man.....what the...fuck I’m still here....bro my head is just....why the fuck is there a kettle....”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="902350096828620830" id="message-902350096828620830" title="Message sent: 25-Oct-21 08:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Oh, you’re awake again! I was just preparing some more tea, want some?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="902351507775688715" id="message-902351507775688715" title="Message sent: 25-Oct-21 08:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro why were you makin tea....don’t help with my frickin stress man....” (tw alcohol) <span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">”I need a frickin shot of alcohol man...or a frickin booze cocktail or something fruity...come on bro....”</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="902351784088051712" id="message-902351784088051712" title="Message sent: 25-Oct-21 08:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Um… I don’t think we have any of that around here, sorry! I can try my best to make one that doesn’t contain any of that, though!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="902351970722021426" id="message-902351970722021426" title="Message sent: 25-Oct-21 08:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)"> “Just get me some booze I can drink man....unalcoholic fruit cocktail at best...”</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="902352570440372275" id="message-902352570440372275" title="Message sent: 25-Oct-21 08:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Understood! Please wait here for a moment to relax, then!”
+<em>He skips off, the flowers continuing to stare at Josh.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="902353228996423690" id="message-902353228996423690" title="Message sent: 25-Oct-21 08:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Josh just turns around and buries his face in the bed. Sorta like anatomy when he saw him before getting traumatised</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="902353458651357195" id="message-902353458651357195" title="Message sent: 25-Oct-21 08:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I’m not going to explain why he was just lying down its funnier now LOL)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902354076430389268" id="message-902354076430389268" title="Message sent: 25-Oct-21 08:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He soon comes back with a <span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">non-alcoholic bloody mary</span>, served with perfection and a lemon slice on the edge.</em>
+“Here you go, mr Soha! Enjoy, ehe!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="902354191408824362" id="message-902354191408824362" title="Message sent: 25-Oct-21 08:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“...” <em>Josh just stays face first on the bed. Energy has officially reached 0</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="902354591126003743" id="message-902354591126003743" title="Message sent: 25-Oct-21 08:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Erm… mr Soha? Are you alright? Have you fallen unconscious again?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="902354858257027142" id="message-902354858257027142" title="Message sent: 25-Oct-21 08:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>A muffled sound comes through. He’s not unconscious woop. He just doesn’t have the energy to move once more. He doesn’t really enjoy help from Anatomy since he knows it’s not because anatomy wants to. Maybe the flowers were right</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="902355326056149002" id="message-902355326056149002" title="Message sent: 25-Oct-21 08:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“The drink you’ve requested is here, I’ll just keep it cold in my hands for when you’re ready, okay? Alright!”
+<em>He sits next to Josh’s bed again.</em>
+<em>Josh could swear he heard the flowers giggle.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="902355505547202560" id="message-902355505547202560" title="Message sent: 25-Oct-21 08:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Josh just gives a sad moan in the pillow. He just wanted a friend to help...but does he even have any...?</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="902355793414873140" id="message-902355793414873140" title="Message sent: 25-Oct-21 08:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He hums a little tune so the room isn’t totally silent as he continues waiting for Josh to take his drink.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="902355959190544384" id="message-902355959190544384" title="Message sent: 25-Oct-21 08:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(man :c</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="902356011111813150" id="message-902356011111813150" title="Message sent: 25-Oct-21 08:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Josh finally turns his head to look at anatomy</em> “Man...just tell me.....do you feel anything about...seeing someone like this....or....are you just here....be honest man...”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="902356360388288532" id="message-902356360388288532" title="Message sent: 25-Oct-21 08:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Um… I feel like I want to help you! You seem really upset, so I want to help you get better!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="902356445582991392" id="message-902356445582991392" title="Message sent: 25-Oct-21 08:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Is that the truth man...do you really want to see me happy...I request you be 100% honest here...”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="902358660787896410" id="message-902358660787896410" title="Message sent: 25-Oct-21 08:51 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yeah! The well-being and comfort of all of the guests is of upmost importance, to me!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="902359365925883974" id="message-902359365925883974" title="Message sent: 25-Oct-21 08:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Man....I just can’t be happy with that....go away....you ain’t someone who cares about me.....just go.....”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="902359822358442056" id="message-902359822358442056" title="Message sent: 25-Oct-21 08:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Understood, then!”
+<em>He places the drink next to Josh’s bed, before skipping off.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="902359986296991764" id="message-902359986296991764" title="Message sent: 25-Oct-21 08:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Josh just stays motionless. And that’s all he’ll do. Not move a single muscle until tomorrow/ when someone sees him. Goodbye</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="902532865575764008" id="message-902532865575764008" title="Message sent: 26-Oct-21 08:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(i’m coming here anyway because Shizuru is sleeping and also timeline stuff</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902533748778741812" id="message-902533748778741812" title="Message sent: 26-Oct-21 08:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Haru walked into the medical centre with the intention of just eating a whole box of pain killers. Well, not actually, because they are smarter than that, but anyway-
+She stopped as soon as she noticed Josh. Did the idiot decide to step on a flower again or something?? Haru went and tapped Josh lightly on the shoulder
+“<em>Psst, hey, you alright?</em>”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902534199137947689" id="message-902534199137947689" title="Message sent: 26-Oct-21 08:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902534208998735883" id="message-902534208998735883" title="Message sent: 26-Oct-21 08:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(it happened</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="902534290703781939" id="message-902534290703781939" title="Message sent: 26-Oct-21 08:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(We didn’t have to use the thread but I’ll take it. Astrea I better get new interaction point)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902534347482071062" id="message-902534347482071062" title="Message sent: 26-Oct-21 08:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Please...)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902534501564026891" id="message-902534501564026891" title="Message sent: 26-Oct-21 08:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Josh would just lie flat on the bed still. Not really doing much. Just motionless on the bed. Was Haru even a true friend....? The flowers words still echoed in his mind</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902534514948050964" id="message-902534514948050964" title="Message sent: 26-Oct-21 08:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="CronchyTurtle#9340">@Cronchy</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="902534772776116245" id="message-902534772776116245" title="Message sent: 26-Oct-21 08:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She leaned in to his ear
+“<em>Are you awake? Are you sleeping? Should I leave?</em>”
+10/10 questions from Haru</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902534783081533502" id="message-902534783081533502" title="Message sent: 26-Oct-21 08:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="902534876153118751" id="message-902534876153118751" title="Message sent: 26-Oct-21 08:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>a muffled noise came from the pillow. Josh was very much awake. Just not moving.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902534942620282930" id="message-902534942620282930" title="Message sent: 26-Oct-21 08:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="CronchyTurtle#9340">@Cronchy</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="902535300394393630" id="message-902535300394393630" title="Message sent: 26-Oct-21 08:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Haru went to go sit down on the end of Josh’s bed, but then realised that hurt, so quickly got back off. Instead she just crouched down and put her chin on the edge of the bed instead, sorta peeking over the edge.
+“<em>Did something happen?</em>”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902535316001394718" id="message-902535316001394718" title="Message sent: 26-Oct-21 08:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="902535437028040734" id="message-902535437028040734" title="Message sent: 26-Oct-21 08:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Josh would look at Haru. All the colour was drained from his face. Even his eyes seemed to lack to life Josh usually had. He would then slowly nod</em></span>
+
+                                <span class="chatlog__edited-timestamp" title="26-Oct-21 08:34 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="902535521094500412" id="message-902535521094500412" title="Message sent: 26-Oct-21 08:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(bro i’m canon again this is really cool !!! /j lh</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="902535564077694997" id="message-902535564077694997" title="Message sent: 26-Oct-21 08:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Ok now I’m just too busy watching tv)</span>
+
+                                <span class="chatlog__edited-timestamp" title="26-Oct-21 08:34 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902535601495093258" id="message-902535601495093258" title="Message sent: 26-Oct-21 08:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I see what you mean now)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902535636307804190" id="message-902535636307804190" title="Message sent: 26-Oct-21 08:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="CronchyTurtle#9340">@Cronchy</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="902535747440103454" id="message-902535747440103454" title="Message sent: 26-Oct-21 08:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji emoji--large" alt="huh" title="huh" src="https://cdn.discordapp.com/emojis/763463593173581875.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902535761377763409" id="message-902535761377763409" title="Message sent: 26-Oct-21 08:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“<em>What happened? Did someone hurt you? Was it the flowers?</em>”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902535812200157234" id="message-902535812200157234" title="Message sent: 26-Oct-21 08:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(this is a family guy crying moment right here</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="902535850729042012" id="message-902535850729042012" title="Message sent: 26-Oct-21 08:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>nod nod. His eyes seemed to be slightly red to. He’s been crying oooo</em> (yo family guy?)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="902536114437492797" id="message-902536114437492797" title="Message sent: 26-Oct-21 08:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Haru adjusted their position because crouching is hard
+“<em>What did they do? Does it hurt? Can I help?</em>”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902536132129067118" id="message-902536132129067118" title="Message sent: 26-Oct-21 08:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="902536404662353920" id="message-902536404662353920" title="Message sent: 26-Oct-21 08:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“...Everyone hates me man......insulting me.....they spoke to me man....i....they told me to not deny it....that I know it’s true....and it is....”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902536414359609444" id="message-902536414359609444" title="Message sent: 26-Oct-21 08:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="CronchyTurtle#9340">@Cronchy</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="902536696183291954" id="message-902536696183291954" title="Message sent: 26-Oct-21 08:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“<em>Well</em> I <em>don’t hate you… I bet the people here don’t hate you… Your parents don’t hate you… A lot of people don’t hate you…</em>”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902536731180531794" id="message-902536731180531794" title="Message sent: 26-Oct-21 08:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Oct-21 08:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="902536826538053672" id="message-902536826538053672" title="Message sent: 26-Oct-21 08:39 AM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="CronchyTurtle#9340">@Cronchy</span> got an interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="902536851536089130" id="message-902536851536089130" title="Message sent: 26-Oct-21 08:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“My friends....outside of here....they all do.....no one out there wants to be my friend......”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902536858322481222" id="message-902536858322481222" title="Message sent: 26-Oct-21 08:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Ffs)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902536894313807902" id="message-902536894313807902" title="Message sent: 26-Oct-21 08:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Do I not get an interaction point cause it’s a new day? Come ooon)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="902536925183901726" id="message-902536925183901726" title="Message sent: 26-Oct-21 08:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Actually, this technically counts as a new interaction for you)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Oct-21 08:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="902536937838096405" id="message-902536937838096405" title="Message sent: 26-Oct-21 08:39 AM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span> got an interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="902536954292363334" id="message-902536954292363334" title="Message sent: 26-Oct-21 08:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Woo)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="902537083942473738" id="message-902537083942473738" title="Message sent: 26-Oct-21 08:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(YEAH!!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902537472918056970" id="message-902537472918056970" title="Message sent: 26-Oct-21 08:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“<em>Well-</em>”
+Haru just stood up. Crouching is hard, man… She spoke at a normal speaking volume so Josh could actually still hear her
+“Well then, screw them! They aren’t your real friends, so why worry about them and what they think?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902537484871794688" id="message-902537484871794688" title="Message sent: 26-Oct-21 08:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="902537701142704130" id="message-902537701142704130" title="Message sent: 26-Oct-21 08:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“...Without friends man....what even am I....I’m just a loud mouth asshole.....they aren’t even my real friends....they all hated me....and I can’t be alone......but out there I am bro...”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902537725201227807" id="message-902537725201227807" title="Message sent: 26-Oct-21 08:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="CronchyTurtle#9340">@Cronchy</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="902538182636208148" id="message-902538182636208148" title="Message sent: 26-Oct-21 08:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The flowers stare at Haru and Josh.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="902538315377561631" id="message-902538315377561631" title="Message sent: 26-Oct-21 08:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I’m your friend! And you aren’t a loud mouth asshole… When have you ever been an asshole to anyone? And I’ll be there with you!! So you won’t be alone.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902538323548049480" id="message-902538323548049480" title="Message sent: 26-Oct-21 08:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="902538459611291689" id="message-902538459611291689" title="Message sent: 26-Oct-21 08:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“But after this man....ill just be back to my fake friends...and I’ll be frickin alone again....”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="902538818744365067" id="message-902538818744365067" title="Message sent: 26-Oct-21 08:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Why do you have to go back to them? Why not make new friends who actually like you for who you are?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902538833340551178" id="message-902538833340551178" title="Message sent: 26-Oct-21 08:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="902538923677478922" id="message-902538923677478922" title="Message sent: 26-Oct-21 08:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“There are none bro....there is no one else make friends with.....”</span>
+
+                                <span class="chatlog__edited-timestamp" title="26-Oct-21 08:47 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="902539810856640532" id="message-902539810856640532" title="Message sent: 26-Oct-21 08:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Why don’t I make friends and introduce you all? You’ll be like the cool guy who’s a couple years older and then everyone is like ‘Wow omg is he your boyfriend?? He’s so tall!! What grade is he in?? You’re so cool!!!’ and stuff”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902539820511952966" id="message-902539820511952966" title="Message sent: 26-Oct-21 08:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="902540186230075422" id="message-902540186230075422" title="Message sent: 26-Oct-21 08:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“...Bro...are you sure you wanna be frickin friends with me....what if you’re just annoyed by me......like everyone else is man....”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902540398365401130" id="message-902540398365401130" title="Message sent: 26-Oct-21 08:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="CronchyTurtle#9340">@Cronchy</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="902540631895855124" id="message-902540631895855124" title="Message sent: 26-Oct-21 08:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Imagining Haru walking up with Josh and calling him her boyfriend is hilarious)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="902540714381041755" id="message-902540714381041755" title="Message sent: 26-Oct-21 08:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Josh- (Woo! I’m a friend and I’m Male woo!)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="902540719464542229" id="message-902540719464542229" title="Message sent: 26-Oct-21 08:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I HATE IT BUT ITS ALSO SO FUNNY</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902541090559787038" id="message-902541090559787038" title="Message sent: 26-Oct-21 08:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Now you’re just being stupid. Stupidity is not allowed!! That is a new rule and if you dare to be stupid like that again, Santa will have to not bring you presents this year.” Haru awkwardly crossed her arms. What do I mean by awkwardly? I mean she was trying to not make her arms touch other parts of her arms or her chest so it was like a weird floating awkward arm thing. It was weird.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902541103172055081" id="message-902541103172055081" title="Message sent: 26-Oct-21 08:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="902541398706880583" id="message-902541398706880583" title="Message sent: 26-Oct-21 08:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro....not Santa man....come on...” <em>Josh gave a small smile</em> “Man...I-....bro why do you even care about me man....don’t you just find me voice annoying like everyone else....”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902541442944233493" id="message-902541442944233493" title="Message sent: 26-Oct-21 08:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="CronchyTurtle#9340">@Cronchy</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="902541634313531402" id="message-902541634313531402" title="Message sent: 26-Oct-21 08:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Man this is adorable, I wonder if I can ruin it /j)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="902542093505953845" id="message-902542093505953845" title="Message sent: 26-Oct-21 09:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Maybe ‘cause it isn’t? Just a guess. Y’know. Casual guess. Like, even Chunyu likes you from what I’ve seen! Sooo… I think that’s a pretty good sign that it’s not impossible to like you”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902542101986811906" id="message-902542101986811906" title="Message sent: 26-Oct-21 09:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="902542391045685279" id="message-902542391045685279" title="Message sent: 26-Oct-21 09:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro...why do you always say funny shit......can’t be sad for one fuckin minute with you around....” <em>Josh was still led on the bed facing Haru, but the smile was a bit bigger now</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902542430111428638" id="message-902542430111428638" title="Message sent: 26-Oct-21 09:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="CronchyTurtle#9340">@Cronchy</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="902542518523138078" id="message-902542518523138078" title="Message sent: 26-Oct-21 09:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Hey Cronch want your morph room soon)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="902542667970396201" id="message-902542667970396201" title="Message sent: 26-Oct-21 09:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(yeah!!!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="902542737771999268" id="message-902542737771999268" title="Message sent: 26-Oct-21 09:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Pfffft)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="902543085161037855" id="message-902543085161037855" title="Message sent: 26-Oct-21 09:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I’m just that cool, y’know? It’s a gift. A talent. …OH!! That could be my Ultimate talent… Ultimate Cool… Yeah…” <img loading="lazy" class="emoji " alt="😎" title="sunglasses" src="https://twemoji.maxcdn.com/2/svg/1f60e.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902543096896688149" id="message-902543096896688149" title="Message sent: 26-Oct-21 09:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="902543270956134451" id="message-902543270956134451" title="Message sent: 26-Oct-21 09:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I wonder if Astrea would let me have 2 people in one morph room)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="902543397783494718" id="message-902543397783494718" title="Message sent: 26-Oct-21 09:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Man you just love the ego boost huh....” <em>he does a quiet ‘heh’</em> “Man you are pretty neat though.....fine.....you have a deal...” <em>he shuffles up from his bed. The words still haunted him buuuut when you’re with the meme Haru it’s hard to be sadge </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="902543514418708500" id="message-902543514418708500" title="Message sent: 26-Oct-21 09:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(i mean if they both agree to it, sure!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="902543533263708251" id="message-902543533263708251" title="Message sent: 26-Oct-21 09:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(that would be cool</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="902543591908470854" id="message-902543591908470854" title="Message sent: 26-Oct-21 09:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I mean I’m about to start baking so I won’t be super active but no issues here)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="902543629296480296" id="message-902543629296480296" title="Message sent: 26-Oct-21 09:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Oh pog!)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902543692726935562" id="message-902543692726935562" title="Message sent: 26-Oct-21 09:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The flowers stare at the two, watching.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902543829058601061" id="message-902543829058601061" title="Message sent: 26-Oct-21 09:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(no this isnt it yet gimme a sec to get some headache meds and a drink)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="902543874050895882" id="message-902543874050895882" title="Message sent: 26-Oct-21 09:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Save me some)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="902543972587683890" id="message-902543972587683890" title="Message sent: 26-Oct-21 09:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(same share the good shit</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902544071581663252" id="message-902544071581663252" title="Message sent: 26-Oct-21 09:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(are we all ill tho wtf is europe just having an illness thing going on??</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="902544128779370507" id="message-902544128779370507" title="Message sent: 26-Oct-21 09:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(It&#39;s currently the flu season over in the western part)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="902544196827770970" id="message-902544196827770970" title="Message sent: 26-Oct-21 09:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(true but shhhh it’s better if we pretend it’s fate</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="902544219443441694" id="message-902544219443441694" title="Message sent: 26-Oct-21 09:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(LOL)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="902544480618557471" id="message-902544480618557471" title="Message sent: 26-Oct-21 09:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Haru grinned at Josh 
+“Hell yeah! My coolness wins again!” 
+Haru then finally had a great idea. She actually gasped as it came to mind. Haru got pillows from the other beds and put them at the bottom of Josh’s bed. She then sat down on them. Yes. Her epic plan was all to just sit down on a bed!! Incredible. 
+“Now I don’t have to stand! My feet were aching…”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902544498196897832" id="message-902544498196897832" title="Message sent: 26-Oct-21 09:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="902544587338420275" id="message-902544587338420275" title="Message sent: 26-Oct-21 09:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(As soon as you both want to begin give me the okay and we&#39;ll head to the medical centre chat)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="902544618430816256" id="message-902544618430816256" title="Message sent: 26-Oct-21 09:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro...what the heck man...why are you sat on the bed...I mean now I ain’t gotta move my neck which is funny at least....”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902544633878413373" id="message-902544633878413373" title="Message sent: 26-Oct-21 09:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Ready whenever)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="902544787960393788" id="message-902544787960393788" title="Message sent: 26-Oct-21 09:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(same</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="902544894537637899" id="message-902544894537637899" title="Message sent: 26-Oct-21 09:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Aight)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="902544901084958740" id="message-902544901084958740" title="Message sent: 26-Oct-21 09:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(duck wait dog needs hug</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="902544923910340668" id="message-902544923910340668" title="Message sent: 26-Oct-21 09:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(LOL)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902544944240136212" id="message-902544944240136212" title="Message sent: 26-Oct-21 09:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Give the dog a good headpat too)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="902545033620779018" id="message-902545033620779018" title="Message sent: 26-Oct-21 09:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Crepe is still afraid of dogs)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="902545233173151744" id="message-902545233173151744" title="Message sent: 26-Oct-21 09:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(ok i think he’s good</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902545601009418282" id="message-902545601009418282" title="Message sent: 26-Oct-21 09:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Because sitting on the edge of your bed like this makes me look like I’m doing a better job of comforting you. Y’know like, in films when the main character is ill or something, so the mum sits on the end of the bed and stuff? It’s like that!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902545631309099030" id="message-902545631309099030" title="Message sent: 26-Oct-21 09:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20medical-center%20-%20Josh%20is%20finally%20quiet%20%28joke%29%20%5B902203136402391130%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 09:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="902545691618967613" id="message-902545691618967613" title="Message sent: 26-Oct-21 09:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>...The flowers continue staring at the two, slightly drooling.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="902545761663844392" id="message-902545761663844392" title="Message sent: 26-Oct-21 09:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(If yw to begin head over to the medical centre chat)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 171 message(s)</div>
+</div>
+
+</body>
+
+</html>

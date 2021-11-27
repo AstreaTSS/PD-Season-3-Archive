@@ -1,0 +1,2881 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - ruis-diary</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">Diaries (KG) / ruis-diary</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">06-Sep-21 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="884575277093642291" id="message-884575277093642291" title="Message sent: 06-Sep-21 07:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="augusty#1287">@augusty</span>   hey! you know what this is lol
+you can do pretty much whatever here, though most of the time, people try to stay ic while doing stuff here
+by default, this diary is revealed if/when your oc dies - if you dont want that, just ask!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">06-Sep-21 07:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="884575483134611486" id="message-884575483134611486" title="Message sent: 06-Sep-21 07:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((thank u :D
+
+((its important i am able to come back and edit things in here later so the entries wont be written in tupper because idk if i can do that days later with the bot</span>
+
+                                <span class="chatlog__edited-timestamp" title="06-Sep-21 09:15 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">06-Sep-21 09:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="884607564686430278" id="message-884607564686430278" title="Message sent: 06-Sep-21 09:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+i was taught how to breathe once while i was out buying a new pot for rosa i dont really remember it but kay explained it really well so if i remember ill put that here so i can keep breathing
+
+well that sort of makes it sound like i’d stop breathing if i didn’t and that has a totally different connotation to it than breathing worse or panicking but i dont intend to stop breathing i really like breathing actually anyway here it is eventually
+
+
+
+
+
+
+
+
+
+
+
+
+Anyways. I need to focus.
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="06-Sep-21 09:15 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884608471956332564" id="message-884608471956332564" title="Message sent: 06-Sep-21 09:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+Here, I’ll list short reminders to myself. My personal rules and guidelines in this game. This list may be appended, but may not be edited. As time progresses, my mental state can and will deteriorate, so it is important to preserve as much advice from my most optimal mental state as I can. Appended sections should be marked with an asterisk.
+
+<strong>Personal Reminders:</strong>
+
+<strong>1:</strong> I am calm.
+
+<strong>2:</strong> The people around me are most likely evil. Bad. I can’t find the word. I am allowed to hate them. And I probably will. And I’m going to. Okay? I don’t have to worry about what happens to them. And I won’t doubt myself about that. They’re nothing. They’re enemies, and they’re dangerous, and they’re dying as I write this. They aren’t good people, no matter what they say or do.
+
+<strong>3:</strong> I have to be rational. If I get emotional, I’ll get out of my head. Self-control is my advantage. Playing the emotional game logically makes it hard to lose. I hope.
+
+<strong>4:</strong> Everyone else is going to die. They have to for me to win. The best way out is to let them kill each other, after all <s>i can’t kill someone and i know i can’t even though it would be so easy and I would get away with it but there would be actual blood on my hands and i’d have to watch it knowing that it was something i did.</s>
+
+Let them kill themselves. Help them along by making them hate each other and themselves. The result is the same. The difference in means doesn’t matter because I win either way. The result is the same. It’s the same. I can and will kill someone if I have to, but it doesn’t matter that I won’t because I’m still capable of it. 
+
+<strong>5:</strong> Everyone is capable of everything until they’re not. Underestimating people means they’ll run circles around you. Major capabilities to be aware of include<em>:
+
+-</em>Willingness to lie.* (Major degree only.)
+
+-<em>Connection to hosts.</em> (Minor degree or higher.)
+
+-<em>Willingness to kill.</em> (Any degree.)
+
+-<em>Means to kill.</em> (Any degree.)
+
+-<em>Social insight and observation.</em> (Major degree only.)
+
+-<em>Adaptability to unfamiliar locations.</em> (Major degree only.)
+
+-<em>Social influence.</em> (Major degree only.)
+
+
+*Level at which the listed trait becomes a threat is in parentheses. May be used in other ways at other degrees. Will record by person as time passes.
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">07-Sep-21 01:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="884666498025676841" id="message-884666498025676841" title="Message sent: 07-Sep-21 01:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Things that are important about this game:</strong>
+
+<strong>1:</strong> It is a game. Games have rules. Rules aren’t set unless the means are there to enforce them-- not in capable company, and underestimating people gets you killed. This means that the current expected powers of the hosts are:
+
+-Surveillance of the entire playing field. They know the murderer even when we can’t, so they have to be able to see everything.
+
+-Instant self-defense measures that can cripple someone at will, which they should have on them at all times. Possibly activate automatically to protect from makeshift explosives. Because violence against them isn’t allowed.
+
+-Securing the location from the outside world completely and entirely. The outside world either doesn’t know we’re here, or doesn’t care. It’s been a year, so it’s possible we’ve been written off as a cold case. However, the means to hide or to fight off outside influences is available to the game masters.
+
+-Connections or force required to take control of an entire bunker. If we were kidnapped a year ago, I don’t think they could’ve prepped this place much further in advance. This is a place they took from someone or something, somehow.
+
+<strong>2:</strong> Games have game masters. Their job is to oversee the game and make sure it moves as intended. They aren’t allowed to interfere on a personal level until we push the boundaries of the rules they set. Pushes on the rules can be used once before they become officially outlawed. The rules can only be broken once, and it’s a loss if you don’t immediately win. Possible pushes on the rules include:
+
+-Could get into someone else’s room with a fresh corpse whose handbook is left on them. It isn’t technically borrowing a handbook, and you aren’t breaking in because you’re opening the door normally. The doors work by sensor on the handbooks, so it shouldn’t matter that the person is dead or alive until their handbook is deactivated, though it’s uncertain when that happens.
+
+-The game only seems to allow a single ‘guilty party’ at a time. If one person is determined to be that, and another murder is discovered after, but committed in the same time frame, it’s invalidated for purposes of the game. In that window, crime can technically be committed freely. The hosts, of course, would know about everything done at this point anyway, so this can’t be used to break the game by committing more than the regular limit of killings, probably
+
+-Convincing the enemy to break the rules as they are doesn’t technically implicate you, but also disadvantages them.
+
+
+<strong>3:</strong> The hosts can interfere on a macro level if there is an error on a macro level. If a server crashes, it gets a hotfix. Similarly, the game will progress, one way or another. Possible errors of this level include:
+
+- The players forming an alliance, designating the hosts as the enemy, rather than each other.
+
+- Gandhi reincarnating i guess
+
+- An enemy trying to end the game by killing us all.
+
+<strong>Possible answers from the hosts include:</strong>
+
+- Torture and other assertions of their position over ours.
+
+- Ending British colonialism in India. Again.
+
+- Make their plans just. Not work.
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884666609543835649" id="message-884666609543835649" title="Message sent: 07-Sep-21 01:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>4:</strong> Every bit of writing and word is a hint. I can and  will continue scanning all information provided for similar advantages. Things I can guess based on what’s in the handbook at the moment and from earlier speeches from the hosts include:
+
+-This. This isn’t the first one. Wait. “Any single killing game.” The language is too specific. Why would they call them a ‘blackened’ instead of, I don’t know, legal jargon? It doesn’t fit any single theme. ‘Class trial’? And that girl who died at the start. This happened before, and these people were heavily, heavily involved. 
+
+-The game is designed to be unwinnable for the killer. Everything in the rules hinges on the game persisting for a decent amount of time, and the accommodations are too nice to be short-term. They don’t <em>expect</em> daily killings. They expect people to be too afraid to kill until they have to.  
+
+-There is no indication of an end point, other than the death of everyone else here.
+
+<strong>5:</strong> I don’t expect there to be any, but if there are any alternate win conditions in consideration, I’ll put them here:
+
+-
+
+-
+
+-
+i thought so.
+
+<strong>6:</strong> Why?
+
+
+-
+
+i’m not going to fill that one in am i
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884666714330103808" id="message-884666714330103808" title="Message sent: 07-Sep-21 01:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+So. I’ll set up a format. For a daily log. I can just fill it in as I go. I’ll add it in three day increments, and I can keep track of everything I need to, and it’s easy. Adjustments for space will be performed as necessary.
+
+If I feel like I need to add an actual entry. Like I would with a diary. If I’m somehow that messed up, if I stop being calm. I can fit that in between logs. I don’t want that to happen. But if it does.
+
+<em>The remainder of the page is full of scribbled out outlines of formats for a journal.</em>
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884667032598089729" id="message-884667032598089729" title="Message sent: 07-Sep-21 01:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<em>The page is half-crumpled, like Rui was trying to forget they wrote it as it happened.</em>
+
+you know i really hope that katsumi took my plants. he must’ve noticed i’m gone and hopefully he’s learned how to care for them so i’d know there’d be at least one bit of good news when i go back home. losing one sibling and then the other would be too much for him and honestly it’s hard to hope any more so if he has those and then i come back then i think i can feel secure with it all somehow. im good at remembering things i hope ill be good at forgetting too when i have to. 
+
+they still care. they’re still waiting. a year isnt that long. it isn’t that long. things can still be the same. this is already unfair the world at least owes it to me to wait for me to come back especially with what ill have to do to get there.
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884667681578565703" id="message-884667681578565703" title="Message sent: 07-Sep-21 01:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>~~~Summary Report~~~</strong>
+
+<strong>Summaries of Goals and Possible Means:</strong>
+
+
+--<em>Use the situation. My biggest worry is that the enemy is going to pretend that nothing will happen. I need to have faith in the game’s designers, so the game itself should make them kill each other. So I force them to acknowledge the game’s existence, and then it becomes a part of how they behave. And that part is likely to be something called ‘murder’. Play into the situation, because reality’s on my side here. If I can sound convincing, then it doesn’t matter how the game is actually won, the only solution is stabbing because it’s the only one they can think of.</em>
+
+
+--<em>Talk. And talk a lot. People should be most lenient with information early on. They aren’t focused on self-image until the game progresses and I force them into an existential crisis. That means that the best source of information on how people naturally are is the window of time before the first person is murdered. Until then, I can learn a lot by acting more clueless than I am, and try to put ideas in the heads of the people who aren’t as dangerous, so that they’re more suspicious once the actual killings happen.</em>
+
+
+--<em>Appear weak. Behave how I normally would. But this time I’m in control. Someone who’s actually that weak isn’t going to survive, so I’m not that weak. But people aren’t going to think as hard about someone who they can’t imagine being the enemy, so I am going to appear anxious and weak. The people who are stuck on morality will stay on my side for a while out of pity and self-gratification.</em>
+
+<em>There’s no guarantee I can win through planning and thinking alone. These people are Ultimate Students. Or, were, at least. I have to play the emotional side of the game, but through the lens of someone who’s calmly and logically trying to win.</em>
+
+
+--<em>Morals are restrictions. Expectations and parts of self-image that have to be maintained in order to keep a sense of self. So, the game is unwinnable for the enemy, because there are enough ethical rules in play that I can swap between them as necessary. Undermine them by making it so they&#39;re never justified by their own terms. I am allowed to do that. They’re the enemy. And something about them is wrong. Winning is survival, and surviving is moral. The winner is right, the others are wrong.</em>
+
+
+<strong>Hypotheticals:</strong>
+
+--<em>To be filled.</em>
+
+--
+
+--
+
+--
+
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="07-Sep-21 04:04 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884668494896058369" id="message-884668494896058369" title="Message sent: 07-Sep-21 01:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Updates to Overall Picture:</strong>
+
+-- As of now, the situation has not fully reached the group. People can&#39;t grasp exactly how severe and strange the situation is.
+
+--
+
+--
+
+--
+
+--
+
+
+<strong>Updates on Personal Tactics:</strong>
+
+--
+
+--
+
+--
+
+--
+
+--
+
+
+<strong>Ranking of Potential Threat of Other Participants (Towards Me):</strong>
+
+1: <em>To be filled as information presents itself.</em>
+
+2:
+
+3:
+
+4:
+
+5:
+
+6:
+
+7:
+
+8:
+
+9:
+
+10:
+
+11:
+
+12:
+
+13:
+
+14:
+
+15:
+
+16:
+
+17:
+
+18:
+
+19:
+
+20: <em>Rui Kaida</em>
+
+<strong>~~~~~~~~~~~~~~~~</strong>
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="07-Sep-21 01:17 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884668612420448307" id="message-884668612420448307" title="Message sent: 07-Sep-21 01:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day 1</strong>
+
+<em>Estimated Quality of Mental State at Start of Day:</em> <strong>100%</strong>
+
+<em>Estimated Quality of Mental State at End of Day:</em> <strong>87%</strong>
+
+<em>No. of Current Major Active Threats:</em> <strong>0</strong>
+
+<em>No. of Current Minor Active Threats:</em> <strong>0</strong>
+
+<em>No. of Current Environmental Threats:</em> <strong>0</strong>
+
+<em>No. of Active <s>Plans</s> Procedures? Routes? (exc. New Plans or whatever):</em> <strong>3</strong>
+
+<em>No. of Concluded Strategies:</em> <strong>0</strong>
+
+<em>No. of New Ideas:</em> <strong>3</strong>
+
+<em>Elaborate here if necessary:</em> 
+
+- Threats will be added as part of the situation begin actively working against me, consciously or not.
+
+- Ideas will be listed under the Summary Report, and counted here.
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="07-Sep-21 01:18 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884668688517713952" id="message-884668688517713952" title="Message sent: 07-Sep-21 01:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Activity Report:</strong>
+
+-- Woke up tied to a chair. Girl was shot to death in front of me. Situation was first laid out.
+
+-- Met another student in the cafeteria. I think they introduced themself during the initial wake-up. Looked like they subsist on caffeine and is missing an eye, or something. An associate of the game masters was also present. She was weird and thoughtless, but I learned some things there. Nothing significant occurred.
+
+-- A loud guy who played air guitar interrupted me while I took stock of the poisons in the medical center. I went a bit far with my reaction, and actually hit my head so that hurt. Makes me wonder if I&#39;m more scared of the smart people or the stupid, incorrigible ones.
+
+-- Took a place in the second dorm. I am now in possession of a fork. The dining kind. I don&#39;t know what to do with it. The two people in my dorm so far seem to be reasonable. I can play this situation out safely for now. I also received this journal and a new cactus who I will name in a legitimate entry when I allow myself to be emotional like that. I doubt this room will be safe for me if I ever really start playing the part of the bad guy. I need a backup plan.
+
+-- Met a final student in a weapons closet. They looked weird. And they didn&#39;t realize it was a weapons closet until I opened a drawer. Acquired a butterfly knife. 
+
+<strong>Usable Information:</strong>
+
+-- Haru is eccentric, fast-paced and has at least a sense of &#39;good for me, evil for me&#39;, even if it&#39;s not objective moral standards. Could probably be convinced to turn on someone for the sake of doing something good. Probably an angle in for destabilizing the dynamics.
+
+-- Shizuru didn&#39;t react at all to the teleporting cactus. Why? 
+
+-- Josh is someone who is considerate, in a strange way, but also loud. Can&#39;t be used to spread rumors. Probably wouldn&#39;t understand if something needed to be secret. 
+
+-- Fusano something. Used a lot of words to say very little. Oblivious and slow-paced or relaxed, but those add up to the same thing. 
+
+-- Everyone above likely falls into the optimist camp.
+
+-- Chichi? I think? I don&#39;t know. Weird. Works with Talia, though. Can&#39;t be trusted. Hi Talia. I already bet you can see everything, so hi. I doubt the idol girl is allowed to say anything about the last year, right? Even if we ask, that&#39;s a solid no. Great.
+
+-- Doctor guy was almost a realist, but is too weak. They can&#39;t do what I can, I don&#39;t think. 
+
+-- For an amount of time, I&#39;m going to have to play along with trying to enjoy myself. In a death game. Somehow. 
+
+-- Four hosts listed. Met two.
+
+-- Twenty of us. Met five.
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="07-Sep-21 04:03 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884669519438684210" id="message-884669519438684210" title="Message sent: 07-Sep-21 01:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day 2</strong>
+
+<em>Estimated Quality of Mental State at Start of Day:</em> <strong>93</strong>
+
+<em>Estimated Quality of Mental State at End of Day:</em> <strong>90</strong>
+
+<em>No. of Current Major Active Threats:</em> <strong>0</strong>
+
+<em>No. of Current Minor Active Threats:</em> <strong>0</strong>
+
+<em>No. of Current Environmental Threats:</em> <strong>0</strong>
+
+<em>No. of Active Ideas:</em> <strong>_</strong>
+
+<em>No. of Concluded Ideas:</em> <strong>0</strong>
+
+<em>No. of New Ideas:</em> <strong>0</strong>
+
+<em>Elaborate here if necessary:</em> 
+
+- 
+
+- 
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="08-Sep-21 02:09 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884669570349142046" id="message-884669570349142046" title="Message sent: 07-Sep-21 01:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Activity Report:</strong>
+
+-- Met Josh again at a room with a skylight. He wants to organize a party. Encouraging him for now.
+
+-- Met a new student who was sort of uncomfortable. Named Leo, were in the medical room, but didn&#39;t take anything. 
+
+-- Another new student in a room made up with a large monitor. Name was... Um. I forget. They were a sommelier, though. How to actually operate the computer is unknown, and the information on it isn&#39;t really useful. Okay, well, there&#39;s a keyboard, but it probably requires a password we don&#39;t have.
+
+-- Met a student with a TV on their head in the library. Named Error. Weird name. They&#39;re very opinionated about the death game, but don&#39;t seem to have the ideas or confidence to do anything about it. Assuming they aren&#39;t following a similar plan as me, could be used for something at some point. 
+ 
+--
+
+<strong>Usable Information:</strong>
+
+-- Josh apparently likes to drink.
+
+-- There is a room with a skylight. Nothing of practical use, but natural light helps the strain of artificial light. Supposedly. I never cared about that before, but.
+
+-- Also, Josh&#39;s sleep schedule is apparently off-balance. Useful for guessing where people will be.
+
+-- Calling people &#39;fragile&#39; seems to be a good angle in on pointing out someone&#39;s own mortality in a more innocent way.
+
+-- Leo is someone to watch out for. On first impression, they seem like they&#39;ll be calm. If not in the face of a body, like they&#39;d be able to calmly put together the pieces in another room, or work as a mediator for the more aggressive personalities. And it&#39;s natural to them, in a way. Be careful of them.
+
+-- Everyone here is either in the camp of can&#39;t handle high-energy people or high-energy people. I think.
+
+-- The sommelier cracks under passive pressure very easily. Using the line from above and forcing them into an extended conversation about the killing game could wound their mental state.
+
+-- Error is a mess. I think I understand them enough that I can get through to them, and if they&#39;re closed off enough, then I can have a second person on my side who is not a threat of working with the others. Maybe even after I stop gathering information and build up defensive measures.
+
+-- Pets are allowed here, because Error has a cat and there is a rat in a cage on the bunk above me. I am trying to ignore it.
+
+-- Haru left early in the morning. I haven&#39;t seen them since. The other people in my dorm who I&#39;ve met seen like types who would disappear for long stretches of time at random. I think that&#39;s a good thing.
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="08-Sep-21 03:14 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884669627970519051" id="message-884669627970519051" title="Message sent: 07-Sep-21 01:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day 3</strong>
+
+<em>Estimated Quality of Mental State at Start of Day:</em> <strong>95</strong>
+
+<em>Estimated Quality of Mental State at End of Day:</em> <strong>92</strong>
+
+<em>No. of Current Major Active Threats:</em> <strong>0</strong>
+
+<em>No. of Current Minor Active Threats:</em> <strong>0</strong>
+
+<em>No. of Current Environmental Threats:</em> <strong>0</strong>
+
+<em>No. of Active Ideas:</em> <strong>3</strong>
+
+<em>No. of Concluded Ideas:</em> <strong>0</strong>
+
+<em>No. of New Ideas:</em> <strong>0</strong>
+
+<em>Elaborate here if necessary:</em> 
+
+- A clear headed day.
+
+- 
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="09-Sep-21 05:08 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884669653396389949" id="message-884669653396389949" title="Message sent: 07-Sep-21 01:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Activity Report:</strong>
+
+-- Met a girl named Alice at the library. Another optimist, but the kind that shouldn&#39;t take much effort after they see a corpse. 
+
+-- The secondary host appeared. It was a time. Jumping into even fake lava-- sure. It was uncomfortable and terrifying. I wouldn&#39;t hesitate now, but the situation got to me. 
+
+-- Met the person from the secondary library visit again. We have too many people whose names start with &#39;K&#39;.  Anyway it was Masami.
+
+-- Idle talk with Shizuru in the dorm while I write this. I wonder what he&#39;d think if he saw this journal. 
+
+--
+
+<strong>Usable Information:</strong>
+
+-- Masami seems to be another person who, if handled correctly, could be manipulated somehow. Easy to make myself the greater than, in terms of what I can guess and do. And give her some of that information, since she seems flustered by being here, and use that, along with some guilt and playing up my good intentions to succeed. Just to have another back pocket resource.
+
+-- Alice will probably change in tone dramatically upon the first death of someone she knows. Pressuring her after that could be damaging, the sooner the better. 
+
+-- Weird paper in the library apparently. Don&#39;t understand yet, but it would be strange for it to be irrelevant. It&#39;s the only single loose page there.
+
+-- The previous game involved either a tower or airship (I think a tower), where the government interfered by crashing a plane into the building.
+
+-- The bunker is likely constructed by the government. Considering the presumed animosity between the Aelii and the government, uncertain how this space was acquired.
+
+-- Haru is the Zodiac Killer.
+
+-- The powers of the hosts are realllly extensive. Moreso than I thought, somehow.
+
+-- Two closed off sectors. Why two? Don&#39;t the game masters only need one?
+
+-- Shizuru apparently found a glowing key which disappeared on contact with one of the sector doors.
+
+-- Clear difference in what the hosts know and can do between the primary two and the others.
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="09-Sep-21 05:26 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">07-Sep-21 01:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="884858336040865862" id="message-884858336040865862" title="Message sent: 07-Sep-21 01:51 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((feeling ill will re-evaluate this eventually</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 03:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="885064441497026600" id="message-885064441497026600" title="Message sent: 08-Sep-21 03:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+This is Day Two. I expect to have to revise the outline of my daily reports. I should also add a list of people with small biographies of my own. 
+
+I&#39;ll outline possible methods of that, with fill out pages for each person as I&#39;ve done for the daily logs.
+
+And I need to figure out myself what I meant by some of the stuff from the start. Maybe I&#39;ve already stopped thinking as clearly. But I don&#39;t know what exactly I can do for the long run. Nor when that would start. Too much is still uncertain, so I still have to downplay my hand. 
+
+I need to prepare for the first death, as well.
+
+
+
+
+
+<em>The following section is written as small as possible in the margins. A small sketch of Donkey Kong smiling adorns the bottom right corner of the page.</em>
+
+actually im kind of reminded of my sister a bit. im probably grasping at straws because of the stress in the weeks before i was kidnapped too and the loss of a year so i guess i miss my family somehow. maybe even my parents. at least my dad didnt kidnap any of us. i could like him again maybe. did i like him in the first place i cant remember. i shouldnt worry about that anyway ill have my actual family again i dont need to see them in other people
+
+and wow im actually just the &#39;last online 1 year ago&#39; meme to skel right now. skel would probably like josh to be honest i hate those guys haha
+
+not really miss you skel. i miss being able to talk in donkey kong ascii art with someone
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 05:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="885813693189849128" id="message-885813693189849128" title="Message sent: 10-Sep-21 05:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((will update when i wak e up :D</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 03:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="885970717525553232" id="message-885970717525553232" title="Message sent: 10-Sep-21 03:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>~~~Summary Report: Second 3 Day Period~~~</strong>
+
+<strong>Summaries of Goals and Possible Means:</strong>
+
+
+--<em>Use the situation.</em>
+
+
+--<em>Talk.</em>
+
+
+--<em>Appear weak.</em>
+
+
+--<em>Morals are restrictions.</em>
+
+
+--<em>Build connections. It is possible that once the situation comes to a head and I <s>uno reverse these fuckers</s> (Not a time to joke around) start inciting more violence, I can keep a couple individuals on my side. I need very established and usable relationships I can work off of. Viewing me as better than them, relying on me, trusting me, or hating me/looking down on me. As long as it isn’t purely neutral, I can do</em> something. 
+
+
+--<em>Start planning setups. Ways to give people means and justification to commit a crime. Likely won’t be too important for the short run, but maybe.</em>
+
+
+<strong>Hypotheticals:</strong>
+
+-- <em>Maybe I’ve been stupid, but I can’t think of anything to investigate. Damnit.</em>
+
+-- <em>I guess that we weren’t necessarily asleep for the last year? I can try asking Antomy and Chichi, see if I can get roundabout answers.</em>
+
+-- <em>The detective knows more than me. Check this.</em>
+
+-- 
+
+
+<strong>Updates to Overall Picture:</strong>
+
+-- 
+
+--
+
+--
+
+--
+
+--
+
+
+<strong>Updates on Personal Tactics:</strong>
+
+-- N/A
+
+-- Learning isn’t so important except for new people, now.
+
+--
+
+--
+
+--
+
+
+<strong>Ranking of Potential Threat of Other Participants:</strong>
+
+1: 
+
+2:
+
+3:
+
+4:
+
+5:
+
+6:
+
+7:
+
+8:
+
+9:
+
+10:
+
+11:
+
+12:
+
+13:
+
+14:
+
+15:
+
+16:
+
+17:
+
+18:
+
+19:
+
+20:
+
+
+<strong>~~~~~~~~~~~~~~~~</strong>
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Sep-21 03:32 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885970897951928371" id="message-885970897951928371" title="Message sent: 10-Sep-21 03:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day 4</strong>
+
+<em>Am I Feeling alright?</em> <strong>Y/N</strong>
+
+<em>No. of Current Major Active Threats:</em> <strong>X</strong>
+
+<em>No. of Current Minor Active Threats:</em> <strong>x</strong>
+
+<em>No. of Current Environmental Threats:</em> <strong>X</strong>
+
+<em>No. of Active Ideas:</em> <strong>X</strong>
+
+<em>No. of Concluded Ideas:</em> <strong>X</strong>
+
+<em>No. of New Ideas:</em> <strong>X</strong>
+
+<em>Elaborate here if necessary:</em> 
+
+- The percentages were arbitrary. And it’s impossible to have a metric. So, something simpler.
+
+- 
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Sep-21 03:33 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885971034153578516" id="message-885971034153578516" title="Message sent: 10-Sep-21 03:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Activity Report:</strong>
+
+-- Chunyu. Aquaponics room. Was solely uncomfortable. But the room seems interesting. It would definitely cause a macro issue if it handled food supply or oxygen. 
+
+-- Error. The space between all the sectors. They were carrying blankets. For [<em>the next couple words are scribbled out</em>] actually they said it was a top secret plan so. 
+
+--
+
+--
+
+--
+
+<strong>Usable Information:</strong>
+
+-- The aquaponics room seems to handle food for the bunker. It is made of glass. It is possible to make a setup where I&#39;m not even the one who necessarily breaks it.
+
+-- Chunyu isn&#39;t a person I can handle right now. 
+
+-- They left the area fast, because they can&#39;t handle awkward atmospheres. Heh.
+
+-- I don&#39;t know what my plan actually is, but if I need to manipulate someone, Error is such an easy target that I almost feel bad.
+
+-- Basic understanding of people and being able to communicate with them gives me an edge over the others, maybe. It&#39;s not anything else. No, not really.
+
+-- Gave them a knife. Said that they needed to be willing to stab me in order to talk to me. Setting up a false equivalence, where the two options are trust and a knife to my back. And both are workable. In the first (and possibly more likely) case, it&#39;s simple. In the latter, they&#39;ll probably feel guilty, even if they listen and don&#39;t trust me. It&#39;s an alternate thing I can play off of and I won&#39;t feel bad. Absolutely not. 
+
+-- Got confirmations that they have some slight bias towards me as someone who validates them. And that is fine and something I planned so it&#39;s fine. Anyway.
+
+--
+
+--
+
+--
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="12-Sep-21 04:46 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885971132820365332" id="message-885971132820365332" title="Message sent: 10-Sep-21 03:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day 5</strong>
+
+<em>Am I Feeling alright?</em> <strong>giving</strong>
+
+<em>No. of Current Major Active Threats:</em> <strong>up</strong> 
+
+<em>No. of Current Minor Active Threats:</em> <strong>on</strong>
+
+<em>No. of Current Environmental Threats:</em> <strong>this</strong>
+
+<em>No. of Active Ideas:</em> <strong>format</strong>
+
+<em>No. of Concluded Ideas:</em> <strong>fix</strong>
+
+<em>No. of New Ideas:</em> <strong>later</strong>
+
+<em>Elaborate here if necessary:</em> 
+
+- If something is relevant I&#39;ll have a page of threats on the weekly report.
+
+- 
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="12-Sep-21 04:49 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885971156585308250" id="message-885971156585308250" title="Message sent: 10-Sep-21 03:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Activity Report:</strong>
+
+-- Shizuru and Fusanosuke were having fun talking to the corpse in the meeting room.
+
+--
+
+--
+
+--
+
+--
+
+<strong>Usable Information:</strong>
+
+-- Less than usual. They talk very shallowly, and avoid difficult questions. 
+
+-- Fusanosuke tries to be moral. Bad.
+
+-- Peaceful day.
+
+--
+
+--
+
+--
+
+--
+
+--
+
+--
+
+--
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="12-Sep-21 04:52 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885971182715822080" id="message-885971182715822080" title="Message sent: 10-Sep-21 03:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day 6</strong>
+
+<em>Am I Feeling alright?</em> <strong>Y/N</strong>
+
+<em>No. of Current Major Active Threats:</em> <strong>X</strong>
+
+<em>No. of Current Minor Active Threats:</em> <strong>x</strong>
+
+<em>No. of Current Environmental Threats:</em> <strong>X</strong>
+
+<em>No. of Active Ideas:</em> <strong>X</strong>
+
+<em>No. of Concluded Ideas:</em> <strong>X</strong>
+
+<em>No. of New Ideas:</em> <strong>X</strong>
+
+<em>Elaborate here if necessary:</em> 
+
+- 
+
+- 
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="11-Sep-21 06:20 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885971204568141824" id="message-885971204568141824" title="Message sent: 10-Sep-21 03:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Activity Report:</strong>
+
+-- Met Masami again. Cafeteria. Weirdo. They were eating. They&#39;re frustrating. The sort of person who says something directly but doesn&#39;t explain it. 
+
+-- I am at a sleep over. Or something.
+
+--
+
+--
+
+--
+
+<strong>Usable Information:</strong>
+
+-- Masami sucks at people. Exceptionally so. Idk how to use that, but.
+
+-- NO one knows how to play uno.
+
+-- I am a winner.
+
+-- The hosts really do have a division in hierarchy between the two small ones and the siblings. Wild.
+
+-- I guess the big hosts have an idea of how well we get along now? As a group? So they know the amount of macro interference they need? Idk.
+
+--
+
+-- I stopped by the dorm earlier and made sure to check. THE AMONG US DRAWING IS STILL THERE. WHY HASN&#39;T SOMEONE GOTTEN RID OF IT.
+
+--
+
+--
+
+--
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="12-Sep-21 04:56 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 03:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="887598614619226154" id="message-887598614619226154" title="Message sent: 15-Sep-21 03:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+It all feels pointless. It all feels so STUPIDLY pointless.
+
+What does it take to remind these people that they have to die?
+
+Do I just have to say it to their faces?
+
+Anyway, splitting this here with a single page for day seven, then swapping to a weekly format, and writing in some analyses of the enemy. I wish I weren&#39;t so indecisive with things like this. Just, whatever. I&#39;ll figure it out eventually. I have plenty of time. I wish I didn&#39;t, but I do.
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="15-Sep-21 03:22 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="887599309422460948" id="message-887599309422460948" title="Message sent: 15-Sep-21 03:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+Day Seven blah blah blah
+
+Okay well so we got poisoned. The next week&#39;s log is going to be recording how that progresses, I guess. 
+
+Of course it&#39;s not real poison or anything. I&#39;m guessing it&#39;s some kind of long lasting drug that lowers dopamine production, heightens adrenaline production, and maybe there&#39;s some sort of tiny microphone implanted in our ears to whisper to us? I don&#39;t know. All we were told is that it happened during the sleepover. Empty vials. Not an injection. I don&#39;t know, maybe it&#39;s some sort of liquid, or we were attacked with those fancy little robots that made up Iron Man&#39;s suit. Crawled in our ears. Like that one movie. I forget which.
+
+Before that, Josh was in the library. I won at Uno beforehand. I told him that. Error showed up. That was difficult. I set up a plan that only works in very specific circumstances that I can&#39;t control. I need to rethink it. I can&#39;t count on them becoming fully paranoid of the others without more direct interference. But I can&#39;t be too annoying, or it all backfires. Damnit. I&#39;m so bad at this. 
+
+Josh got attacked by an SFX Talia. I thought he realized what was happened, so I played along. Apparently he thought it was real and that he was dying. If he wasn&#39;t going to die for real soon, I&#39;d feel bad.
+
+Of course, I still have to act it for now. I&#39;ll apologize. Eventually. Damnit.
+
+I also spoke to Haru. More seriously than last time. I told her the truth about my past. As long as I don&#39;t show how much it bothers me, it isn&#39;t a secret. If I don&#39;t care, it doesn&#39;t matter, so I don&#39;t care. It&#39;s just a token to get an in with other people.
+
+She&#39;s good at obscuring the truth. But she was avoiding the subject matter completely. Haru never said what she did or why she left her immediate family, and implied she had a single-parent home. That&#39;s probably the heart of whatever&#39;s actually her secret. Something from that period of time. Even in telling a secondary secret, she remained very vague. I don&#39;t need to feel sympathy. The circumstances are probably her fault, somehow. That&#39;s why it bothers her. She&#39;s an awful person, isn&#39;t she? 
+
+I wish not. Maybe. 
+
+Maybe I should just write one of these daily. I can&#39;t think in a format. 
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="15-Sep-21 03:44 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 05:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="887635304008282143" id="message-887635304008282143" title="Message sent: 15-Sep-21 05:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+Day Eight, I guess. If this is my new format.
+
+
+Met Chunyu in the hallway. Ran into him again. I asked about the motive poison. I didn&#39;t mention my theory, but the surgeon didn&#39;t think of it, nor give an idea of his own, so he&#39;s useless. I guess cutting people open and putting them back together doesn&#39;t mean you have to know how some chemicals work. Lateral thinking isn&#39;t something you&#39;re taught in med school, maybe. Worthless.
+
+Also I met Yoshi. Not the one I wish it was. But they&#39;re okay. As okay as a walking corpse can be. I don&#39;t know how to describe that one. They&#39;re eager to be liked, I think. Since they asked if my questions about the whole poisoning thing were a test. But maybe it was them, since they dodged them so easily. It wouldn&#39;t be hard to mimic the effects of a poison you gave everyone. Or something. They&#39;re kind of. Off-putting. I know what it&#39;s like to want to be liked, but there&#39;s also the desire to be seen as different. They&#39;re not quite the same, and not mutually exclusive, but... this seemed more like the latter, maybe? I don&#39;t know.
+
+Thinking about it, I need to know what that privilege the game master mentioned is. If I can take advantage of something similar.
+
+That would be good.
+
+...It feels wrong not keeping track of all this information in an itemized list. I wish I had a study guide for this.
+
+------------------------------------------</span>
+
+                                <span class="chatlog__edited-timestamp" title="15-Sep-21 05:48 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="887635497256644609" id="message-887635497256644609" title="Message sent: 15-Sep-21 05:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<em>The next page is taken up by a drawing, labelled</em> &quot;i wish :(&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="15-Sep-21 05:47 AM">(edited)</span>
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/unknown-64447.png">
+                                <img class="chatlog__attachment-media" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/unknown-64447.png" alt="Image attachment" title="Image: unknown.png (43.91 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="887635675887829023" id="message-887635675887829023" title="Message sent: 15-Sep-21 05:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">20-Sep-21 03:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="889412333758197770" id="message-889412333758197770" title="Message sent: 20-Sep-21 03:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((god damnit so time for four more entries</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="891179952333013042" id="message-891179952333013042" title="Message sent: 25-Sep-21 12:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((ok ill finally catch up and write eight whole entries</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 01:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="891187363043213343" id="message-891187363043213343" title="Message sent: 25-Sep-21 01:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((ok fuck i messed this up chronologically so Rui is going to shatter the multiverse some more</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 01:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="891191809936592896" id="message-891191809936592896" title="Message sent: 25-Sep-21 01:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+Day nine. It’s loud.
+
+I think. Maybe it’s just my imagination. Confirmation bias. Or a placebo. I’m too out of it to remember which. But I think my balance is getting worse from all this. I fell over in the aquaponics room. 
+
+I’m still trying, though. Someone needs to crack soon.
+
+Met another new face. It was hard to focus on them. <s>They were okay.</s> They’ll probably die soon. They’re an idiot. They think what I do is almost interesting. I know they were just trying to make me feel better somehow, and I hate it. Anyone could do it. Ultimate titles are just tokens. I’ve seen the people here. They’re just about one thing. It doesn’t make someone even half capable in the rest of the world. 
+
+Oh, and. The other one. Basically was asleep the entire time. I think. I might be able to get through to them. I don’t know what exactly my plan for them is. Hell, I can’t remember anything right now. But I know I’m planning on winning, and this will help me. 
+
+But I think. I think I’m getting to the surgeon. I could wear him down soon. Maybe. I could get him to break. He thinks he’s playing the game. But he doesn’t know what he’s doing. Weak. Even a person like me can win over those idiots. If they play their cards this badly. I can’t get rid of all the ibuprofen in the entire medbay, though. I don’t know. I’ll figure it out. Eventually.
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 01:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="891200072308645918" id="message-891200072308645918" title="Message sent: 25-Sep-21 01:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+day ten
+
+stay strong stay strong stay strong you can win this but you can’t look weak because you aren’t weak you’re you and you’re the only person here who’s going to be alive okay
+
+I think I got some insight into Josh. The voices were getting to him for something he agrees is true. TOR something. I’ll have to make some more guesses as to what that could mean later. He’s still holding out on the chance we don’t have to kill anyone, though. So, maybe that will do something to him? When it happens. Though, I guess, he’s already slept off the corpse in the meeting room.
+
+He bottles up his emotions, doesn’t he? I just need to find a way to set him off.
+
+
+
+Damnit. Damnit. Damnit. The voices won’t shut up. The whole time. And they got louder.
+
+Reminder to self: I am talking to Error because they’re an easy target. I can get them to do something. Break the aquaponics room. Poison the food supply. If I convince them it’s for the good of us both, I might be able to get them to do it. But the fucking voices won’t shut up. 
+
+I am not actually going to be a ‘good person’ and save anyone. I am going to survive, and so that sort of bullshit morality needs to get out of my head. 
+
+It was worse than usual, too. Normally, it’d be telling me off. For lying. Trying to manipulate people. Incite them. Whatever. But it was encouraging me and if I didn’t fully wake up I might’ve accidentally gone with it. And once you start something it’s hard to stop, so I can’t start actually caring. Damnit. Damnit.
+
+I pulled through, though. I got to the point. Error should hopefully trust the others even less, now. And helping them in an emotionally vulnerable moment should give me some points towards mutual trust. Then, I have another tool to use.
+
+I hate myself. 
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 02:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="891202455814176778" id="message-891202455814176778" title="Message sent: 25-Sep-21 02:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+Day eleven. 
+
+I’m starting this entry early because I ran into someone early. 
+
+Haru. Medbay.
+
+I’m still tired. Recording this is hard.
+
+Shut up. I’m not going to go after her and try to be nice. 
+
+Anyway.
+
+They were almost crying. From the motive. I calmed her down a bit. Because I don’t know how to handle someone who’s crying. It would’ve been more effective if I did what I did immediately. But I also wouldn’t have been able to make it work.
+
+Um. I convinced them that they wanted someone to die to end the motive. Then I offered to be killed for it and handed them my knife.
+
+As expected, they didn’t kill me. She said what she said because she was tired and weak. But now she&#39;ll remember it. And she knows what they wished to happen. And now when someone dies, she should feel guilty for it. 
+
+She already hates herself somehow. Somewhere. For whatever she did. I can use that an
+
+
+
+shut up
+
+Ignore the voices. What happens to her is her fault. If she dies? Good. If she doesn’t? That’s also fine, now. 
+
+Always remember. They’re going to die. They <em>deserve</em> to die. And I don’t.
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">28-Sep-21 03:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="892308388736811028" id="message-892308388736811028" title="Message sent: 28-Sep-21 03:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day Eleven Part Two</strong>
+
+
+It’s over. Someone finally died. I can go back to figuring out a format for these because I can think in formats again. That was getting annoying. 
+
+I wonder how it would’ve worked for someone deaf, actually.
+
+Anyway.
+
+
+
+<strong>The Murder Stuff</strong>
+
+
+--I woke up late. Yoshi was calling for everyone to meet in the hallway outside of the dorms.
+
+--We were led to the kitchen. The detective was dead. A shame. I didn’t get to run any of my guesses past her.
+
+--The actual clues are on the handbook we were given.
+
+--After about ten seconds in the room it was obvious. But we continued the charade of investigating anyway. 
+
+--I lifted a piece of evidence from the scene of the crime. It’s plastic. Cheap. And gaudy. It’s a dead match for the hair stylist’s stuff in the handbook’s profiles. So, case solved. If it came from the killer, then it’s hers. Because it was either the killer, or it was Suri. And as shifty as she is… I don’t know if she had the means to implicate someone else.
+
+--Even as I was leaving, people were pretending to investigate. Annoying.
+
+
+
+<strong>Yoshi Encounter</strong>
+
+--They were in the hall outside the rooms again.
+
+--Not much of interest was discussed, but they said a couple things:
+
+---- First, they don’t seem to realize that the killers die after. Ha. I didn’t say anything. 
+
+---- Second, they said ‘they expected something like this to happen eventually’. So, obviously, this person is telling some lie about who they are. A simple pianist wouldn’t have to worry about being kidnapped like this. 
+
+---- They did suggest the possibility of a hidden jail. To put people in. Maybe that exists. Because a lot of people from the table when we woke up went missing. But it’s definitely not for us, if it is.
+
+
+<strong>Haru, Again</strong>
+
+--Haru was staring at the corpse on her own. Eating cereal. A comfort food, probably. 
+
+--As expected, it rattled her a lot. Probably more than it would’ve otherwise. Hopefully. I tried to use the moment to gain some favor. I could’ve pushed her more but
+
+--She trusts the surgeon. I hate the surgeon. I have to try to turn them against each other, I think. Getting on the good side of both of them and trying to convince them that avoiding each other is for the best is probably a good shot.
+
+--I’m not sure what to do about her. I need more concrete plans. Soon, I guess I should start unraveling people. But the people who are easily controlled, like Haru, Error, and the sleepy one, they’re something else. I have the cards in hand, but I don’t know how to play them. 
+
+--I like that. Focus on this as a strategy. A puzzle to be solved. It’s impersonal that way.
+
+
+<strong>Summary</strong>
+
+Things are going well. Almost too well. It’s sort of scary because I thought I’d struggle more to do the setup. It’s like that one thing. I don’t know, I never thought I’d get this far. I am plankton.
+
+<strong>Goals</strong>
+
+Haru vs Surgeon Guy.
+
+Error <s>Conversion</s> <s>Manipulation</s> what the hell do i call this to stop feeling like shit whenever i write about it.
+
+Solve the murder-- Complete!
+
+Think of an Endgame.
+
+Make Proper Profiles for the Opponents.
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">28-Sep-21 04:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="892322131596181546" id="message-892322131596181546" title="Message sent: 28-Sep-21 04:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Day Twelve</strong>
+
+Writing this at the end of the day. Trial occurred. The hardest part about it was standing outside for two hours. For me, at least. And getting on a train. That was pretty awful. Because I was an idiot. And I didn’t sit down. 
+
+Me.
+
+I sit down all day at home, like. Half crouched on my office chair. And I failed to sit down.
+
+Anyway.
+
+
+
+<strong>Trial Fun Times Who Will Die?</strong>
+
+--Shut up I can have fun with the names no one except me will see this anyway.
+
+--We were called to a train. Underground. Through one of the sector doors. So, well. Who knows where those lead?
+
+--On a bullet train. The fastest commercial ones are around 400km/h, judging by my parents’ commute schedules, so. If we were there for like, three minutes, that’s a twentieth, or twenty kilometers. Underground. Theoretically. The issue is the sky and the falling in the cafeteria. Otherwise they could just be really big over ground facilities, maybe.
+
+--Actually it still could be. Fans and projections to simulate free fall. I think there are buildings large enough to have their own weather cycles, so if there was one of those with a planetarium-style ceiling for the trial room, maybe.
+
+--Arrived in a circle of platforms in the desert. And were told to argue it out. It just. Took ages. Nothing of note happened. Not really. I think, actually, the others didn’t know who it was coming in? Somehow? Were they just… Not looking, or?
+
+--Entry is going long. Cont. on next page.
+
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="892322176009666591" id="message-892322176009666591" title="Message sent: 28-Sep-21 04:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+
+--Anyway, the votes went as expected, with two on me, and all the rest being for the suspect or people voting for themself. Thankfully. I would’ve had to completely change tack if I only had one vote. 
+
+----With that in play, I can now act it up as though someone is out to get me. The argument is that with one vote from the killer, there still would have to be a second vote (which was me, but no one has to know that). With that in mind, that someone would vote for <em>not</em> the killer, it’s possible that neither vote came from the killer. That for some reason, I was a target. And it worked on Error, I think.
+
+--Also worth noting: Suri got one vote. She almost definitely voted for herself. Because she wasn’t trying to provoke the killer, nor did she push the evidence as hard at the end. There shouldn’t have been any special interest in her, so she probably did it.
+
+--There was an entire execution. I mentally am trying to block it out, because I hate gore and death and literally everything that happened gives me an anxiety attack. But it happened. And the hairdresser died.
+
+--We got on the train again, and dispersed with one fewer person.
+
+--And it’s still unclear how the game masters move from place to place. It can’t be that time is weird in here, right? I mean, if we lost a year, and don’t know how… They could just walk up in front of us thirty minutes later and make us forget that the thirty minutes passed. 
+
+
+
+<strong>Error</strong>
+
+--I saw them again after the trial. By coincidence. I ended up using the situation to test out my trick with the votes.
+
+--They believed me, but the argument was shakier than expected. I don’t think I should try this with more people. One other try to see how it goes.
+
+<s>i felt bad. they seemed legitimately traumatized and maybe i would’ve been too if it weren’t for how i’ve shaped the way i think for this game and using them to test stuff like this is just heartless and awful and i hate myself. i don’t even call them by a name even a fake one or something i know this is all stupid projection because i miss my siblings and i want someone i can help or something but still that’s sort of a reason in a way i think</s>
+
+--They intend to end the game. I’m going to tell them how to. But it’ll just kill them and hopefully everyone else here.
+
+--I think everything is going to plan. Good.
+
+
+
+<strong>Summary</strong>
+
+--The trial went worse than expected. Maybe the people here really aren’t as competent as I thought. I don’t know.
+
+--The votes are a useful tool, but flimsy as an argument. One more try, then I’ll have to see if I can use it better in the future. Next trial, maybe.
+
+--Clear avenues of getting Error to do things are available. As expected. I guess I’ll have a section in one of the next few entries that’s just end goals.
+
+
+
+<strong>Goals</strong>
+
+Alienate Haru and Chunyu.
+
+Error.
+
+Create a winning endgame plan, and force it sooner than later.
+
+Profiles.
+
+
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">28-Sep-21 04:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="892326261169459270" id="message-892326261169459270" title="Message sent: 28-Sep-21 04:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day Thirteen</strong>
+
+
+New sector was unlocked today. I don’t know if it was renovations, but this seems a bit coincidental. That it’s the day after a trial, I mean.
+
+I guess that’s something to look forward to.
+
+If you’re Kirito.
+
+Anyway.
+
+
+
+<strong>First Glances At “VR”</strong>
+
+--The new area is a single hallway. 
+
+--Inside this single hallway, there are full immersion VR capsules. Technology that I guess is reserved for the rich and the government. Typical.
+
+--We were told this is somehow relevant to the rest of this situation? That’s something to look into. I guess.
+
+--As it was, I went in with the surgeon, as awful of company as that is. The machines worked as intended. They gave off a bright flash when they activated, so it wasn’t possible to see what was happening. And all I could see was a bit of his face after.
+
+--Once inside, we did a few tests. Injuries, did in fact carry over. As did bloodstains, not only from the person wounded, but if they got blood on someone else.
+
+----I have since gotten rid of that scarf.
+
+--This is, in fact. Strange. On Theorycraft Day ™️ I’ll think about it more.
+
+
+
+<strong>Josh Being Weird</strong>
+
+--So. Josh was being weird.
+
+--I was cataloguing the knives. Not really. Walking around with my notebook, eyeballing things, and making pretend so I could speak with authority on the subject.
+
+--Josh comes in. He is loud. He is Josh.
+
+--And he is acting completely unfazed by the death of someone the day before.
+
+--He’s trying very hard. He’s too stable at the moment to do anything to, but as time goes on, he’ll only alienate himself more with that stance, or have to drop it and become vulnerable in a normal way. But I have to wait.
+
+--And he doesn’t know what Wang Tiles are :(
+
+
+
+<strong>Summary</strong>
+
+
+--A boring day. People avoid each other here. Not surprising, but. It’s strange.
+
+--Josh and Chunyu. A tiring day. I’m just going to sleep. 
+
+--Goals section would remain unchanged. Unnecessary.
+
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">28-Sep-21 03:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="892494691378003988" id="message-892494691378003988" title="Message sent: 28-Sep-21 03:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day Fourteen</strong>
+
+Happy two weeks.
+
+Hey game masters have you stopped reading my diary yet that’s very rude actually.
+
+Constant nighttime is weird, also.
+
+Anyway.
+
+
+
+<strong>The One Thing I Did Today</strong>
+
+--I spoke to Karen at the cliffside. She was the one who was trying to lead the trial, actually.
+
+--She was trying to be weirdly reassuring and stuff. And everything she said was wrong. But I didn’t have a good way to hit her over the head with that fact. In the future, though, I’ll need to be careful of her. She seems exactly the type to get stuck with a stronger personality and follow along as an amplifier. I don’t work by personality because I’m too weak. And any authority I’d claim to have is fake, so.
+
+--As usual. Imply you could kill someone and suddenly they’re back in the game. The normal response is to avoid death, but you can twist words however you want thanks to low power mental states and stuff. Ha.
+
+--And also, Suri started a rumor about an inside agent. It’s not true, because it’s someone who earned a ‘privilege’ or something. But I’m interested. I’ll have to ask sometime.
+
+--And then, to top it off. Karen mocked me. Great. Anyway, that’s a person I can’t wait to see become miserable.
+
+
+
+<strong>Summary</strong>
+
+--I should’ve pushed Karen off of a cliff
+
+--Theorycrafting is in two days.
+
+--No change to goals. Just be careful of idealists.
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">28-Sep-21 04:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="892511314679828520" id="message-892511314679828520" title="Message sent: 28-Sep-21 04:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((This isnt a diary entry but for posteriority whenever I look at the relationship chart I get an uncontrollable urge to laugh evilly</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">01-Oct-21 04:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="893411683123474452" id="message-893411683123474452" title="Message sent: 01-Oct-21 04:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day Fifteen</strong>
+
+Today is a very proud day. Today I began to unravel Chunyu. I write this beside the rotting corpse of some girl I never met, and I know she, too, would be proud of me. Because no one in their right mind is friends with Chunyu without some sick mindset that they can ‘fix’ him. 
+
+Thanks, whatever your name was. Maya. You’re a real one.
+
+Anyway.
+
+
+
+<strong>The Surgeon and the Scarf Person</strong>
+
+--And the scarf person is taking the lead.
+
+--While I was walking to the aquaponics room, I saw the door to the storage room had its handle about four degrees lower than it should’ve been. So, obviously. With one hand on my knife. In my pocket. I went to check. 
+
+--Inside, Chunyu was perusing the stacks of knives. And he tried to intimidate me. Fortunately, he couldn’t tell how uncertain I was about everything he was doing/saying. He wasn’t prepared, so I managed to get a shot in.
+
+--I asked what he was doing with the collection of knives inside. He perfectly dodged the question, but that’s as good as an answer, when there’s only one thing to hide.
+
+--I pointed out the things he said before once he started denying stuff. And he shifted the conversation into an attempt to make me out as a murderer. Break me down. If only that would work. 
+
+--I responded perfectly neutrally, and when he pushed the point, I turned it around by pointing out his assumption of my conclusions. That’s worthy of a ‘tee hee’ as anything I’ll ever do will be. 
+
+--Of course, then he tried to intimidate/unnerve me by switching tacks and playing a character who didn’t mind dying in an attempt to rattle me by confronting me with the option to kill him. Fifteen seconds after he said he intended to survive.
+
+--He even conceded the point when I called him out. Ha. You don’t have to admit anything, and there’s no evidence in social situations. I couldn’t have proved anything. He just admitted that he didn’t know what he was doing. And once he said something mildly emotional:
+
+--I twisted the knife! And playing off of the connection between Haru and Chunyu, which is thankfully mutual, I got him off balance for a moment. He’s afraid. Afraid of hurting someone who likes him. As long as they support whatever he thinks. Ha.
+
+--The idiot couldn’t figure out the solution that he needed to reach. If being around Haru puts her in danger, then the only solution available to someone who can’t fix the danger is to make them hate you. And he couldn’t figure that out.
+
+--He also took a knife. Most likely.
+
+--I have to try to push this. I won’t get another easy opening like this, so no messing up.
+
+
+
+<strong>Zoe Forgets the Game Masters Have Ears</strong>
+
+--There’s that girl in our dorm. Who showed up late. And I ran into her just before I sat down to write this.
+
+--The conversation was idle. Mostly her tossing out more emotional platitudes. No, you will eventually do something wrong. You don’t have a choice.
+
+--Then, the complete idiot. They said ‘Wow, I sure hope the next motive doesn’t involve my family’. And of course, the omnipresent game masters arrived to reassure her: “we’ll think about it”. 
+
+--Information from this one is low. But I’m practicing laughing at it. Because that makes me more heartless. And then the plan I’ve been formulating comes around easier.
+
+--hahahahahahahaha
+
+--See? I’m laughing.
+
+
+
+
+<strong>Summary</strong>
+
+--Chunyu is weak.
+
+--Zoe is an idiot.
+
+--Talia is everywhere.
+
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">01-Oct-21 04:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="893419881721126922" id="message-893419881721126922" title="Message sent: 01-Oct-21 04:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">------------------------------------------
+
+<strong>Day Sixteen</strong>
+
+<strong>Welcome to the Theorycrafting Marathon!</strong>
+
+--Less formatting this time. I’m just writing. I’m not even gonna say ‘anyway’. Not at the expected time, at least. 
+
+--Profiling of major enemies comes next.
+
+--This is for victory strategies. Not for figuring out the mystery of the situation. Which is something the enemy should be focusing on a lot harder if they want to win by the high road.
+
+--UPDATED POST ROBOT MAN ENCOUNTER
+
+
+<strong>Plan 1: What if they all just sorta died?</strong>
+
+--Natural causes seem unaccounted for in the rulebook. That is, starvation. 
+
+--Assuming the aquaponics room is the source of food for the bunker, I could get it destroyed by an accomplice.
+
+--Simultaneously, I could set a fire in the kitchen. With the proper tools, say, breaking lighters or something to collect flammable liquid, as well as some books and paper from the library, I might be able to put that up in flames, at the same time the aquaponics room breaks. About a week&#39;s worth of food is in the kitchen. And that much time is too much to account for. 
+
+--In advance, I sneak out and hide some small amounts of food elsewhere. Scattered. All in one place means I lose if it’s discovered. After allowing myself a couple days of starvation, I only allow myself to eat once the others are too weak to pose a threat. Then I have to
+
+i have to hide somewhere and never see them if i do this i don&#39;t want to see them suffer like that they’re the enemy but still that’s too much some of them are just children and then there&#39;s one or two people i don&#39;t even want to die but i&#39;d have to watch them starve and i couldn&#39;t help them because they’d help the others but i dont want to see that i dont want that 
+
+--I do what I have to do.
+
+--Talia shouldn’t be able to interfere with this plan. And it would be insincere to take away the victor’s good idea by sabotaging my personal food supplies. I need to think of the optimal time to move undetected.
+
+--If this is timed so that the final people finish starving to death around the time of the game’s natural conclusion, then they have even less reason to interfere.
+
+--Error is the current best candidate for breaking the aquaponics room. I assume with a heavy implement, it should be simple. I can read up on explosives just in case.
+
+
+
+<strong>Plan 2: Stab spare mattresses until you can stab a person.</strong>
+
+
+<strong>Plan 3:</strong>
+
+--I can’t think of another way to kill everyone while it’s technically not murder.
+
+--I could convince someone else to do a mass poisoning. It won’t win the game. But it could get me closer.
+
+--Still unsure what the privilege that was used at the sleepover is. And who used it. That could be another avenue out. 
+
+--The facility can’t be escaped. I feel like the hosts can’t really leave, either. But that’s just a gut feeling.
+
+--This is too depressing. I’m stopping here.
+
+
+<strong>Plan 4: Swap Sides</strong>
+
+--The hosts know I’ll be loyal if I get to join them. And with Talia being stabbed by Drake, having another helper who’s loyal would be valuable. Especially with the depth of-- everything. I don’t need to know the things out of my scope. But there’s a lot to deal with for just one person. Your sub-hosts are incompetent. But you could trust me to do something actually important. Beyond maintenance and self-sabotage.
+
+--You know I’m smarter than everyone else here. I don’t care what it takes. But protection. Not even a way out. A guarantee of survival. That’s all I’d need. 
+
+--I think you can read these, still. Please. Killing you, even when on your side-- It wouldn’t help me. I only hate you because I’m on this side of the game.
+
+--If it takes a test. I can do that, too. You know I figured out the killer in moments. I can do it. Whatever it is. Anything short of death. As long as I get to go home when this is over.
+
+------------------------------------------</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="893420867852304394" id="message-893420867852304394" title="Message sent: 01-Oct-21 04:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((these take fucking forever so</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="893420885774581800" id="message-893420885774581800" title="Message sent: 01-Oct-21 04:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((sleep o clock</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20ruis-diary%20%5B884574827262906398%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">15-Oct-21 03:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="898465877740101632" id="message-898465877740101632" title="Message sent: 15-Oct-21 03:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((pain</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 48 message(s)</div>
+</div>
+
+</body>
+
+</html>

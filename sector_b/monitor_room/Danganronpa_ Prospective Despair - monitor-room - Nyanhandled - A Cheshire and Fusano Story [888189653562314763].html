@@ -1,0 +1,2812 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - Nyanhandled - A Cheshire and Fusano Story</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">monitor-room / Nyanhandled - A Cheshire and Fusano Story</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="A Generic User#7302" style="color: rgb(220,20,60)">Decently Generic User</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;888189653562314763&#39;)">
+(Just starting a new post here, so I can create a thread. Don&#39;t mind me!)                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="888189846210904084" id="message-888189846210904084" title="Message sent: 16-Sep-21 06:29 PM">
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="888190585985454081" id="message-888190585985454081" title="Message sent: 16-Sep-21 06:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I’m not sure how much I like how the thread name reads out like a fanfic title)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="888190995290816544" id="message-888190995290816544" title="Message sent: 16-Sep-21 06:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ff:<em>As it would seem, even now there are still areas Fusanosuke is discovering within this strange place. Slowly, he plods into an unfamiliar room... a room with a large monitor, as if this were some kind of &#39;Monitor Room&#39;, perhaps. As per usual, he takes a glance around the rest of the room, and I guess there&#39;s some wires and stuff.</em>
+&quot;Hmm... now, this is unfamiliar territory.&quot; <em>The Ultimate Performer muses to himself, grabbing ahold of his folding fan once more - before pacing over to the monitor to get a better look at it.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888191068582076467" id="message-888191068582076467" title="Message sent: 16-Sep-21 06:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(oh, i didn&#39;t even realize how the name sounds. just wanted to throw in the word &#39;nyanhandled&#39;, really.)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="888191137985224724" id="message-888191137985224724" title="Message sent: 16-Sep-21 06:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Dw dw I was just joking LMAO)</span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Sep-21 06:34 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="888191288103542794" id="message-888191288103542794" title="Message sent: 16-Sep-21 06:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(but now that you&#39;ve mentioned it - whoa that really does sound like that sort of fanfic title!)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="888191862484115487" id="message-888191862484115487" title="Message sent: 16-Sep-21 06:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Entering in here in utter silence, he looks at the room first before…</em>
+“MAGIKABAM!”
+<em>Glitter flies out from his sleeves, at Fusanosuke.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="888192278433243146" id="message-888192278433243146" title="Message sent: 16-Sep-21 06:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(didnt realize i was on ao3 and not discord lol</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Sep-21 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="888192301304807494" id="message-888192301304807494" title="Message sent: 16-Sep-21 06:39 PM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="Ame/Est55#7858">@Est</span>, <span class="mention" title="A Generic User#7302">@Decently Generic User</span> got an interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="888192320565051392" id="message-888192320565051392" title="Message sent: 16-Sep-21 06:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(WODNWODJWKDJ)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="888192338554400790" id="message-888192338554400790" title="Message sent: 16-Sep-21 06:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<s>ik someone else made that joke shh</s></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="888192412508360744" id="message-888192412508360744" title="Message sent: 16-Sep-21 06:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<s>I literally made it SMH</s> /j)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="888192524789882940" id="message-888192524789882940" title="Message sent: 16-Sep-21 06:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(a title that draws in readers is important, and i think i made the right call here!)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="888192558939906118" id="message-888192558939906118" title="Message sent: 16-Sep-21 06:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(True)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="888192930039365632" id="message-888192930039365632" title="Message sent: 16-Sep-21 06:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( why does the title of this thread look like a fanfic title</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="888193077141962793" id="message-888193077141962793" title="Message sent: 16-Sep-21 06:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Generic you are now legally obligated to write a Cheshire and Fusano fanfic)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888193126034980894" id="message-888193126034980894" title="Message sent: 16-Sep-21 06:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(With this thread name as the title)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="888194188561240074" id="message-888194188561240074" title="Message sent: 16-Sep-21 06:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ff:<em>Fusanosuke&#39;s eyes rest upon the monitor - and the information that it happens to display on the screen.  An oxygen display, how much electricity is being used, the weather outside... it certainly is curious information, to say the least. What especially sticks out to Fusanosuke is the weather display, however. He ponders if it would be possible for someone to get a general idea of their location through the weather... though, he&#39;s certainly not the person to do that. At any rate, he then chooses to try tinkering with the monitor... only to be interrupted by a sudden voice!</em>
+
+<em>The Ultimate Performer spins around with a certain grace, but even still, he&#39;s not quick enough to evade the catboy&#39;s special glitter arts - and thus, Fusanosuke is hit with his second glitter blast.</em> &quot;A-ah...! Glitter truly is a lovely thing, my friend - but even now, I am <em>still</em> finding glitter within this hair of mine!&quot; <em>He cries out.</em> &quot;Why, as I awoke this morning - glitter fell from my hair like summer rain!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888194387413192774" id="message-888194387413192774" title="Message sent: 16-Sep-21 06:47 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(obligated to write a fanfic, eh? ha, looks like that&#39;s the punishment i&#39;ll bear for the word nyanhandled)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="888195592940056656" id="message-888195592940056656" title="Message sent: 16-Sep-21 06:52 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Nyahahaha! Ya got a lotta hair, so ya probably still got lotsa glitter in it, still!”
+<em>He grins as he rolls back and forth on the balls of his feet, momentarily looking at the monitors before back to Fusanosuke.</em>
+“Maybe once ya take a bath, it’ll be super sparkly, nya?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 06:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="888197411896442900" id="message-888197411896442900" title="Message sent: 16-Sep-21 06:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ff:&quot;Indeed... I can only picture the veritable <em>trove</em> of glitter to be found in this hair of mine...!&quot; <em>Fusanosuke can&#39;t help but chuckle.</em> &quot;But... ah, I simply must hope that your words bear truth! Were my hair to sparkle with the splendor of seven suns... <em>that</em> would certainly be something, I must admit!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="888197588170453072" id="message-888197588170453072" title="Message sent: 16-Sep-21 07:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“…What the heck are ya saying, nya??? Seven suns means ya’ll shrivel up ‘n die, ya know?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888197685398614056" id="message-888197685398614056" title="Message sent: 16-Sep-21 07:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Fusanosuke has met someone who does not understand metaphors and figures of speech, good luck)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="888197912713113641" id="message-888197912713113641" title="Message sent: 16-Sep-21 07:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(between this season and the last one, i seem to be running into a fair few types like this! quite something, gotta say)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888198633927901244" id="message-888198633927901244" title="Message sent: 16-Sep-21 07:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Perhaps I shall shrivel up, yes,&quot; <em>Fusanosuke nods precisely three - count them, three - times, which is then followed up by a grandiose, pointing gesture with his closed hand fan.</em> &quot;But, I shall shrivel up in the most <em>radiant</em> of ways - covered in glitter that shines like the very sun. It will truly be a sight to behold, no?&quot; 
+
+<em>As Fusanosuke utters such words, he can&#39;t help but look towards Cheshire&#39;s sleeves with a curious expression, as if trying to figure something out...</em></span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Sep-21 07:05 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="888199140255862846" id="message-888199140255862846" title="Message sent: 16-Sep-21 07:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Myaaah… I dun think a shrivelled corpse’s pretty or anything, but you do you, weirdo.”
+<em>He puts his hands behind his head, juggling a ping pong ball with his feet.</em></span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Sep-21 07:06 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="888200842119897169" id="message-888200842119897169" title="Message sent: 16-Sep-21 07:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ff:<em>Though Fusanosuke does agree with the catboy magician&#39;s words... he&#39;s more sidetracked by Cheshire&#39;s actions. He was aware of Cheshire&#39;s nature as a magician, but even still, he found himself confounded by Cheshire&#39;s glitter and now his ping pong ball, which he&#39;d produced from... somewhere.</em>
+
+&quot;But, to move onto another topic, my feline friend...&quot; <em>Fusanosuke watches Cheshire&#39;s juggling carefully - he finds himself rather impressed with Cheshire&#39;s juggling skill, but perhaps it is to be expected from a magician.</em> &quot;Wherever could you store all this glitter of yours - and that ping pong ball of yours, for that matter? I&#39;m well aware that a magician never reveals his secrets... but I simply <em>must</em> inquire!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888201157724487701" id="message-888201157724487701" title="Message sent: 16-Sep-21 07:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;As a humble performer - consider my interest <em>piqued!</em>&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Sep-21 07:14 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="888201906680365126" id="message-888201906680365126" title="Message sent: 16-Sep-21 07:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Myaah? Continue doin’ that uh… inquirin’ thing, whatever it is, then, cuz as ya said, a magician never reveals his secrets! If I told ya, it’d make all the ‘ooo’ ‘n ‘aaa’ of magic disappear, ya know? Then it’s just borin’, nya!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="888203516370382858" id="message-888203516370382858" title="Message sent: 16-Sep-21 07:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Overstepping my bounds, then...? I see, fair enough! To know the truth behind magic - that is to ruin the wonder! In this life of ours, there are many things better left unknown - if only to preserve the magic behind such things.&quot; <em>Fusanosuke waggles his finger back and forth, before then pointing to Cheshire once again.</em> &quot;But, I must say - you are dedicated <em>indeed</em> to this cat persona of yours! Those <em>&#39;myaaahs&#39;</em> and <em>&#39;nyas&#39;</em>... it is as if you truly are a cat. Well done!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="888204308192059402" id="message-888204308192059402" title="Message sent: 16-Sep-21 07:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“N-nya… thanks…? But uh… can you talk normally?! I’m not getting a WORD you’re saying, sometimes!”
+<em>He catches the ping pong ball, and it floats onto the void called Cheshire’s sleeve, as he looks to Fusanosuke with his usual grin.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888205218779643934" id="message-888205218779643934" title="Message sent: 16-Sep-21 07:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Falls into*)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888205253688840274" id="message-888205253688840274" title="Message sent: 16-Sep-21 07:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I have no idea how floats onto appeared)</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/786629592814321685-315EF.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="888205583763779624" id="message-888205583763779624" title="Message sent: 16-Sep-21 07:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;To talk normally? Ah, by this point - this <em>is</em> my normal... for better or worse. But, I shall endeavour to try my best - to talk normally!&quot; <em>Again, he can&#39;t help but chuckle... a chuckle that almost instantly fades out as the ping pong ball goes into Cheshire&#39;s sleeve. Such a sight makes Fusanosuke&#39;s mind race yet again, as he wonders how Cheshire is storing all this stuff. Perhaps it was the concept known as hammerspace? Who knows!</em> 
+
+&quot;Okay, I know a magician doesn&#39;t reveal his secrets and all that, but... seriously, I gotta know what the deal is with your sleeves.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888206122098524220" id="message-888206122098524220" title="Message sent: 16-Sep-21 07:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hypothetically speaking, if I were to treat you to some... cat food, would you consider leaking the secret behind that?&quot; <em>He can&#39;t tear his gaze away from the magician&#39;s sleeves. Everything about them is baffling...</em> &quot;I&#39;ll be sure to treat you to your favourite type of cat food, of course.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="888206587683024938" id="message-888206587683024938" title="Message sent: 16-Sep-21 07:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I’m not into that kinda stuff, weirdo! I eat NORMAL food, I’m not some random stray cat you’ll find on the street, nya! And nothin’ll make my mouth leak out th’ secrets, nyaaa!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888206673603330079" id="message-888206673603330079" title="Message sent: 16-Sep-21 07:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He leans back again, hands behind his back, balancing on his heels.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="888208599120216134" id="message-888208599120216134" title="Message sent: 16-Sep-21 07:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well, I suppose it&#39;s only natural. Again, a magician never reveals his secrets, no? But if you ever choose to unveil the truth behind your tricks, then I shall be waiting.&quot; <em>Fusanosuke smiles, before glancing back to the monitor to check if anything has changed... but he looks back to Cheshire&#39;s sleeves again before long, his questions still at the forefront of his mind.</em> &quot;But... I would be more than happy to see whatever more tricks you can perform! I do so <em>love</em> a good magic show.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888208737897164801" id="message-888208737897164801" title="Message sent: 16-Sep-21 07:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Perhaps you can pull a rabbit out of a hat? Or maybe you can even turn into a dove? I shall wait warmly for your next trick, my feline friend!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="888209063291277332" id="message-888209063291277332" title="Message sent: 16-Sep-21 07:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Hm-hm? Well, for my first trick, I- oops!”
+<em>A smoke bomb falls out from his sweater, before a cloud of smoke puffs up. Once it’s cleared up, he’s gone!</em></span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Sep-21 07:45 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 07:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="888211330891399168" id="message-888211330891399168" title="Message sent: 16-Sep-21 07:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Fusanosuke knew not what to expect... but he certainly didn&#39;t imagine that the cat magician&#39;s next trick would be a smoke bomb... though from the sound of it, this could very well have been an accident. But once the smoke clears up - there&#39;s no sign of Cheshire! Fusanosuke throws a searching glance throughout the room, but even still he fails to spot the magician.</em>
+
+<em>Fusanosuke places a hand to his chin as he speaks.</em> &quot;To disappear into thin air like this...! Ah, I knew not that you were a practitioner of ninjutsu...!&quot; <em>His eyes fall upon the smoke bomb lying on the floor...</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 01:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="888298278612008971" id="message-888298278612008971" title="Message sent: 17-Sep-21 01:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Eh? Ninjutsu? The heck’s that?”
+<em>A voice from behind Fusanosuke can be heard, suddenly.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 01:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="888301449048653835" id="message-888301449048653835" title="Message sent: 17-Sep-21 01:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Though, I suppose from you, it would be... <em>nyanjutsu</em>, perhaps?&quot; <em>A smirk creeps onto the Ultimate Performer&#39;s face, amused by the word he&#39;d crafted.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 02:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="888304484097335296" id="message-888304484097335296" title="Message sent: 17-Sep-21 02:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“…Nah, that joke sucked bad.”
+<em>He seems unimpressed.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 02:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="888306681308667935" id="message-888306681308667935" title="Message sent: 17-Sep-21 02:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh, how can you say such a thing - my feline friend, simply how <em>could</em> you? The <em>sting</em> - the sheer <em>sting</em> is like a burning arrow to my heart!&quot; <em>Fusanosuke cries out in mock despair, clutching his head all the while.</em> &quot;To have my joke brushed aside so easily... ah, &#39;tis a pain that shall stay with me for years...!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 02:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="888310354914983957" id="message-888310354914983957" title="Message sent: 17-Sep-21 02:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Myaaah, you look pathetic now! Are ya seriously THIS sad ‘bout a joke being lame?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888311383857430558" id="message-888311383857430558" title="Message sent: 17-Sep-21 02:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He gives a small laugh at Fusanosuke’s mock despair.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 02:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="888314376765976616" id="message-888314376765976616" title="Message sent: 17-Sep-21 02:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;To laugh! To laugh in the face of such sadness... truly, Cheshire - you are a wicked one indeed...!&quot; <em>His look shifts from sadness, to a look of horror.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 02:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="888315114862821397" id="message-888315114862821397" title="Message sent: 17-Sep-21 02:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Nyaaa, I’m super wicked! It’s just funny how you’re cryin’ over something so trivial, it’s pathetic, nyahaha!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 02:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="888317558799880212" id="message-888317558799880212" title="Message sent: 17-Sep-21 02:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Your words continue to cut like a knife...!&quot; <em>With a flourish of his hand fan, Fusanosuke swiftly covers his face with said fan. Behind such cover, he begins to imitate sobbing.</em> &quot;I <em>cannot</em> be seen like this! Truly!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 03:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="888320583010500608" id="message-888320583010500608" title="Message sent: 17-Sep-21 03:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He tries swiping the fan, swiftly grabbing it. Whether or not he took it is up to Generic.</em>
+“Nya, don’t cover your face, coward!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 03:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="888324607399043142" id="message-888324607399043142" title="Message sent: 17-Sep-21 03:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Fusanosuke was a little taken aback by Cheshire&#39;s sudden swipe - and indeed, Cheshire manages to grab ahold of his folding fan, revealing what lay beneath - Fusanosuke&#39;s wide smile. What a shocker - he wasn&#39;t really crying!</em>
+
+&quot;Oh? It seems you&#39;ve been blessed with the swiftness of a cat, too.&quot; <em>Fusanosuke utters, placing a hand to his chin as his gaze falls upon Cheshire - and his folding fan.</em> &quot;Certainly, it must be a talent that serves you well as a magician!&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="17-Sep-21 03:24 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888324658343079946" id="message-888324658343079946" title="Message sent: 17-Sep-21 03:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(apologies for the post delays, by the way)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 03:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="888324926480736256" id="message-888324926480736256" title="Message sent: 17-Sep-21 03:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Dw dw lol)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888326600955932713" id="message-888326600955932713" title="Message sent: 17-Sep-21 03:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He tries to hold the fan but grows confused, deciding to just keep it closed and tapping it on his shoulder.</em>
+&quot;I mean, if I wasn&#39;t swift &#39;n fast, I can&#39;t do a lotta magic stuff, nya! Trained it up &#39;n all for a long time! &#39;n ya weren&#39;t cryin&#39;? Booo... no fun, nya.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 03:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="888328882242084884" id="message-888328882242084884" title="Message sent: 17-Sep-21 03:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>His gaze remains on his folding fan...</em>
+&quot;Oh, my performance was that convincing, hmm? Good to hear I&#39;m not losing my touch, then!&quot; <em>He looses a light chuckle.</em> &quot;After that year or so of rest Talia claims we underwent - &#39;tis a relief to see that our skills are still as sharp as ever!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 03:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="888333055750721617" id="message-888333055750721617" title="Message sent: 17-Sep-21 03:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Myaaaah, it was a super long nap, I guess! Wonder how we ate &#39;n stuff, durin&#39; th&#39; time?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 04:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="888334557978435634" id="message-888334557978435634" title="Message sent: 17-Sep-21 04:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;T&#39;was quite the catnap indeed... and indeed, I must wonder that very question of yours, too.&quot; <em>Fusanosuke muses aloud - before turning his attention back to his fan.</em> &quot;But, at any rate, allow me to ask a question of my own... would you be a pal and hand that fan of mine back?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 04:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="888334968319799307" id="message-888334968319799307" title="Message sent: 17-Sep-21 04:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Mmmm...&quot;
+<em>He looks at the fan, before shrugging.</em>
+&quot;Dunno! Why&#39;d ya want it so much, nya?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 04:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="888336570283872266" id="message-888336570283872266" title="Message sent: 17-Sep-21 04:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Why I want it back, hmm...? Well, I just happen to like it, I suppose.&quot; <em>Fusanosuke calmly answers, accompanied with a shrug.</em> &quot;Does that work for you?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 04:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="888339319436222465" id="message-888339319436222465" title="Message sent: 17-Sep-21 04:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Mmmm... then I&#39;ll keep it, nya!&quot;
+<em>He puts the fan into his sleeve, grinning at Fusanosuke.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 04:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="888340325964320768" id="message-888340325964320768" title="Message sent: 17-Sep-21 04:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh.&quot; <em>It&#39;s a short response from the Ultimate Performer, who begins to pace backwards towards the monitor room&#39;s exit - before stopping in place.</em> &quot;But, my friend! Tell me - don&#39;t you think your mother would be heartbroken if she heard you had been... <em>stealing</em>?!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 04:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="888342822565056532" id="message-888342822565056532" title="Message sent: 17-Sep-21 04:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Nah, she wouldn&#39;t, nya! And it&#39;s not stealin&#39;, just borrowing it! But since ya ain&#39;t strugglin&#39; to get it back or anything, it&#39;s boring, now, so here, catch, nya.&quot;
+<em>He takes it out of his sleeve, tossing it to Fusanosuke.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 04:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="888343691226402856" id="message-888343691226402856" title="Message sent: 17-Sep-21 04:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>And with that, Fusanosuke chuckles! I think this is like, the fourth time I&#39;ve used that in a post, but eh whatever.</em> &quot;Why, thank you, Cheshire! I appreciate it.&quot; <em>He catches his folding fan with grace, then quickly stores it away.</em> &quot;Truth be told, I was dead worried about my fan there... oh, words can&#39;t express how <em>precious</em> it is to me!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 04:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="888343930150731807" id="message-888343930150731807" title="Message sent: 17-Sep-21 04:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hmmm? Precious to ya? Is it some kinda super expensive fan, or somethin&#39;?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="888344482607685642" id="message-888344482607685642" title="Message sent: 17-Sep-21 04:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;&#39;Tis a good thing I approached that situation just then with the angle I did... ah, but I must apologize for not playing along with your game just there.&quot; <em>Fusanosuke smiles.</em> &quot;It certainly must be a bore when your would-be victim doesn&#39;t seem particularly concerned, no?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888344877530771516" id="message-888344877530771516" title="Message sent: 17-Sep-21 04:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;As for that fan itself, though... ah, what the heck I suppose it wouldn&#39;t hurt to tell you a thing or two!&quot; <em>He continues on, briefly considering taking out his fan to show it off... but he reconsiders it, given what had just happened earlier.</em> &quot;I suppose you could say... it&#39;s a gift from my mother, perhaps? It&#39;s been around since before I was born, I believe.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 04:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="888347321639788584" id="message-888347321639788584" title="Message sent: 17-Sep-21 04:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ooooh, so it IS super expensive, nya? Really old, &#39;n stuff, there&#39;s gotta be some gem in it, or somethin&#39;!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="888348804485623818" id="message-888348804485623818" title="Message sent: 17-Sep-21 05:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;The price...? Ah, I can&#39;t say I&#39;ve ever really <em>thought</em> about such a thing, but even still...&quot; <em>Fusanosuke laughs.</em> &quot;Such things best remain hidden, when there&#39;s an all too literal cat burglar on the prowl!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="888349878860800010" id="message-888349878860800010" title="Message sent: 17-Sep-21 05:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Myaaaah, I&#39;m a magician, not a cat burglar, don&#39;t confuse it, nya! My magic is 100% for fun and everyone t&#39; enjoy, nya!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="888351369801662474" id="message-888351369801662474" title="Message sent: 17-Sep-21 05:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Good to hear, my friend! One of these days, I simply <em>must</em> witness one of your shows in action. I&#39;ve been rather impressed by your bag... no, <em>sleeve</em> of tricks you&#39;ve displayed already.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888351457093484555" id="message-888351457093484555" title="Message sent: 17-Sep-21 05:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(reckon this is a good spot to finish this off at? so that it doesn&#39;t go on for <em>too</em> long lol)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="888351977002635294" id="message-888351977002635294" title="Message sent: 17-Sep-21 05:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Ye)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888352080551624764" id="message-888352080551624764" title="Message sent: 17-Sep-21 05:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Nyahaha! Maybe if you&#39;re lucky, you&#39;ll live &#39;n get out o&#39; here, &#39;n ya can see a full-on magic show from me!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="888353227001696266" id="message-888353227001696266" title="Message sent: 17-Sep-21 05:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;A tempting offer, indeed! I&#39;ll be sure to-&quot; <em>And right at that moment - the inner voices from the motive strike, causing the Ultimate Performer to flinch! Their piercing words distract Fusanosuke from the conversation right before him...</em> &quot;A-ah... I suppose that&#39;s... the voice that&#39;s been in my head for the past couple of days...&quot; <em>Such a turn of events causes Fusanosuke&#39;s calm to give way to an uncertainty and unease, all too apparent in his own voice.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="888354180480245781" id="message-888354180480245781" title="Message sent: 17-Sep-21 05:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...Huh, so ya also gettin&#39; it. What&#39;s it sayin&#39;, to ya? Is it something that makes you fear? Somethin&#39; that you hate, or don&#39;t wanna remember?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888354256845955082" id="message-888354256845955082" title="Message sent: 17-Sep-21 05:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He seems... a little more serious than before.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="888354982523445278" id="message-888354982523445278" title="Message sent: 17-Sep-21 05:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I...&quot; <em>He finds himself a little taken aback by this shift in Cheshire&#39;s demeanor.</em> &quot;If I had to class it under one of those three things, then... I suppose I&#39;d say it&#39;s something I dislike.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888355485739262012" id="message-888355485739262012" title="Message sent: 17-Sep-21 05:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;To think I would have a voice, spouting such lies in my head...! This world of ours is a strange one, indeed...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="888358172463611954" id="message-888358172463611954" title="Message sent: 17-Sep-21 05:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Lies, huh... or maybe it&#39;s somethin&#39; ya forcin&#39; yourself t&#39; forget, or somethin&#39; ya forcin&#39; yourself to not think... but are ya just actin&#39; &#39;n deep down ya know ya think of them things? Is it really all lies, ya hearin&#39;?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888358321474666507" id="message-888358321474666507" title="Message sent: 17-Sep-21 05:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...Buuut I don&#39;t care, I&#39;m just a lil&#39; cat, nya!&quot;
+<em>He walks around, looking at the monitors, his tone back to his usual self.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="888359900588175370" id="message-888359900588175370" title="Message sent: 17-Sep-21 05:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;It is... It&#39;s something I&#39;ve long since - ah, <em>never mind</em>. Best not to ramble your ears off, no? I&#39;ve already rambled on to you for a while now, after all.&quot; <em>Before long, his usual easygoing smile returns to Fusanosuke&#39;s face.</em> &quot;But at any rate... perhaps the time has come to take my leave? I <em>am</em> feeling a little tired, admittedly...&quot; <em>With that, the Ultimate Performer turns to face the room&#39;s exit...</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888360375865729094" id="message-888360375865729094" title="Message sent: 17-Sep-21 05:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Before I leave... I must thank you for this conversation we&#39;ve held! You&#39;re a colourful character indeed, my feline friend.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="888360742561144874" id="message-888360742561144874" title="Message sent: 17-Sep-21 05:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Eh? Ya actually liked talking to me? You really <em>are</em> a weirdo, huh? Buuut whatever, hope you don&#39;t die in your sleep, or something!&quot;
+<em>He kicks at the ground a little, as he continues staring at the monitors.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="888361129468903434" id="message-888361129468903434" title="Message sent: 17-Sep-21 05:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;And I&#39;ll wish the same of you! ... <em>Nya.</em>&quot; <em>And with that, he finally takes his leave!</em></span>
+
+                                <span class="chatlog__edited-timestamp" title="17-Sep-21 05:50 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888361277653659648" id="message-888361277653659648" title="Message sent: 17-Sep-21 05:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(thanks for the scene - quite liked this one, though my bad if it went on for a while)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20monitor-room%20-%20Nyanhandled%20-%20A%20Cheshire%20and%20Fusano%20Story%20%5B888189653562314763%5D.html_Files/d1468ba7eeea09ecf6529ddf5d52a3ce-55F0A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ame/Est55#7858" data-user-id="328149026266677248" style="color: rgb(253,253,150)">Est</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="888361844924874762" id="message-888361844924874762" title="Message sent: 17-Sep-21 05:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Dw and thanks to you too!)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 87 message(s)</div>
+</div>
+
+</body>
+
+</html>

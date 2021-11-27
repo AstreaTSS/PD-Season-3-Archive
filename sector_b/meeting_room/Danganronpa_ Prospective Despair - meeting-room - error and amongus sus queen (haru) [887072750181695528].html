@@ -1,0 +1,1973 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - error and amongus sus queen (haru)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">meeting-room / error and amongus sus queen (haru)</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 04:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="887072751855226880" id="message-887072751855226880" title="Message sent: 13-Sep-21 04:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬
+
+<span class="pre pre--inline">[ERROR]</span> wasn&#39;t quite sure why they were here to be honest. The sight and smell of the body was enough to make any sane person sick. But <span class="pre pre--inline">[ERROR]</span> had <em>some</em> reason to be here, (or so they hoped,) so ey shoved down the sickness swelling up in their stomach and entered the room. 
+
+Hopefully there was something they could use here. Or something they could distract themselves with. The thoughts were getting louder and louder, and <span class="pre pre--inline">[ERROR]</span> hated it.
+
+<span class="pre pre--inline">[you know ######...]</span>
+
+<span class="pre pre--inline">[they probably already know.]</span>
+
+<span class="pre pre--inline">[know ### ### ###### ###.]</span>
+
+<span class="pre pre--inline">[know what you&#39;re hiding.]</span>
+
+<span class="pre pre--inline">[they just haven&#39;t had the guts to say it yet.]</span>
+
+<span class="pre pre--inline">[wouldn&#39;t anyone get scared around # ##### ###### ####?]</span>
+
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬</span>
+
+                                <span class="chatlog__edited-timestamp" title="13-Sep-21 04:31 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="887072963805978685" id="message-887072963805978685" title="Message sent: 13-Sep-21 04:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CronchyTurtle#9340">@Cronchy</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 04:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="887073111021854741" id="message-887073111021854741" title="Message sent: 13-Sep-21 04:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(the NAME</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 04:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="887073550408744970" id="message-887073550408744970" title="Message sent: 13-Sep-21 04:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((what can i say im creative ✨</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="sparkles">
+                                <img class="emoji emoji--small" alt="✨" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/2728-4239B.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 04:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="887073579299135618" id="message-887073579299135618" title="Message sent: 13-Sep-21 04:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(it’s perfect…</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 04:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="887073668532944916" id="message-887073668532944916" title="Message sent: 13-Sep-21 04:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((astrea your sparkles are rubbing off on me</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 04:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="887073956505485322" id="message-887073956505485322" title="Message sent: 13-Sep-21 04:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(im so proud of this community ❤️</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 04:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="887073973848911922" id="message-887073973848911922" title="Message sent: 13-Sep-21 04:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(honestly same</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="887073995961294939" id="message-887073995961294939" title="Message sent: 13-Sep-21 04:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(i didn’t sparkle until you</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="sparkles">
+                                <img class="emoji emoji--small" alt="✨" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/2728-4239B.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="887075568774971412" id="message-887075568774971412" title="Message sent: 13-Sep-21 04:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Haru was very loudly marching down the hallway, hitting her forks against the wall as she went “LA LA LA LA LA! LALALALA!” and so on. They were being as loud as possible, drowning out the voices. Every so often she’d stop and do a few extra stomps and scream-sing something like “SHUT! THE! HELL! UP!” before going back to marching.
+This marching led them to walk past all the doors, and when they spotted the weird tv-headed person who they’d never talked to before, Haru went silent and walked in. They almost instantly regretted it as the smell hit them, their nose wrinkling.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 04:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="887076710745522176" id="message-887076710745522176" title="Message sent: 13-Sep-21 04:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((also please ping me after responses i am very adhd ✊</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Sep-21 04:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="887076963532038174" id="message-887076963532038174" title="Message sent: 13-Sep-21 04:47 PM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@Curds</span>, <span class="mention" title="CronchyTurtle#9340">@Cronchy</span> got an interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 04:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="887078120962789386" id="message-887078120962789386" title="Message sent: 13-Sep-21 04:51 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(oh yeah i can do that!!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="CronchyTurtle#9340" style="color: rgb(99,69,133)">Cronchy</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;887075568774971412&#39;)">
+Haru was very loudly marching down the hallway, hitting her forks against the wall as she went “LA LA LA LA LA! LALALALA!” and so on. They were being as loud as possible, drowning out the voices. Every so often she’d stop and do a few extra stomps and scream-sing something like “SHUT! THE! HELL! UP!” before going back to marching.
+This marching led them to walk past all the doors, and when they spotted the weird tv-headed person who they’d never talked to before, Haru went silent and walked in. They almost instantly regretted it as the smell hit them, their nose wrinkling.                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 05:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="887080994002329630" id="message-887080994002329630" title="Message sent: 13-Sep-21 05:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬
+
+....
+
+Loud.
+
+<span class="pre pre--inline">[ERROR]</span> doesn&#39;t like loud.
+
+The ultimate had been looking underneath a chair, tearing eir eyes away from the body on the table. Ugh. Gross. Ey could even smell it through eir TV, even though ey wish ey couldn&#39;t. Sure, it was dampened a little, but still not enough. 
+
+Ey turned over eir shoulder towards Haru, their shoulders and head drooping. Tiredness. Lethargy. Mild Annoyance from all the noise. The ultimate was sure not looking forwards to talking to this person.
+
+<em>&#39;hm.&#39;</em> <span class="pre pre--inline">[ERROR]</span> thought. <em>&#39;maybe if i ignore them, they&#39;ll go away.&#39;</em>
+
+<span class="pre pre--inline">[That&#39;s what you tried to do with #### ####. Did it go away though??]</span>
+
+<span class="pre pre--inline">[No. It&#39;s coming back to haunt you. And you know it.]</span>
+
+They shuddered at the thoughts running around inside eir head.
+
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 05:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="887082255586054225" id="message-887082255586054225" title="Message sent: 13-Sep-21 05:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(aw man i have to have a shower i shall be back!!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 05:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="887082320815870023" id="message-887082320815870023" title="Message sent: 13-Sep-21 05:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((you&#39;re good!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 05:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="887093741595267112" id="message-887093741595267112" title="Message sent: 13-Sep-21 05:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Haru continued to stand there, allowing the voices to speak to her as she sort of... took Error in. Ey were maybe the strangest person they&#39;ve seen in their entire life... Sure, Chunyu has half his face hidden mysteriously, and that was a first, but this was an entirely new level... Like, surely that thing would be super heavy to carry round on your head all day!! Doesn&#39;t their neck hurt?!?!?
+
+She made her way towards Error, sort of moving their neck down to try see if they could spot a real human neck going into the tv. Maybe ey&#39;re just a robot... 
+When Haru was close enough, she lifted her hand to the screen, wanting to tap it. If ey reacted, then there are higher changes of them being human.
+
+&quot;Hello? Is anyone inside??&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="887093759194574890" id="message-887093759194574890" title="Message sent: 13-Sep-21 05:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@Curds</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="CronchyTurtle#9340" style="color: rgb(99,69,133)">Cronchy</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;887093741595267112&#39;)">
+Haru continued to stand there, allowing the voices to speak to her as she sort of... took Error in. Ey were maybe the strangest person they&#39;ve seen in their entire life... Sure, Chunyu has half his face hidden mysteriously, and that was a first, but this was an entirely new level... Like, surely that thing would be super heavy to carry round on your head all day!! Doesn&#39;t their neck hurt?!?!?
+
+She made her way towards Error, sort of moving their neck down to try see if they could spot a real human neck going into the tv. Maybe ey&#39;re just a robot... 
+When Haru was close enough, she lifted her hand to the screen, wanting to tap it. If ey reacted, then there are higher changes of them being human.
+
+&quot;Hello? Is anyone inside??&quot;                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 06:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="887099011780202506" id="message-887099011780202506" title="Message sent: 13-Sep-21 06:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬
+
+Why does everyone think ey&#39;s a robot..??
+
+The closer Haru got, the more uneasy <span class="pre pre--inline">[ERROR]</span> seemed. Xt seemed to shrink away from the other ultimate, shoulders hunching up and slowly shuffling away. Sadly, xts neck was covered up by xts turtleneck, but what Haru could clearly see was xts hands. Middle toned, a nice warm beige color. Definitely not a robot. 
+(And you can clearly see their skin on their legs, but that&#39;s besides the point.)
+
+But sadly for <span class="pre pre--inline">[ERROR]</span>, ey backed emself into a wall. Glitches fear was <em><strong>very</strong></em> prominent, despite Haru&#39;s (probably) innocent intentions. 
+
+<span class="pre pre--inline">[You know what they want.]</span>
+
+<span class="pre pre--inline">[Do they know?]</span> 
+
+The thoughts were going crazy the closer Haru got. When their screen got tapped, a flicker of static danced across the screen. <span class="pre pre--inline">[ERROR]</span> reacted probably.. <em>too</em> much, and cradled their TV head in their hands.
+
+&quot;Yeeeesss- E-Errorrr- t-try a-again lllaatteerrr-later later later. Don&#39;t bother em, ey&#39;s busy busy busy.&quot; Even if ey wasn&#39;t human, Haru could tell ey was freaked out.
+
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" style="color: rgb(87,154,158)">Curds</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;887099011780202506&#39;)">
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬
+
+Why does everyone think ey&#39;s a robot..??
+
+The closer Haru got, the more uneasy <span class="pre pre--inline">[ERROR]</span> seemed. Xt seemed to shrink away from the other ultimate, shoulders hunching up and slowly shuffling away. Sadly, xts neck was covered up by xts turtleneck, but what Haru could clearly see was xts hands. Middle toned, a nice warm beige color. Definitely not a robot. 
+(And you can clearly see their skin on their legs, but that&#39;s besides the point.)
+
+But sadly for <span class="pre pre--inline">[ERROR]</span>, ey backed emself into a wall. Glitches fear was <em><strong>very</strong></em> prominent, despite Haru&#39;s (probably) innocent intentions. 
+
+<span class="pre pre--inline">[You know what they want.]</span>
+
+<span class="pre pre--inline">[Do they know?]</span> 
+
+The thoughts were going crazy the closer Haru got. When their screen got tapped, a flicker of static danced across the screen. <span class="pre pre--inline">[ERROR]</span> reacted probably.. <em>too</em> much, and cradled their TV head in their hands.
+
+&quot;Yeeeesss- E-Errorrr- t-try a-again lllaatteerrr-later later later. Don&#39;t bother em, ey&#39;s busy busy busy.&quot; Even if ey wasn&#39;t human, Haru could tell ey was freaked out.
+
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 06:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="887102602116993045" id="message-887102602116993045" title="Message sent: 13-Sep-21 06:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Haru backed the fuck up, holding their hands in front of them as both a defence and a signal to &#39;calm down, I&#39;m going away&#39;. This was <em>super</em> weird. Not only was the tv head not a robot, but the tv actually responded to her touch? What the fuck!!! Technology is scary. 
+
+&quot;Oh shit-&quot;
+
+Well, not being a robot wasn&#39;t completely overruled yet. You could just give a robot a layer of skin-like material over its... robot insides. Plus it definitely sounded like it was glitching out or something... 
+
+&quot;Are- are you <em>real</em>? Are you like Antomy or something? Are- are you one of Talia&#39;s people?!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="887105248223719515" id="message-887105248223719515" title="Message sent: 13-Sep-21 06:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(i now cant remember if i pinged or not</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="887105253835690025" id="message-887105253835690025" title="Message sent: 13-Sep-21 06:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(fuck</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="887105280289177601" id="message-887105280289177601" title="Message sent: 13-Sep-21 06:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((yopu did dont worry!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="887105299473915914" id="message-887105299473915914" title="Message sent: 13-Sep-21 06:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((i am just also doing other things rn</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="887105350652809266" id="message-887105350652809266" title="Message sent: 13-Sep-21 06:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(oh good i just had this feeling of &#39;oh fuck wait&#39; fghyju</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="CronchyTurtle#9340" style="color: rgb(99,69,133)">Cronchy</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;887102602116993045&#39;)">
+Haru backed the fuck up, holding their hands in front of them as both a defence and a signal to &#39;calm down, I&#39;m going away&#39;. This was <em>super</em> weird. Not only was the tv head not a robot, but the tv actually responded to her touch? What the fuck!!! Technology is scary. 
+
+&quot;Oh shit-&quot;
+
+Well, not being a robot wasn&#39;t completely overruled yet. You could just give a robot a layer of skin-like material over its... robot insides. Plus it definitely sounded like it was glitching out or something... 
+
+&quot;Are- are you <em>real</em>? Are you like Antomy or something? Are- are you one of Talia&#39;s people?!&quot;                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 06:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="887106931532116018" id="message-887106931532116018" title="Message sent: 13-Sep-21 06:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬
+
+Well you see, <span class="pre pre--inline">[ERROR]</span>&#39;s TV has a little bit of technology in it, but <span class="pre pre--inline">[ERROR]</span> emself isn&#39;t a robot! The TV itself can do things like display static and color bars, but not much else. But any thoughts of anything other than <em>fear</em> and <em>paranoia</em> were squashed out.
+
+&quot;N--no- D-don&#39;t associate error with <em>th-them</em>.&quot; 
+
+Being in this place was bad enough. But being <em>associated</em> with the people running this shitshow?? No thank you. 
+
+<span class="pre pre--inline">[They know.]</span>
+
+<span class="pre pre--inline">[They know you&#39;re a ####### ## ######. Just like them.]</span>
+
+<span class="pre pre--inline">[It&#39;s why they&#39;re running this show like this, right??]</span>
+
+&quot;Error is error. Not one of those <em>stupid monsters of people.</em> Error is just as much as human as you, as long as you aren&#39;t secretly a cyborg in human flesh.&quot; 
+
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 06:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="887107935317155881" id="message-887107935317155881" title="Message sent: 13-Sep-21 06:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(agggg its almost midnight and i have college so i should probably try getting to sleep sob <img loading="lazy" class="emoji " alt="whenthe" title="whenthe" src="https://cdn.discordapp.com/emojis/758395395428188201.png"> i shall respond when i wake up!!!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 06:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="887108090799997009" id="message-887108090799997009" title="Message sent: 13-Sep-21 06:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((yeah that&#39;s cool with me!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" style="color: rgb(87,154,158)">Curds</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;887106931532116018&#39;)">
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬
+
+Well you see, <span class="pre pre--inline">[ERROR]</span>&#39;s TV has a little bit of technology in it, but <span class="pre pre--inline">[ERROR]</span> emself isn&#39;t a robot! The TV itself can do things like display static and color bars, but not much else. But any thoughts of anything other than <em>fear</em> and <em>paranoia</em> were squashed out.
+
+&quot;N--no- D-don&#39;t associate error with <em>th-them</em>.&quot; 
+
+Being in this place was bad enough. But being <em>associated</em> with the people running this shitshow?? No thank you. 
+
+<span class="pre pre--inline">[They know.]</span>
+
+<span class="pre pre--inline">[They know you&#39;re a ####### ## ######. Just like them.]</span>
+
+<span class="pre pre--inline">[It&#39;s why they&#39;re running this show like this, right??]</span>
+
+&quot;Error is error. Not one of those <em>stupid monsters of people.</em> Error is just as much as human as you, as long as you aren&#39;t secretly a cyborg in human flesh.&quot; 
+
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">14-Sep-21 05:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="887271782472626186" id="message-887271782472626186" title="Message sent: 14-Sep-21 05:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Well it’s definitely a relief that the weird tv head isn’t here to kill people. Haru couldn’t help but thing of some terrible nightmare where someone with a tv for a head hunted her through dark hallways. She felt her blood momentarily run cold before forcing the idea out. 
+
+“Ok… Well at least that’s a relief. You look like someone who could really fuck someone else up. Like just suddenly lose their shit and start causing chaos. No offence.”
+
+Haru took another step forward, but still didn’t go as close as before.
+
+“…Are you like, a cyborg? Is there an actual living human head under that thing?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="CronchyTurtle#9340" style="color: rgb(99,69,133)">Cronchy</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;887271782472626186&#39;)">
+Well it’s definitely a relief that the weird tv head isn’t here to kill people. Haru couldn’t help but thing of some terrible nightmare where someone with a tv for a head hunted her through dark hallways. She felt her blood momentarily run cold before forcing the idea out. 
+
+“Ok… Well at least that’s a relief. You look like someone who could really fuck someone else up. Like just suddenly lose their shit and start causing chaos. No offence.”
+
+Haru took another step forward, but still didn’t go as close as before.
+
+“…Are you like, a cyborg? Is there an actual living human head under that thing?”                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">14-Sep-21 09:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="887326098424201226" id="message-887326098424201226" title="Message sent: 14-Sep-21 09:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬
+
+funnily enough, <span class="pre pre--inline">[ERROR]</span> is the  exact opposite. They’re here to avoid conflict and fade into the background.
+
+The closer Haru got, the more they seemed to shrink away from her. 
+
+“N-none taken. B-but error i-is a human.” Man, were they stuttering like crazy. “B-but their face is h-ooorrriiibllleee a-and ugly a-and you d-don’t wanna see it. It’ll melt your eyeballs off.” 
+
+<span class="pre pre--inline">[ERROR]</span> cradled eir head in eir hands. Did they really care so much about their face? Was it actually that bad?
+
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">14-Sep-21 04:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="887442074406899722" id="message-887442074406899722" title="Message sent: 14-Sep-21 04:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(ahhh sorry i’m just super exhausted today for some reason <img loading="lazy" class="emoji " alt="whenthe" title="whenthe" src="https://cdn.discordapp.com/emojis/758395395428188201.png"> school sucked all the life out of me lmao</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">14-Sep-21 05:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="887442900634464276" id="message-887442900634464276" title="Message sent: 14-Sep-21 05:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((no you&#39;re good! take your time and takr care of yourself this is a threat</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">14-Sep-21 05:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="887442991151722496" id="message-887442991151722496" title="Message sent: 14-Sep-21 05:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(fbwjchabcis i shall</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 01:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="887759629004734514" id="message-887759629004734514" title="Message sent: 15-Sep-21 01:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(time to try write &gt;:)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" style="color: rgb(87,154,158)">Curds</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;887326098424201226&#39;)">
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬
+
+funnily enough, <span class="pre pre--inline">[ERROR]</span> is the  exact opposite. They’re here to avoid conflict and fade into the background.
+
+The closer Haru got, the more they seemed to shrink away from her. 
+
+“N-none taken. B-but error i-is a human.” Man, were they stuttering like crazy. “B-but their face is h-ooorrriiibllleee a-and ugly a-and you d-don’t wanna see it. It’ll melt your eyeballs off.” 
+
+<span class="pre pre--inline">[ERROR]</span> cradled eir head in eir hands. Did they really care so much about their face? Was it actually that bad?
+
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 02:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="887768287377784882" id="message-887768287377784882" title="Message sent: 15-Sep-21 02:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;What, did you burn it or something? Wouldn&#39;t like, a big tv hurt?? If I had a really gnarly face, I&#39;d just rock with it personally. Scare everyone. It&#39;d be sick. You should just do that. The tv is probably even scarier than any terrible face you could have, anyway. It makes you look so creepy. And like an evil weird robot.&quot;
+
+Haru started to tap their forks against the walls and table again. She had enough of hearing the voices while neither of them were talking. 
+(brain not doing more words <img loading="lazy" class="emoji " alt="cri2" title="cri2" src="https://cdn.discordapp.com/emojis/742978758763610133.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="CronchyTurtle#9340" style="color: rgb(99,69,133)">Cronchy</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;887768287377784882&#39;)">
+&quot;What, did you burn it or something? Wouldn&#39;t like, a big tv hurt?? If I had a really gnarly face, I&#39;d just rock with it personally. Scare everyone. It&#39;d be sick. You should just do that. The tv is probably even scarier than any terrible face you could have, anyway. It makes you look so creepy. And like an evil weird robot.&quot;
+
+Haru started to tap their forks against the walls and table again. She had enough of hearing the voices while neither of them were talking. 
+(brain not doing more words <img loading="lazy" class="emoji " alt="cri2" title="cri2" src="https://cdn.discordapp.com/emojis/742978758763610133.png">                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 04:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="887799401618219048" id="message-887799401618219048" title="Message sent: 15-Sep-21 04:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬
+
+&quot;B-but E-error likes the TV. It&#39;s safe.&quot; Ey didn&#39;t elaborate further, tugging on eir sleeves. There was something about the TV on eir face that just gave <span class="pre pre--inline">[ERROR]</span> a sense of security that nothing else did. Ey <em>needed</em> it. 
+
+&quot;a-and the TV is better than eir face. Error would know.&quot; 
+
+Why did this person not trust what <span class="pre pre--inline">[ERROR]</span> said, even though they <s><span class="pre pre--inline">hopefully</span></s> were the only one here who knew what their face looked like?
+
+&quot;Stop banging. It hurts error&#39;s ears.&quot; Eir hands slid back up towards the side of eir TV, posture slumping over defensively.
+
+▬▬▬▬ ▬▬▬（　<img loading="lazy" class="emoji " alt="📺" title="tv" src="https://twemoji.maxcdn.com/2/svg/1f4fa.svg">　）▬▬▬ ▬▬▬▬▬</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="888537211899904001" id="message-888537211899904001" title="Message sent: 17-Sep-21 05:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(i’m sorry, school sucked the life out of me and idk if i can continue this now <img loading="lazy" class="emoji " alt="pensiveaf" title="pensiveaf" src="https://cdn.discordapp.com/emojis/871197258262118432.gif"> 
+(i wasn’t ready for the homework <img loading="lazy" class="emoji " alt="SCWWcrying" title="SCWWcrying" src="https://cdn.discordapp.com/emojis/632893949270294548.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="888539147747340309" id="message-888539147747340309" title="Message sent: 17-Sep-21 05:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((it&#39;s okay! dw about it</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888539172128837732" id="message-888539172128837732" title="Message sent: 17-Sep-21 05:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((if you wanna end it here then thats chill iwth me</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20meeting-room%20-%20error%20and%20amongus%20sus%20queen%20%28haru%29%20%5B887072750181695528%5D.html_Files/c6d08a9c41f39feb0d7dcf99d50a1b3f-8D384.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CronchyTurtle#9340" data-user-id="486181655837671425" style="color: rgb(99,69,133)">Cronchy</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 05:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="888539569568509972" id="message-888539569568509972" title="Message sent: 17-Sep-21 05:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(yes pls <img loading="lazy" class="emoji " alt="cri" title="cri" src="https://cdn.discordapp.com/emojis/789674603970428949.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 40 message(s)</div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,2330 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - The Woo, The Karen and the One eyed surgeon</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">aquaponics-room / The Woo, The Karen and the One eyed surgeon</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="891343981835870238" id="message-891343981835870238" title="Message sent: 25-Sep-21 11:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Josh was now in here. He was just sitting on the ground in a surprisingly good mood. Just vibing and enjoying the area. He was finally calm and over haru woohoo</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="891344632204628028" id="message-891344632204628028" title="Message sent: 25-Sep-21 11:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="koi ★#0533">@koi★</span> <span class="mention" title="lime#6779">@happy suit karen</span> we may begin. )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="891345244975693894" id="message-891345244975693894" title="Message sent: 25-Sep-21 11:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Karen Mahizuna ( had to recheck how to spell that last name, ive spelt it incorrectly far too many times as a joke that i forgot what it originally was ) decided to take a nice, quick, relaxing break and visit the aquaphonics room. What a calm, beautiful place. What a nice, beautiful place.
+
+And then she saw Josh and realized those plans weren&#39;t going to fruition. At least her understanding of Josh has slightly increased... now she knows that they can make guitar noises with their mouth. What a scary ability.
+
+&quot;.. You?&quot; She commented, disgruntled sort-of, as she headed into the room.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="891345679102902383" id="message-891345679102902383" title="Message sent: 25-Sep-21 11:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Me! WOO! Hello Karen bro! Gotta say I totally forgot you existed man it&#39;s great to see yoU!&quot; <em>he smiled as he approached</em> &quot;I must say you seem to be in a great mood as always man it&#39;s great to see you smile!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="891346267320500254" id="message-891346267320500254" title="Message sent: 25-Sep-21 11:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;This sucks~... &quot; Karen replied, rubbing her eyes. &quot;I thought I could escape the loud, worried life of staying in here... and now you&#39;re at the one spot I thought was <em>my</em> quiet spot!&quot; Karen whined, doing some nice hand choreography to express her point as well.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="891346543528001546" id="message-891346543528001546" title="Message sent: 25-Sep-21 11:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(lets just say that chunyu is late to the interaction)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="891346560439422986" id="message-891346560439422986" title="Message sent: 25-Sep-21 11:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Come ooooon bro I ain&#39;t that bad! Don&#39;t be such a buzz kill man no one likes someone who brings everyone down to a miserable level so they can beat em with their experience man just HAVE FUN WOO!&quot; <em>He laughed</em> &quot;But come on bro did you really think I&#39;d just ignore this room forever?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="891346586553172040" id="message-891346586553172040" title="Message sent: 25-Sep-21 11:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(just join whenever you want mate its ok :D)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="891346859203919954" id="message-891346859203919954" title="Message sent: 25-Sep-21 11:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I thought you&#39;d at least hold off from this room till... I don&#39;t know, thirty days in.. &quot; Karen replied, sighing afterwards.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="891347040058109972" id="message-891347040058109972" title="Message sent: 25-Sep-21 11:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Bro I explored every room man! Just stop being such a meanie man I ain&#39;t done anything to hurt you...you say it like I&#39;m annoying or rude bro...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="891347366874079292" id="message-891347366874079292" title="Message sent: 25-Sep-21 11:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Ok. So. Koi was getting food, so, Koi was busy. Therefore, Chunyu arrives to the aquaponics room a tad later than expected. Rip.</em>
+
+<em>So, Tsuguri walks into the room, stretching, tilting his head side to side, spinning his trusty pen. He notices Josh and Karen, and decides to pop by to say hello. Unfortunately, he doesn&#39;t want to interrupt the current conversation, so he&#39;ll just wait to be noticed.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Sep-21 11:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="891347599502741566" id="message-891347599502741566" title="Message sent: 25-Sep-21 11:37 AM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span>, <span class="mention" title="lime#6779">@happy suit karen</span> got an interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="891348037694271568" id="message-891348037694271568" title="Message sent: 25-Sep-21 11:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Josh turns around and notices the Chunyu</em> &quot;WOO! It&#39;s my main guy chunny! Hey chunny! Gotta ask! Am I loud and annoying bro?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="891348235862573066" id="message-891348235862573066" title="Message sent: 25-Sep-21 11:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Chunyu? I had to sleep in the same room as this person ever since we came in here, I have better experience than you on how annoying this person can be.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="891348273896493056" id="message-891348273896493056" title="Message sent: 25-Sep-21 11:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Uhm....&quot; <em>He just stands there, still. He hates being called &#39;chunny&#39;, and it shows. What the fuck.</em>
+
+&quot;...&quot;
+
+&quot;...&quot;
+
+
+&quot;Uh&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="25-Sep-21 11:39 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="891348321308913674" id="message-891348321308913674" title="Message sent: 25-Sep-21 11:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(pffft)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Sep-21 11:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="891348602461491290" id="message-891348602461491290" title="Message sent: 25-Sep-21 11:41 AM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="koi ★#0533">@koi★</span> got an interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="891348626880753694" id="message-891348626880753694" title="Message sent: 25-Sep-21 11:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah, heya there, Karen.&quot; <em>He smiles, waving his hand.</em>
+&quot;I feel bad for you, honestly.&quot; <em>Chunyu would say in a fairly joking tone. He felt as if he got along well with both people here, but... Well, they clearly disliked each other. What&#39;s his ass gonna do? This&#39;ll be a hard, yet pretty enjoyable interaction to go through.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="891348895303606342" id="message-891348895303606342" title="Message sent: 25-Sep-21 11:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;What do you mean uh bro! H-Hey don&#39;t side with her!?!? I don&#39;t even make any noise when I&#39;m sleeping! Man what is with this today! I&#39;m not that bad man i thought we were cool Chunyu!!!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="891349311831556096" id="message-891349311831556096" title="Message sent: 25-Sep-21 11:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;See? It&#39;s 2-1, and you&#39;re only defending yourself! If you had a copy of yourself that you had to be around often, you&#39;d know our tribulation... &quot; Karen would tell him, crossing her arms.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="891349445474648084" id="message-891349445474648084" title="Message sent: 25-Sep-21 11:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Bro I would love to have a copy of me! We would be the best party duo ever man! And of course im defending me! I&#39;m right!!!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="891349873260126239" id="message-891349873260126239" title="Message sent: 25-Sep-21 11:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...Well, I thought that you, Josh, would be one to recognise tone...&quot; <em>He&#39;d sigh.</em>
+
+&quot;Anyways, although I do enjoy your company, I must admit, if I had your voice bouncing around for 24 hours a day, I would probably <span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">off myself</span>.&quot; <em>He says, jokingly once more. He didn&#39;t really mean those words, and really, it was clear by his tone... However, there is an air of truth to that statement. Josh&#39;s noise is acceptable once you get used to it, but hearing it all the time would be utter hell.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="891350307093745764" id="message-891350307093745764" title="Message sent: 25-Sep-21 11:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;That&#39;s-... A bit far, but it has some heart to it.&quot; Karen commented, &quot;.. What would happen if you talked quieter? D-Does your vocal cords only get rest at night or something? I&#39;ve never heard you whisper here before... &quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="891350822301077564" id="message-891350822301077564" title="Message sent: 25-Sep-21 11:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Bro I don&#39;t rest my vocal chords what do you mean man! I-..Chunyu come on bro...I know you&#39;re joking but ah!&quot; <em>he pretends to faint dramatically. He then says from the ground</em>
+
+&quot;My voice is totally sweet!!! And I don&#39;t need to talk quieter I&#39;m already good enough! And I don&#39;t know how to whisper whisper bro!&quot; <em>he laughs</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="891351138283192370" id="message-891351138283192370" title="Message sent: 25-Sep-21 11:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Is your whisper just your indoor voice?&quot; <em>Ah. There comes the &#39;ice cold gaze&#39; that Josh hates so much. He obviously just made that expression to piss him off.</em>
+
+&quot;...Watch this.&quot; <em>He whispers to Karen, quietly enough for Josh not to hear.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="891351358668685394" id="message-891351358668685394" title="Message sent: 25-Sep-21 11:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;GAH! Bro what the fuck! STOP IT! YOU NEED JESUS BRO!!!&quot; <em>He said as he quickly stood up and pointed at Chunyu</em> &quot;MY WHISPER IS NORMAL VOICE TO OTHERS MAN WHAT CAN I SAAAAAAY!!!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="891351625678073856" id="message-891351625678073856" title="Message sent: 25-Sep-21 11:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Chunyu simply just chuckles.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="891351874266087484" id="message-891351874266087484" title="Message sent: 25-Sep-21 11:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;.. Chunyu,&quot; Karen commented, a bit weirded out. &quot;.. Your whisper is so quiet not even I could hear it.&quot; she added, further weirded out. How... how was that even possible? A tonal opposite of Josh, someone who could make their voice so quiet a whisper couldn&#39;t be heard.
+
+&quot;It&#39;s like I&#39;m seeing polar opposites in tone... &quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="891352675810177104" id="message-891352675810177104" title="Message sent: 25-Sep-21 11:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well yeah bro! Everythin is different about us bro! I mean I got the party power and Chunyu got the brains! It&#39;s super neat bro we&#39;re super cool with each other!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="891352710979395635" id="message-891352710979395635" title="Message sent: 25-Sep-21 11:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(OH SHIT A LADYBUG ON MY WINDOW)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="891352747184631849" id="message-891352747184631849" title="Message sent: 25-Sep-21 11:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">your time is now</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="891353072452894771" id="message-891353072452894771" title="Message sent: 25-Sep-21 11:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(amazing)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="891353391773667338" id="message-891353391773667338" title="Message sent: 25-Sep-21 12:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...Wait... I thought I was audible..?&quot;
+
+<em>He pauses, fiddling with his pen.</em>
+
+&quot;...Oh.&quot;
+
+&quot;...&quot;
+
+&quot;Ah, well,&quot; <em>His expression turns back to the relaxed one he had on prior, almost in a split second.</em>
+&quot;I mean, I must say, it takes a while to get used to Josh, but uh.. . After a while, He&#39;s decent, I suppose.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="891353530017910834" id="message-891353530017910834" title="Message sent: 25-Sep-21 12:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;What do you mean it takes a while to get used to me bro!!! And I know I&#39;m decent man but you don&#39;t gotta do me dirty like that I&#39;m always tolerable!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="891353967915843616" id="message-891353967915843616" title="Message sent: 25-Sep-21 12:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hey, hey! I wasn&#39;t accustomed to people as loud as you when I first came here... I don&#39;t think anyone who lives an education filled life with no freedom would.&quot;
+
+<em>What.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="891354087587721258" id="message-891354087587721258" title="Message sent: 25-Sep-21 12:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Karen snapped out of her trance of wondering if, by fate, Chunyu and Josh were to meet. A clash of vocals. And that one day, who ever lived longer would be deemed the more acceptable form of voice. A deeply quiet one, or a boisterous loud one. That&#39;s a story for another time.
+
+&quot;It-... It&#39;s definitely hard to go from high-class society to... you.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="891354259730354216" id="message-891354259730354216" title="Message sent: 25-Sep-21 12:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Tsuguri nods in agreement with Karen, not saying much.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="891354780008591400" id="message-891354780008591400" title="Message sent: 25-Sep-21 12:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;G-guys...come on man..You say it like I&#39;m some peasant man! I&#39;m totally awesome! I do got a good family and shit I&#39;m not exactly low class meanies!&quot; <em>he laughed</em> &quot;I mean I got my education and shit but seriously!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="891355264119349268" id="message-891355264119349268" title="Message sent: 25-Sep-21 12:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...Oh god... Uh... Did I... Offend you..?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="891355264639447040" id="message-891355264639447040" title="Message sent: 25-Sep-21 12:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Unfortunately... I know, you we&#39;re very famous or rich or something and bought fine wine to just-... just guzzle, or something-... &quot; Seems Karen is still troubled by the fact Josh would just &#39;drink&#39; wine like it&#39;s a glass of lemonade on a hot summer day.
+
+&quot;Ugh~... Either way, it&#39;s weird knowing there&#39;s people like you in the world. I&#39;ve never met someone like you... though, I&#39;ve not met many archetypes of people... &quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="891355691611222066" id="message-891355691611222066" title="Message sent: 25-Sep-21 12:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Nononono don&#39;t worry Chunyu bro you ain&#39;t offending me! Remember we&#39;re friends now so you gotta do better than that man!&quot; <em>he laughs</em> 
+
+&quot;Don&#39;t say it like that man! I just host some pretty sweet parties man! Quality shit! <span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">I mean I ain&#39;t drinking it by the bottle....wait ignore that.&quot; </span>
+
+&quot;WOO! THEN I GOTTA CELEBRATE THAT! IM ONE OF A KIIIND YEAAAAH!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="891355922436354058" id="message-891355922436354058" title="Message sent: 25-Sep-21 12:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(my internet is so bad.)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="891356593399144498" id="message-891356593399144498" title="Message sent: 25-Sep-21 12:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Why!? What&#39;s there to celebrate!?&quot; She&#39;d ask concerned, confused by them already getting ready to bust out the champagne and confetti over what Karen said.
+
+&quot;A-Aren&#39;t we all already one of a kind?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="891357249988079647" id="message-891357249988079647" title="Message sent: 25-Sep-21 12:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;No bro! There are totally people who are just copies of the other man. I mean there&#39;s gotta be repeating personalities somewhere man! I mean you remind me of a LOT of people i&#39;ve seen before man!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="891357388886642719" id="message-891357388886642719" title="Message sent: 25-Sep-21 12:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">back)))</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="891358049791529002" id="message-891358049791529002" title="Message sent: 25-Sep-21 12:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Chunyu sighs, kind of... Off put by the quarrel. I mean, he was finding it entertaining to watch, but... Two people he&#39;d consider friends arguing while he&#39;s in the middle of it just didn&#39;t feel good to him since he had a feeling that he&#39;d be obligated to even out the argument and uh... With his nervousness regarding social situations, that wouldn&#39;t really be great.</em>
+
+&quot;...Can you both just uh...&quot;
+<em>He sighs.</em>
+&quot;We&#39;re all... Very different... All from drastically different upbringing... And uh... Well... Don&#39;t we kind of have to put that aside... Here, at least? I mean, we are in a killing game, and conflict won&#39;t get us anywhere.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="891358959301165056" id="message-891358959301165056" title="Message sent: 25-Sep-21 12:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Karen was... well, reluctant, but she slowly nodded and sighed.
+
+&quot;.. Ugh~... I-I... I know we have to work together, but it&#39;s... &quot; She tried to say, but just felt like a kid bickering at a teacher about how it&#39;s <em>their</em> turn to vomit on the carpet and not John&#39;s. 
+
+&quot;.. No, you&#39;re right, I guess.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="891359549670445127" id="message-891359549670445127" title="Message sent: 25-Sep-21 12:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yeah bro I don’t got a problem! I’m happy to get along with the Karen man! After all it’s all about working together woo! I mean we don’t even gotta be friends you’re right man but it ain’t fun to just be annoyed by my presence Yknow?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="891359630012325939" id="message-891359630012325939" title="Message sent: 25-Sep-21 12:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...I didn&#39;t mean we have to work together. I mean that we should put aside our differences...&quot; <em>He didn&#39;t sound mad or anything, he just sounded... Relaxed, yet nervous. He wasn&#39;t expecting to have to resolve a conflict today, or any day, for that. Really, he wouldn&#39;t have said anything if these weren&#39;t two of his associates arguing.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="891360305110741052" id="message-891360305110741052" title="Message sent: 25-Sep-21 12:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...God. Why did I come here... I feel like I&#39;m just making this worse.&quot;  <em>Tsuguri is visibly getting pretty nervous, fiddling with his pen, pretty fast.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="891360923883823155" id="message-891360923883823155" title="Message sent: 25-Sep-21 12:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Karen just stood there, unable to really say anything of note to this situation. 
+
+&quot;.. I&#39;m sorry about earlier, then... Josh. Um~.. I hope we become good... allies, or something. I don&#39;t know.&quot; She told him, uncrossing her arms and just, uh... standing there.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="891362317537783808" id="message-891362317537783808" title="Message sent: 25-Sep-21 12:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“No worries bro I don’t hold grudges!” <em>he laughs</em> “I wasn’t even mad in the first place since our first talk bro you’re good! We’re gonna be totally wicked allies man WOO!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="891362907286286466" id="message-891362907286286466" title="Message sent: 25-Sep-21 12:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>AAaand all of that anxiety just randomly got wiped away.</em>
+
+&quot;Ah, so we&#39;re all good now, huh?&quot; <em>He&#39;d smile... That was a quick change in mood.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="891363557004963872" id="message-891363557004963872" title="Message sent: 25-Sep-21 12:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I-.. I guess?&quot; Karen replied, a bit confused with what she was saying herself, rubbing the back of her neck, before continuing.
+
+&quot;.. I can&#39;t keep myself mad forever, or I&#39;ll just be a hinderance. It&#39;s better this way, I guess... It&#39;s still going to be hard getting used to your &#39;music&#39; and voice... but I&#39;ll... try to make do.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="891363983074951289" id="message-891363983074951289" title="Message sent: 25-Sep-21 12:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Bro I’m sure you’ll learn to love me eventually! Like everyone else does!” <em>he laughs</em> “I mean seriously you ain’t gonna he a hindrance man you seem quite adaptable and strong! I think...”
+
+“Thanks Chunyu for clearing all this up to! Real game changer thanks bro!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="891364359840866334" id="message-891364359840866334" title="Message sent: 25-Sep-21 12:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah... Well then!...&quot;
+
+&quot;...I think I&#39;ll take my leave. I hope you two start to get along well.&quot; <em>He&#39;d bow, upon leaving, but not before he gives Josh one of his ice cold stares again.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="891364829502255165" id="message-891364829502255165" title="Message sent: 25-Sep-21 12:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Karen waited till Chunyu left the room, nodding as he left, before turning back to Josh. 
+
+&quot;Love-.. We&#39;re to be acquaintances, at best!&quot; She shouted.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="891365110818418740" id="message-891365110818418740" title="Message sent: 25-Sep-21 12:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Boooo come on bro we&#39;ll totally be awesome friends!!! I mean if I can get Chunyu to be my friend then you bro shall be no challenge! IM SURE OF IT WOOO!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20aquaponics-room%20-%20The%20Woo%2C%20The%20Karen%20and%20the%20One%20eyed%20surgeon%20%5B891343980162322492%5D.html_Files/f7eb65960a05b07fd96736dad323b9d8-8485C.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lime#6779" data-user-id="466081034887495690" style="color: rgb(201,201,61)">happy suit karen</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 12:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="891365620539613184" id="message-891365620539613184" title="Message sent: 25-Sep-21 12:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ugh~... We&#39;re on better terms, don&#39;t ruin it already..!&quot; She told him before quickly leaving the aquaphonics room. Karen was gone for a moment, but had to pop back up again to wave at Josh, though quickly at that, before leaving again.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 59 message(s)</div>
+</div>
+
+</body>
+
+</html>

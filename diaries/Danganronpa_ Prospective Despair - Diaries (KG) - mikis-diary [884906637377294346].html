@@ -1,0 +1,1549 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - mikis-diary</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">Diaries (KG) / mikis-diary</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">07-Sep-21 05:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="884906739718324296" id="message-884906739718324296" title="Message sent: 07-Sep-21 05:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="angie / ral#7700">@angie the epic gamer</span> hey! you know what this is lol
+you can do pretty much whatever here, though most of the time, people try to stay ic while doing stuff here
+by default, this diary is revealed if/when your oc dies - if you dont want that, just ask!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">07-Sep-21 05:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="884906801861107743" id="message-884906801861107743" title="Message sent: 07-Sep-21 05:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( YEAHHH</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884906886456049694" id="message-884906886456049694" title="Message sent: 07-Sep-21 05:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( gonna treat this like a proper diary because this is suri and not ema</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/786629592814321685-315EF.png" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction" title="sparkles">
+                                <img class="emoji emoji--small" alt="✨" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/2728-4239B.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">07-Sep-21 05:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="884913582410706964" id="message-884913582410706964" title="Message sent: 07-Sep-21 05:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">07/09/XXXX</span> (Day/Month/Year is what i&#39;m doing for this)
+
+dear diary,
+
+i dont know how to start this off <img loading="lazy" class="emoji " alt="stressed" title="stressed" src="https://cdn.discordapp.com/emojis/800549410757017610.png"> 
+
+hmmm, okay. lets start talking about how im pretending to be a pianist rn.
+
+so yeah, i think its quite self explanatory. i think. obviously i cant say i help out two criminals. i cant say that im helping them out because theyre gonna fuckin kill me if they dont. i have to play this like a game of strategy. i have to lie my way to victory. thats how games work, right? 
+
+did i ever mention how much being the ultimate picklock sucks? like it sounds so boring when you first hear it. like yeah, you pick locks... that&#39;s it. why does being referred as that scare me so much? is this why im faking to be a pianist? because i know damn well i cant achieve my dreams so i just have to pretend to make people be proud of me and celebrate my non-existent accomplishments? or maybe because im well aware of what those assholes would do to me if i ever said a word about them.
+
+they dont want to be known, for some reason. little do they know, i&#39;ve heard some people talk about them already. if they&#39;re trying to be famous, then why are they acting so secretive? i guess its for the cops. the cops. its always the damn cops.
+
+that leads me to my next thing. there&#39;s an ultimate detective here. they probably work for the police.
+
+that makes things a lot harder. if i were to say anything about my... &#39;home&#39; situation, the cops would be alerted as soon as she survives and gets out of here. her names katie btw. i cant spell the rest. anyway, if the cops find us then they&#39;re gonna be arrested and they will immediately hunt me down. theyre gonna escape from prison, or like bribe the cops some way or some how. i dont know. they&#39;re so self absorbed and they tell me they&#39;re geniuses. i dont know if they actually are, but they have to be somewhat smart to manage to keep me hostage for like 10... 11 years.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884913695409471518" id="message-884913695409471518" title="Message sent: 07-Sep-21 05:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">well, i guess 12 now since i somehow was sleeping for a whole year. i still dont know how i did that. i guess the world evolved that much that someone managed to create something to do that, i dunno, i dont keep up with this type of stuff.
+
+speaking about my memory, im also an idiot. there was this catboy that is scary. very scary. like i seriously think they could kill me
+
+he decided to sleep in the library. i dunno why he would since the beds are actually really nice, although i suppose some people dont like sharing rooms so i cant complain that much. i also offended him, like multiple times i think! i cant tell if hes joking or like, hes serious. i sometimes compare him to <em>them</em>, which i know is really bad but… i think he’s gonna hurt me. i dont know what to feel.
+
+i wanna erase that now. what if cheshire reads this? i’ll have to explain. i’ll look like an idiot to him. i dont want that. im not an idiot, i swear. i cant find an eraser anywhere.
+
+oh well, i guess i’ll have to keep this secret. i’ll have to lie. not that hard, since most of my time in public is a lie anyways… i’m the ultimate pianist, i have to attend a performance, the fact i wear one sock is just for fashion. it’s all lies.
+
+but i have to lie to survive. thats how my world is. 
+
+i&#39;ll write soon i guess. i dont want to write more today.</span>
+
+                                <span class="chatlog__edited-timestamp" title="07-Sep-21 05:32 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884913719438610454" id="message-884913719438610454" title="Message sent: 07-Sep-21 05:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">09-Sep-21 04:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="885439791393546310" id="message-885439791393546310" title="Message sent: 09-Sep-21 04:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">8/09/XXXX</span> (its still day/month/year guys!)
+
+thanks talia. i just want to say thank you.
+
+i dont know if you will read this at all, but i think you might since you basically know everything about everyone, so i just want to write this message to you.
+
+i looked at the e-handbook and it says the ultimate pianist... honestly that on its own surprises me. like i cant thank up enough. they... dont have to know about <em>them</em>. im not going to explain why im the ultimate picklock, nor am i going to say my true talent at all. that usually leads to talking about <em>them</em>, because <em>they&#39;re</em> the reason i have it. if i talk about <em>them</em>, i&#39;ll easily be dead as soon as i get out of here. like a dead person walking. this, my ultimate saying im a pianist.. makes it easier for me.
+
+this place is way better than my... &#39;home&#39;. i actually have a bed to sleep on, i have bandages for my injuries, and i have enough food for a proper meal for once. how cool is that? if no one kills, i&#39;ll just be living a life i dreamed for. a life where i can be normal. something to eat, somewhere to sleep. it&#39;s all perfect.
+
+i feel more safe here. is that normal? 
+
+everyone hates you talia, but i think youre pretty neat.</span>
+
+                                <span class="chatlog__edited-timestamp" title="09-Sep-21 04:23 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885439798758735934" id="message-885439798758735934" title="Message sent: 09-Sep-21 04:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">09-Sep-21 06:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="885478032071098439" id="message-885478032071098439" title="Message sent: 09-Sep-21 06:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<s>not gonna lie ic i probably would have talia reveal suris talent like right after this but ooc ik thats a horrible idea unless youre <em>really</em> down for it</s></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">09-Sep-21 07:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="885487356247945297" id="message-885487356247945297" title="Message sent: 09-Sep-21 07:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( i mean that would be funny but its way too early</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">12-Sep-21 06:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="886747643567546368" id="message-886747643567546368" title="Message sent: 12-Sep-21 06:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">12/09/XXXX</span> (this motive will hit suri hard so i&#39;ll warn yall in advance)
+
+im sorry in advance. honestly, i am. im not lying.
+
+so theres... voices now. voices are from people. animals dont speak. people do. there&#39;s people here.
+
+people watching me. planning to mock me.
+
+at first they&#39;re silent. they pretend to be your friend. but the more you know them, they get worse. what they truly think will become known to you. that&#39;s what friends are usually like, maybe. it&#39;s not like i&#39;ll ever have friends. friends are all about trust. i cant trust anybody, and no one can trust me. my point is that, that&#39;s essentially what the voices are.
+
+but... these voices dont want to be my friend. it cant be some random person, because they wouldnt want anything to do with me. they would stop them from interacting with me.
+
+so the voices are them, arent they?
+
+mocking me for things they caused.
+for things that they did.
+
+...
+
+maybe its my fault. 
+maybe i&#39;m the issue.
+maybe i am causing my own downfall. like i manage to throw the dice in this one direction which means i&#39;ll always roll ones. 
+
+lifes just a game, and i guess im just the unlucky last place. 
+
+i dunno.
+
+maybe they&#39;re mocking me for all the right reasons.
+cause maybe everythings my fault.
+
+i dont know why im getting so deep atm. the voices are still pretty quiet. i can barely hear them.
+i can just hear &quot;give it back&quot; 
+its silent.
+i can tell theyre saying other stuff too but
+maybe they&#39;re talking about my outfit.
+
+they said i could take it. i was young and dumb and i asked them like an idiot. i know full well that was wrong, but they endorsed it. they said yes. why are they mocking me for it?
+
+
+
+
+
+
+
+
+
+
+it was just a trick, wasnt it?</span>
+
+                                <span class="chatlog__edited-timestamp" title="12-Sep-21 06:59 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886747651310256138" id="message-886747651310256138" title="Message sent: 12-Sep-21 06:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">23-Sep-21 03:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="890675018621653022" id="message-890675018621653022" title="Message sent: 23-Sep-21 03:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">23/09/XXXX</span>
+
+why is it so hard to fit in with everyone else.
+
+i dont get it. 
+
+sometimes i make myself look like an idiot for telling the truth. because i somehow think that what i experience is the same as everyone else??
+
+this world is weird. or maybe i&#39;m weird.</span>
+
+                                <span class="chatlog__edited-timestamp" title="21-Nov-21 05:52 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="890675028650246194" id="message-890675028650246194" title="Message sent: 23-Sep-21 03:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">28-Sep-21 03:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="892488427742830662" id="message-892488427742830662" title="Message sent: 28-Sep-21 03:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">28/09/XXXX</span>
+
+don&#39;t trust people, suri. trust is bad. 
+
+not everyone is as you think they are. sometimes, they could be associated with the fucking yakuza, like kaida is. everyone here has a ton of secrets behind them. could be bad. 
+
+tsuguri could be bad, catboy could be bad. you just don&#39;t know.
+
+life advice. trust bad.
+
+they could be working for <em>them</em>. 
+please listen, future suri. listen to my warning. 
+
+just do what they tell you to do, and don&#39;t fuck it up. if you fuck it up...
+
+well, you know what happens with them.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="892488432893460550" id="message-892488432893460550" title="Message sent: 28-Sep-21 03:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">03-Oct-21 06:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="894174708357021716" id="message-894174708357021716" title="Message sent: 03-Oct-21 06:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">3/10/XXXX</span>
+
+another one down. trial today. today we&#39;ll either be losing one guilty, or two innocent. its... worrying.
+
+i know i shouldnt be worrying about stuff like this. im well aware my death is unavoidable. i either die here, or one of them will kill me when i get out because they&#39;ll think i did something bad. i shouldnt be worrying about that at all. i&#39;ve already given up trying to achieve my dreams and my goals years ago.
+
+but seeing <em>others</em> die... makes me sad.
+
+they actually can live their lives they dreamed of. they can be themselved and be happy. yet it&#39;s taken away from them because of tiana or talia whatever her name was, and those other people. like that idol midget.
+
+i should really try and get everyone out of here. i know i should try, even though there&#39;s nothing in it for me. i&#39;ll die as soon as i go back to them, i&#39;ll be much safer if i stayed here. but, getting everyone out just feels right. maybe i can just stay here and tiana will let me. i dont care if i would be alone at this point.
+
+i&#39;m already working with rui... so let&#39;s just see how this plan works out. i&#39;ll probably have to come up with something on my own.
+
+wait...
+
+there&#39;s that room with keys and stuff in sector A, right?
+
+...i&#39;m the ultimate picklock.
+
+maybe i can actually be useful.</span>
+
+                                <span class="chatlog__edited-timestamp" title="03-Oct-21 06:51 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="894174715273437224" id="message-894174715273437224" title="Message sent: 03-Oct-21 06:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">04-Oct-21 05:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="894515512376176640" id="message-894515512376176640" title="Message sent: 04-Oct-21 05:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">4/10/XXXX</span>
+
+so yesterday was eventful.
+
+cheshire was the blackened. i honestly wasnt expecting that at all. i didnt expect someone like him to do that, but i guess that&#39;s how it is. you simply cant trust anyone because they&#39;re capable of hurting you. every single person out there is the same.
+
+i feel absolutely terrible. i know im a terrible human being and i knew that for years but this just makes things worse. everyone here has some reason to live. i simply dont. people are losing their lives because of this. so much to live for. and they get their life taken away from them.
+
+... but i feel relieved.
+
+cheshire knew about them. he knew. 
+
+he can&#39;t tell anyone now hes gone.
+
+god im such a horrible person i should not be feeling like this at all
+just writing this is making me sad. it&#39;s 5 am when i write this and im gonna wake people if i cry or something. if i cry, people will look at me and see me as weak or something. i actually need to learn how to defend myself... which is gonna be hard. no ones gonna teach me that. everyone here is just like them.
+
+maybe i shouldnt trust anyone. i already have that in mind and think about that a lot, but... yeah. i dunno. 
+
+i should just accept that people trying to hurt me is normal. my parents are just odd ones out.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="894515598304894976" id="message-894515598304894976" title="Message sent: 04-Oct-21 05:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">08-Oct-21 08:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="896015740275155006" id="message-896015740275155006" title="Message sent: 08-Oct-21 08:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">8/10/XXXX</span>
+
+miki. miki sunada. the ultimate picklock.
+that&#39;s how i should&#39;ve introduced myself at the very start at all this. and i shouldve just asked people to call me suri instead.
+
+why do i even call myself &#39;suri yoshi&#39; anyway?
+my name&#39;s miki.
+it&#39;s always been miki.
+then why dont i like it at all?
+
+looking back at these pages, i realise that i&#39;ve been referring to myself as suri all this time. why am i doing that if im aware that isnt my name?
+
+...  i just dont want to be miki, i guess.
+
+miki sunada is a criminal who&#39;s forced to work with two idiots for a living, who got her ultimate by being forced to help those exact two idiots steal and break into houses.
+ suri yoshi is a famous pianist who got her ultimate through hard work and dedication, actually doing what she wanted, by actually enjoying what she was doing.
+
+if only i really was suri.
+i wouldnt be in this mess at all. well, i would still be here but-
+
+i wouldnt be lying. i wouldnt be doing this whole thing with <em>rui</em> of all people. i would maybe be a bit more happy generally.
+i wouldnt feel relieved that cheshire died, i actually wouldve had some sympathy for him. i would&#39;ve barely been affected in the first motive. there&#39;s so many things that happened that miki has got herself into all because she had bad luck from when she was 5.
+
+i dont want to be miki. i dont want to accept that.
+but i&#39;m miki. my name&#39;s miki sunada. the ultimate picklock.
+
+i shouldn&#39;t complain. a ton of people would be telling me to &#39;just accept who i am and live with it&#39; or things like that. but i dont want to be known as the ultimate picklock or anything like that.
+
+...
+
+the only good thing that can come from all is that i could maybe get everyone out.
+if i can do this right, i can stop working with rui entirely.
+
+... i just gotta get to sector A.</span>
+
+                                <span class="chatlog__edited-timestamp" title="08-Oct-21 08:47 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="896015747443200001" id="message-896015747443200001" title="Message sent: 08-Oct-21 08:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">13-Oct-21 02:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="897908158373167135" id="message-897908158373167135" title="Message sent: 13-Oct-21 02:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">tul!nick &quot;Suri Yoshi&quot; &quot;Miki Sunada&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/3ba09fa76b4688a5e2273c56a4d8856c-C4924.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tupperbox#4754" data-user-id="431544605209788416" style="color: rgb(96,125,139)">Tupperbox</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Oct-21 02:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="897908159413358592" id="message-897908159413358592" title="Message sent: 13-Oct-21 02:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tupper nickname set to &#39;Miki Sunada&#39;.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">13-Oct-21 02:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="897908165008572416" id="message-897908165008572416" title="Message sent: 13-Oct-21 02:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">:)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">16-Oct-21 08:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="898912368527015967" id="message-898912368527015967" title="Message sent: 16-Oct-21 08:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">16/10/XXXX</span>
+8 days later. and there&#39;s a lot to catch up on.
+
+someone caused a fire to the aquaponics room. i dont know who did it. all i know is that it was apart of rui&#39;s plan, and this person did it wrong. if i was forced to guess, i would say rui. maybe they tried to start whatever their planning but failed at the first step. it doesnt seem like rui though, so im not sure. 
+i just wanna know who did it. even if i was told not to tell anyone else. i wanna know why someone did that. maybe to escape? maybe to just cause suffering? 
+
+... i can&#39;t keep the act up anymore.
+suri yoshi, the ultimate pianist.
+miki sunada, the ultimate picklock.
+
+i revealed my true identity to shizuru. i feel like he&#39;s the person i can trust the most with this.
+
+i shouldnt of told him, i shouldnt of told anyone anything. i shouldve just kept my mouth shut. but... but that just hurts my head. constantly thinking about these things all the time. 
+like, i feel sad revealing all these things. i feel fear, because i know what some of the consequences would be. yet, i feel... relief. i think. is that the right word?
+
+i dont know. im not used to describing how i feel. 
+
+(yakichiro also died, though i wasnt really close with him. sorry for not saving you.)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="898912375699292200" id="message-898912375699292200" title="Message sent: 16-Oct-21 08:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">21-Nov-21 05:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="912111523059617792" id="message-912111523059617792" title="Message sent: 21-Nov-21 05:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">alrigt nice!! i can give some notes™️</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="912112188334960670" id="message-912112188334960670" title="Message sent: 21-Nov-21 05:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">- i kinda gave up on this after chapter 3. sorry.
+- this diary has a lot of grammar and spelling mistakes. i was just too lazy to write those since that would pain me personally.
+- there isnt a lot of stuff here.
+
+<img loading="lazy" class="emoji " alt="⚠" title="⚠" src="https://twemoji.maxcdn.com/2/svg/26a0.svg">️ <strong>tw for mentions of <span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">physical ab//e</span> u, s and stuff related (maybe? i dunno. i cant remember. maybe some hints to it at least?))!! also there could be some self-deprecating messages here and there. i dont wanna go through it and check, though. so please assume there is before reading. this stuff will be uncensored since i cant really go through and censor right now</strong> <img loading="lazy" class="emoji " alt="⚠" title="⚠" src="https://twemoji.maxcdn.com/2/svg/26a0.svg">️
+
+ty for the rp everyone!! your ocs were so great and i loved every single one of them. thank you to astrea and the admins for making all of this possible! i will be asleep when the diaries get revealed so take my lil message.</span>
+
+                                <span class="chatlog__edited-timestamp" title="21-Nov-21 06:04 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20mikis-diary%20%5B884906637377294346%5D.html_Files/ac07ad9574900a36fcff39cedea28e0d-98D25.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="4MushroomSoap#1474" data-user-id="673944515417079847" style="color: rgb(131,205,235)">Soapy | Somehow above you(?)</span>
+
+
+        <span class="chatlog__timestamp">21-Nov-21 06:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="912117900813422622" id="message-912117900813422622" title="Message sent: 21-Nov-21 06:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Thank you for also being part of it angie! Sleep well</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 30 message(s)</div>
+</div>
+
+</body>
+
+</html>

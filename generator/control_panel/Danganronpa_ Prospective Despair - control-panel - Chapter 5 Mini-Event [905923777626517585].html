@@ -1,0 +1,4595 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - Chapter 5 Mini-Event</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">control-panel / Chapter 5 Mini-Event</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 04:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="905923778784137307" id="message-905923778784137307" title="Message sent: 04-Nov-21 04:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(soon™️</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="905924415106195486" id="message-905924415106195486" title="Message sent: 04-Nov-21 05:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">...she&#39;s already here.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="905924568768716860" id="message-905924568768716860" title="Message sent: 04-Nov-21 05:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(im gonna be lurking i prolly cant attend)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="905924623076577351" id="message-905924623076577351" title="Message sent: 04-Nov-21 05:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>After having a cute idiotic mental breakdown and going to cool down n shit, he arrives here!!! Once more!!! Ahh, Talia!!! This day can&#39;t get any better! :D</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="905924719843360778" id="message-905924719843360778" title="Message sent: 04-Nov-21 05:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Masami is hiding around... In the shadows. Just observing as her fan hides her face.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/c783fcbc251a5930320dbb2a7b765d92-307F2.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Evelyn Tsukiki#0000" data-user-id="904856797163188254" style="">Evelyn Tsukiki</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="905924749568389180" id="message-905924749568389180" title="Message sent: 04-Nov-21 05:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>slide to the left
+/“8:2 595$3?48)$5</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/c155dffba11f68aa726501c96145a904-2AF62.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="chunyu (sp)ooc#0000" data-user-id="904856797163188254" style="">chunyu (sp)ooc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="905924784167194864" id="message-905924784167194864" title="Message sent: 04-Nov-21 05:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>slide to the right</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/9d730af92791e21e8a34f10901a7b7f2-8813B.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Person#7738" data-user-id="588749122643951616" style="color: rgb(95,95,95)">Person Exists</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="905924810582933576" id="message-905924810582933576" title="Message sent: 04-Nov-21 05:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((Criss cross</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/2c9f5334e4774d6cd6881ffac3160dd4-E0BBA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="｢Codex Lemegeton｣#0000" data-user-id="904856797163188254" style="">｢Codex Lemegeton｣</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="905924856749649940" id="message-905924856749649940" title="Message sent: 04-Nov-21 05:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">[codex voice] Big Chungus.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/786629592814321685-315EF.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/469ccd4099502059c714cfa87ca07398-8ED6B.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Josh#0000" data-user-id="904856797163188254" style="">Josh</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="905924900173275136" id="message-905924900173275136" title="Message sent: 04-Nov-21 05:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>WOOOO</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/c155dffba11f68aa726501c96145a904-2AF62.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="chunyu (sp)ooc#0000" data-user-id="904856797163188254" style="">chunyu (sp)ooc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="905924943999561750" id="message-905924943999561750" title="Message sent: 04-Nov-21 05:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(ykw)
+(fuck you)
+(uncodexs your codex)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/d8ee9e29b4522fd9f6689538b4d31171-99F37.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Crepe#2518" data-user-id="269156561320935426" style="color: rgb(254,126,1)">Josh Soha || The Crep</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925010256965703" id="message-905925010256965703" title="Message sent: 04-Nov-21 05:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(noo chunyu. It&#39;s Uncodes your dex)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1a7e9e15083e1407fbc9907b27ea5d6d-452CA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miki Sunada#0000" data-user-id="904856797163188254" style="">Miki Sunada</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925018507157514" id="message-905925018507157514" title="Message sent: 04-Nov-21 05:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>omg tupper works in threads now but im fucking dying from heat i need to change out of this dumb jumper im here</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/a6f630bded8c8fb21b7d28702e470c5d-64DD2.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bazzy#6969" data-user-id="293549819828633600" style="color: rgb(244,127,255)">Bazzy</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925103693484093" id="message-905925103693484093" title="Message sent: 04-Nov-21 05:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I’m in school so reactions will be slow))</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925131036143657" id="message-905925131036143657" title="Message sent: 04-Nov-21 05:03 PM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="Unknown">@Unknown</span>, <span class="mention" title="Crepe#2518">@Josh Soha || The Crep</span>, <span class="mention" title="Unknown">@Unknown</span>, <span class="mention" title="Bazzy#6969">@Bazzy</span>, <span class="mention" title="Unknown">@Unknown</span>, <span class="mention" title="Astrea#7171">@Astrea of the Stars</span>, <span class="mention" title="Unknown">@Unknown</span> have been recorded to be at the event! They get 0.5 interaction points.</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/a6f630bded8c8fb21b7d28702e470c5d-64DD2.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Bazzy#6969" data-user-id="293549819828633600" style="color: rgb(244,127,255)">Bazzy</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925143614869564" id="message-905925143614869564" title="Message sent: 04-Nov-21 05:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I also have to respond to Josh when I’m out so))</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925218185388043" id="message-905925218185388043" title="Message sent: 04-Nov-21 05:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(fair enough lol</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925499514159164" id="message-905925499514159164" title="Message sent: 04-Nov-21 05:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Randomly appears beside Masami because Koi said so. He&#39;s just standing there. Silently. Face its usual relaxed self. Unlike earlier.</em> 
+
+<em>I&#39;m sorry my admin had to.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1a7e9e15083e1407fbc9907b27ea5d6d-452CA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miki Sunada#0000" data-user-id="904856797163188254" style="">Miki Sunada</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925648357396520" id="message-905925648357396520" title="Message sent: 04-Nov-21 05:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Okay Miki is officially here now! She&#39;s standing by the exit.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/a64a5e8e448c2abfa3aff30936c1f4d8-1494A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="chunmoody#9240" data-user-id="578757582186086410" style="color: rgb(115,63,119)">chunmoody</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925738295853076" id="message-905925738295853076" title="Message sent: 04-Nov-21 05:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(oh yeah i forgot that talia is now like</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="905925782663233608" id="message-905925782663233608" title="Message sent: 04-Nov-21 05:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(a participant</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925794881220618" id="message-905925794881220618" title="Message sent: 04-Nov-21 05:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(yeah shes a participant lol</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925834945212436" id="message-905925834945212436" title="Message sent: 04-Nov-21 05:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Ahem.</em>
+
+&quot;...&quot;
+...there was a bit of awkwardness coming from her, being in a more vulnerable position. It was... odd being on this side of the game. But regardless.
+
+&quot;...you all want to know how to escape, right? I&#39;m guessing &#39;J&#39;s&#39; answer aren&#39;t good enough for you.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/cd00632efd618dc6b5ee3baabd8bca03-AA2A9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jack Rylie#0000" data-user-id="904856797163188254" style="">Jack Rylie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925889454379038" id="message-905925889454379038" title="Message sent: 04-Nov-21 05:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jack is here</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925915706556457" id="message-905925915706556457" title="Message sent: 04-Nov-21 05:06 PM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="Unknown">@Unknown</span> have been recorded to be at the event! They get 0.5 interaction points.</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="905925959880945665" id="message-905925959880945665" title="Message sent: 04-Nov-21 05:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>...Imagine being here although you don&#39;t want to escape lol</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="905926201267343400" id="message-905926201267343400" title="Message sent: 04-Nov-21 05:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Masami stays silent. The silence in her head gets filled slowly by the words she&#39;s hearing... Escape. A way back home. From Talia. The same woman who threatened, hurt and berated them. Oh this is gonna be rich. Masami stares at Talia from the shadows, her eyes peering from her fan&#39;s edge.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="905926310210179072" id="message-905926310210179072" title="Message sent: 04-Nov-21 05:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(the deadest event)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1a7e9e15083e1407fbc9907b27ea5d6d-452CA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miki Sunada#0000" data-user-id="904856797163188254" style="">Miki Sunada</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="905926392565338175" id="message-905926392565338175" title="Message sent: 04-Nov-21 05:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Yeah- We wanna know how to escape. Are you... gonna tell us?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="905926506948206642" id="message-905926506948206642" title="Message sent: 04-Nov-21 05:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( angie saves the day!!!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/cd00632efd618dc6b5ee3baabd8bca03-AA2A9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jack Rylie#0000" data-user-id="904856797163188254" style="">Jack Rylie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="905926624980140032" id="message-905926624980140032" title="Message sent: 04-Nov-21 05:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jack looked.. unsure of this. He didn&#39;t trust Talia one bit, but honestly..
+He&#39;ll take any chance that he can grab to get out of here without murder.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="905926964051836989" id="message-905926964051836989" title="Message sent: 04-Nov-21 05:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Can&#39;t tell you everything, dipshit. Drake&#39;s watching us, and the ass will be on my ass if I step too far &#39;out of bounds&#39;. But I can tell you more than enough, at least until I can get rid of that fuck.&quot;
+
+She turned towards Miki. &quot;<em>You</em>. Pick the keyhole. I have tools if you need them.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="905927166510907433" id="message-905927166510907433" title="Message sent: 04-Nov-21 05:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(the keyhole on the control panel btw</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/469ccd4099502059c714cfa87ca07398-8ED6B.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Josh#0000" data-user-id="904856797163188254" style="">Josh</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="905927177336418314" id="message-905927177336418314" title="Message sent: 04-Nov-21 05:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh...well that was easy bro woo.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="905927302670614558" id="message-905927302670614558" title="Message sent: 04-Nov-21 05:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>More slow, unimpressed fanning. Still intrigued, though.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="905927381120852039" id="message-905927381120852039" title="Message sent: 04-Nov-21 05:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Assuming it works. Or does what we&#39;re told it should. Or that this isn&#39;t Talia setting up the next motive.&quot; <em>Rui in the corner or smth I have two brain cells.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="905927417330290738" id="message-905927417330290738" title="Message sent: 04-Nov-21 05:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Hm. Talia, who&#39;s been proven to know everyones true identities, including his, walking up to Miki, asking for her to pick a keyhole?</em>
+
+<em>...Yeeeah, he kinda puts the pieces together and figures out she&#39;s not the ultimate pianist and actually the ultimate picklock because that was so fucking blatant.</em>
+<em>Vibing.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="905927531042050088" id="message-905927531042050088" title="Message sent: 04-Nov-21 05:12 PM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="Unknown">@Unknown</span> have been recorded to be at the event! They get 0.5 interaction points.</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4621c1d5d0dbbea2df59c1a91877dd9e-1369D.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="angie / ral#7700" data-user-id="543853525038530561" style="color: rgb(60,105,121)">angie the epic gamer</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="905927616157065246" id="message-905927616157065246" title="Message sent: 04-Nov-21 05:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( i type slow i apologise you might be here for a few minutes</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="thumbsup">
+                                <img class="emoji emoji--small" alt="&#128077;" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1f44d-B3F5F.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="905927708729569311" id="message-905927708729569311" title="Message sent: 04-Nov-21 05:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Wait... Wait why Suri?! Masami is now more intrigued as her eyes snap onto Suri, narrowing them.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1a7e9e15083e1407fbc9907b27ea5d6d-452CA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miki Sunada#0000" data-user-id="904856797163188254" style="">Miki Sunada</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="905927882893828196" id="message-905927882893828196" title="Message sent: 04-Nov-21 05:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Wait- Me? Um...&quot; <em>She looked towards the control panel, where the keyhole was.</em> &quot;What&#39;s... What&#39;s that gotta do with all of this? Are you sure this isn&#39;t some sort of joke?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928097742860308" id="message-905928097742860308" title="Message sent: 04-Nov-21 05:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;cause pianos have keys. laugh.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/786629592814321685-315EF.png" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/469ccd4099502059c714cfa87ca07398-8ED6B.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Josh#0000" data-user-id="904856797163188254" style="">Josh</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928182279057518" id="message-905928182279057518" title="Message sent: 04-Nov-21 05:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>he laughs</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/cd00632efd618dc6b5ee3baabd8bca03-AA2A9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jack Rylie#0000" data-user-id="904856797163188254" style="">Jack Rylie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928244258283531" id="message-905928244258283531" title="Message sent: 04-Nov-21 05:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He does not laugh</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928267901591633" id="message-905928267901591633" title="Message sent: 04-Nov-21 05:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;thank you josh&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928312973582397" id="message-905928312973582397" title="Message sent: 04-Nov-21 05:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Do I <em>look</em> like I want to pull some sort of joke? I&#39;ve been through <strong>hell</strong> over the last two weeks. I don&#39;t need hesitancy right now.&quot;
+She puts her hand on her gun in her pocket.
+&quot;Just do it.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928319931940865" id="message-905928319931940865" title="Message sent: 04-Nov-21 05:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Chunyu lets out a chuckle. Not a laugh. A chuckle.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="905928357726781501" id="message-905928357726781501" title="Message sent: 04-Nov-21 05:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>GUUUUUUUUUN!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/469ccd4099502059c714cfa87ca07398-8ED6B.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Josh#0000" data-user-id="904856797163188254" style="">Josh</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928385572769822" id="message-905928385572769822" title="Message sent: 04-Nov-21 05:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh YOU&#39;VE been through hell bro? Man I can&#39;t imaaagine how ba-..Ima just be quiet actually...&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Nov-21 05:16 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928393864917012" id="message-905928393864917012" title="Message sent: 04-Nov-21 05:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>YAAAAAY!!! FUN FOR THE ENTIRE FAMILY!!!!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="sparkles">
+                                <img class="emoji emoji--small" alt="✨" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/2728-4239B.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928405130838067" id="message-905928405130838067" title="Message sent: 04-Nov-21 05:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(mind you she hasnt like pulled it out or anything</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928417956995082" id="message-905928417956995082" title="Message sent: 04-Nov-21 05:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Two weeks?&quot; <em>Rui scoffs.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/2c9f5334e4774d6cd6881ffac3160dd4-E0BBA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="｢Codex Lemegeton｣#0000" data-user-id="904856797163188254" style="">｢Codex Lemegeton｣</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928546525020230" id="message-905928546525020230" title="Message sent: 04-Nov-21 05:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Codex is thinking about cheese and not paying attention.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/786629592814321685-315EF.png" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928563407069235" id="message-905928563407069235" title="Message sent: 04-Nov-21 05:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(2 weeks? puny numbers</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928573649559552" id="message-905928573649559552" title="Message sent: 04-Nov-21 05:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Masami lets out a giggle.</em>
+<div class="quote">&quot;Oh... If only you can see how much you resemble a roach the moment.&quot;</div></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/786629592814321685-315EF.png" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction" title="star">
+                                <img class="emoji emoji--small" alt="⭐" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/2b50-BBB4A.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/cd00632efd618dc6b5ee3baabd8bca03-AA2A9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jack Rylie#0000" data-user-id="904856797163188254" style="">Jack Rylie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928585536208916" id="message-905928585536208916" title="Message sent: 04-Nov-21 05:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Is that-&quot; He tensed, taking notice of the gun. If he wasn&#39;t uneasy already, than he certainly was now.</span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Nov-21 05:17 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928672467365908" id="message-905928672467365908" title="Message sent: 04-Nov-21 05:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;How funny.&quot;
+She pulls out said gun.
+&quot;Now shut up.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1a7e9e15083e1407fbc9907b27ea5d6d-452CA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miki Sunada#0000" data-user-id="904856797163188254" style="">Miki Sunada</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928773218762833" id="message-905928773218762833" title="Message sent: 04-Nov-21 05:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Now- Um... there&#39;s no need for the gun, Miss Aelius! Um-&quot; <em>She looked at Talia with a panicked expression on her face. Oh god. Oh no.</em> &quot;Alright- Um... Give me a bit, okay?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="905928829640536174" id="message-905928829640536174" title="Message sent: 04-Nov-21 05:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;If any of us get shot, prevent them from stopping the wound so Talia becomes a killer.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="905929211238289468" id="message-905929211238289468" title="Message sent: 04-Nov-21 05:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Could just kill all of you rather easily.&quot;
+...how? It&#39;s better <em>not</em> to ask what she knows in terms of murder methods.
+
+She stares back at Miki and simply nods.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="905929409469509712" id="message-905929409469509712" title="Message sent: 04-Nov-21 05:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Considering that you&#39;re with us, you&#39;d have to die for it. It&#39;s against the rules to kill more than... two at a time?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="905929445053956116" id="message-905929445053956116" title="Message sent: 04-Nov-21 05:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;And?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="905929627938213918" id="message-905929627938213918" title="Message sent: 04-Nov-21 05:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Shoulda died before getting demoted if you didn&#39;t care.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1a7e9e15083e1407fbc9907b27ea5d6d-452CA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miki Sunada#0000" data-user-id="904856797163188254" style="">Miki Sunada</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="905929640416256000" id="message-905929640416256000" title="Message sent: 04-Nov-21 05:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Since Angie is tired, Angie will not type that much. She did not think picking the lock was possible. At all. Picking the locks in that room in Sector A was impossible, which only makes it less likely. Though, to avoid being fucking SHOT WITH A FUCKING GUN, she walks over to the control panel to pick the lock.</em>
+
+<em>To be honest, Angie isn&#39;t thinking right now. And so Miki picks the lock somehow. I wonder what will happen. I hope we all don&#39;t magically die and the killing game ends.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="905929862991183873" id="message-905929862991183873" title="Message sent: 04-Nov-21 05:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)">&quot;Would have if the idiot let me.&quot;</span> She&#39;s not joking. Why isn&#39;t she... eh, maybe that&#39;s a bit <em>too</em> dark for now.
+
+Regardless...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/fe15d67c37b4ce3484bfa134caff1534-E0CB7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="904856797163188254" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930227342016522" id="message-905930227342016522" title="Message sent: 04-Nov-21 05:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Upon picking the lock, the Control Panel whirs to life, even though it was already on. Several machines could be heard booting up.
+
+&quot;Basic access granted. Purple keycard required for administrative functions.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930229187493919" id="message-905930229187493919" title="Message sent: 04-Nov-21 05:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...good enough.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930306345918474" id="message-905930306345918474" title="Message sent: 04-Nov-21 05:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>WOOOOOOOOAH!!!! OK THIS IS REALLY FUCKING COOL WHAT.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1a7e9e15083e1407fbc9907b27ea5d6d-452CA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miki Sunada#0000" data-user-id="904856797163188254" style="">Miki Sunada</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930356086165504" id="message-905930356086165504" title="Message sent: 04-Nov-21 05:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Wait- Wait... hang on. That actually did something?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930392387854467" id="message-905930392387854467" title="Message sent: 04-Nov-21 05:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote"><em>WOOOOOOOOAH!!!! OK THIS IS REALLY FUCKING COOL WHAT.</em>
+</div>@Chunyu Tsuguri (<span class="mention" title="koi ★#0533">@koi★</span>) - <a href="%3Chttps://discord.com/channels/@me/905923777626517585/905930306345918474%3E">jump</a>
+<em>...Of course his fasination isn&#39;t showing on his face.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930419004899378" id="message-905930419004899378" title="Message sent: 04-Nov-21 05:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...I somehow imagined security here would be better than that.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/cd00632efd618dc6b5ee3baabd8bca03-AA2A9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jack Rylie#0000" data-user-id="904856797163188254" style="">Jack Rylie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930454383869982" id="message-905930454383869982" title="Message sent: 04-Nov-21 05:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;What..? Wait now what??&quot; He asked, baffled they actually got this far.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930589968957482" id="message-905930589968957482" title="Message sent: 04-Nov-21 05:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>...Interesting.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/469ccd4099502059c714cfa87ca07398-8ED6B.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Josh#0000" data-user-id="904856797163188254" style="">Josh</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930636622180382" id="message-905930636622180382" title="Message sent: 04-Nov-21 05:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Woah bro.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930640820674560" id="message-905930640820674560" title="Message sent: 04-Nov-21 05:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I did too. This bunker has a number of oddities...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/fe15d67c37b4ce3484bfa134caff1534-E0CB7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="904856797163188254" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="905930643458895903" id="message-905930643458895903" title="Message sent: 04-Nov-21 05:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She started pressing some buttons on the control panel. Nothing happened for a bit, and then...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="905930802339123230" id="message-905930802339123230" title="Message sent: 04-Nov-21 05:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The monitors switched over to four hallways. You&#39;ve seen <em>none</em> of them before. They all look narrow and sleek...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="905931286215020544" id="message-905931286215020544" title="Message sent: 04-Nov-21 05:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...there are four entrances into this bunker. One of the entrances is supposed to be where the trial room is, although that has been rerouted. Two of them have also been hidden away or rerouted. And the final one is the door &#39;J&#39; mentioned.&quot;
+
+&quot;...before you ask, I <em>knew</em> what J was doing. It wasn&#39;t worth my time when I had bigger pains on my ass.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="905931506499874878" id="message-905931506499874878" title="Message sent: 04-Nov-21 05:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Like being stabbed?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="905931889666297946" id="message-905931889666297946" title="Message sent: 04-Nov-21 05:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Among other things.&quot;
+She collapsed upon the panel for a second, leaning into it a bit more than she should have, before regaining her strength and standing back up straight.
+&quot;...but those four paths are <em>the</em> way out. No other path connects this bunker to <strong>the other one.</strong>&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="905932011275976745" id="message-905932011275976745" title="Message sent: 04-Nov-21 05:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Quick. No one ask.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/786629592814321685-315EF.png" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="905932045857992784" id="message-905932045857992784" title="Message sent: 04-Nov-21 05:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hmm? What &#39;other one&#39;, may I ask?&quot; <em>wow he spoke just to annoy rui lol</em></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="gaysparkles">
+                                <img class="emoji emoji--small" alt="gaysparkles" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/887531566639771699-05D8D.png" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="905932106948042752" id="message-905932106948042752" title="Message sent: 04-Nov-21 05:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>chuckle because :D</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="905932187931643964" id="message-905932187931643964" title="Message sent: 04-Nov-21 05:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(always knew i could rely on my big chungus ❤️/lh</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="905932209813336064" id="message-905932209813336064" title="Message sent: 04-Nov-21 05:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( &lt;3)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/c155dffba11f68aa726501c96145a904-2AF62.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="chunyu (sp)ooc#0000" data-user-id="904856797163188254" style="">chunyu (sp)ooc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="905932241178353674" id="message-905932241178353674" title="Message sent: 04-Nov-21 05:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(stop calling me that.)</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Noo_WOE">
+                                <img class="emoji emoji--small" alt="Noo_WOE" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/741394237500817578-EF7F3.png" loading="lazy">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="905932745715367966" id="message-905932745715367966" title="Message sent: 04-Nov-21 05:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She snickered a bit.
+&quot;Heh. Surprised you didn&#39;t know, but I guess that <strong>memory wipe</strong> was more effective than I expected.&quot;
+
+She got up.
+&quot;There&#39;s... two bunkers in this underground place. We&#39;re in one right now... an in-progress bunker for what was to be a bunker for, effectively, people of power. The other bunker is where the majority of people are.&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Nov-21 05:33 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/c783fcbc251a5930320dbb2a7b765d92-307F2.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Evelyn Tsukiki#0000" data-user-id="904856797163188254" style="">Evelyn Tsukiki</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="905932979065487360" id="message-905932979065487360" title="Message sent: 04-Nov-21 05:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“The… majority of people…? Is there… like… another killing game happening…?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="905933002901684234" id="message-905933002901684234" title="Message sent: 04-Nov-21 05:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hm? More people?&quot; <em>...mm... Interested. A slight smirk emerges on his face.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="905933074620104744" id="message-905933074620104744" title="Message sent: 04-Nov-21 05:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote">&quot;...So we weren&#39;t asleep for a whole year. That was a lie?&quot;</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="905933185022582824" id="message-905933185022582824" title="Message sent: 04-Nov-21 05:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Are your muscles atrophied?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/786629592814321685-315EF.png" loading="lazy">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/469ccd4099502059c714cfa87ca07398-8ED6B.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Josh#0000" data-user-id="904856797163188254" style="">Josh</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="905933518138404894" id="message-905933518138404894" title="Message sent: 04-Nov-21 05:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I don&#39;t even know what that means bro!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1a7e9e15083e1407fbc9907b27ea5d6d-452CA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miki Sunada#0000" data-user-id="904856797163188254" style="">Miki Sunada</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="905933592817975296" id="message-905933592817975296" title="Message sent: 04-Nov-21 05:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Yeah- Um... what does that mean?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="905933601726681098" id="message-905933601726681098" title="Message sent: 04-Nov-21 05:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Masami just closes her eyes in frustration. Stupid question to ask, her mind was blank.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="905933767410081852" id="message-905933767410081852" title="Message sent: 04-Nov-21 05:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...not another Killing Game. There&#39;s too many people there to host one. The logistics of it would be too much - took a while for the idiot to realize that, but I <em>eventually</em> got that in his brain.&quot; Ouch.
+&quot;But yes, more people. They are the ones... doing research, so to speak. They&#39;re the group where J is from. I doubt they expected this to happen, but when they took us with them, I guess it was only a matter of time...&quot; She faintly chuckled.
+
+&quot;Of course you weren&#39;t. Me and the fucker just pretended you were. You would have died if you were asleep for that long. You all went to Hope&#39;s Peak, and then were sent down to the other bunker. Then we kidnapped you here.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="905933794840821771" id="message-905933794840821771" title="Message sent: 04-Nov-21 05:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;It means literally everyone with a brain cell guessed that the &#39;asleep for a year&#39; thing was a lie.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/c783fcbc251a5930320dbb2a7b765d92-307F2.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Evelyn Tsukiki#0000" data-user-id="904856797163188254" style="">Evelyn Tsukiki</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="905933978400354354" id="message-905933978400354354" title="Message sent: 04-Nov-21 05:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Unless you’re me, who can do that…”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="905934001519333377" id="message-905934001519333377" title="Message sent: 04-Nov-21 05:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((dont have wifi in my room</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="pensive">
+                                <img class="emoji emoji--small" alt="&#128532;" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1f614-E1CCC.svg" loading="lazy">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="905934020855078922" id="message-905934020855078922" title="Message sent: 04-Nov-21 05:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((may disappear soon</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="905934023216480347" id="message-905934023216480347" title="Message sent: 04-Nov-21 05:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Masami just silently stares at the two answer her question. Ah, how embarrassing this is...</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="905934389337268266" id="message-905934389337268266" title="Message sent: 04-Nov-21 05:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hm.. Things just keep getting more interesting, hm?&quot; <em>He mutters to himself........ S m i rk . He seems very. Very interested.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="905934696159010877" id="message-905934696159010877" title="Message sent: 04-Nov-21 05:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Regardless...&quot;
+
+&quot;Getting to the four paths should allow you to get to the other bunker. From there, you&#39;ll be safe. When we took over this place, I only took over this bunker. It might have been possible to take over the other one, but I didn&#39;t bother. And Drake can&#39;t do shit in terms of &#39;taking over&#39; without me.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935141698953246" id="message-905935141698953246" title="Message sent: 04-Nov-21 05:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote">&quot;Question... What has lead to you going against Sir Aelius?&quot;</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935225299804240" id="message-905935225299804240" title="Message sent: 04-Nov-21 05:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah. So let me get this straight.&quot;
+&quot;We were kidnapped here by both you and your brother, <em>you</em> taking over the bunker and hosting this entire thing, but then something happened, and hey, you&#39;re here now, with all the knowledge that <em>some</em> people need to escape.&quot;
+&quot;You&#39;re doing this to warrant your own escape, aren&#39;t you?--&quot;
+
+<em>He just. Shuts himself up. He&#39;s not needed here.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935241108144219" id="message-905935241108144219" title="Message sent: 04-Nov-21 05:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;The question is the other way around. Why is Drake turning against Talia.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935454778564609" id="message-905935454778564609" title="Message sent: 04-Nov-21 05:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Is being kicked out from being the host not enough? And of course I&#39;m trying to escape too, dumbass. But I&#39;m not dumb enough to realize doing it by myself is an impossibility.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935535124664380" id="message-905935535124664380" title="Message sent: 04-Nov-21 05:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You need meat shields for when Drake shoots at us.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935607413477396" id="message-905935607413477396" title="Message sent: 04-Nov-21 05:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote">&quot;No... I meant, what got you &#39;kicked out&#39; from being a host in the first place?&quot;</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/4d595cbab82734ce4ada9158f5f252aa-0C4B7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rui Kaida#0000" data-user-id="904856797163188254" style="">Rui Kaida</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935649914363934" id="message-905935649914363934" title="Message sent: 04-Nov-21 05:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Rui scoffs and falls silent for the rest of this I need to lie down.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/c155dffba11f68aa726501c96145a904-2AF62.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="chunyu (sp)ooc#0000" data-user-id="904856797163188254" style="">chunyu (sp)ooc</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935677898764309" id="message-905935677898764309" title="Message sent: 04-Nov-21 05:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><s><em>I will gladly be a meat shield if that warrants a very certain event to happen!</em></s></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935696148180993" id="message-905935696148180993" title="Message sent: 04-Nov-21 05:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((bye</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935801253244948" id="message-905935801253244948" title="Message sent: 04-Nov-21 05:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Heh, good one. With those guns, he could cut straight through you and kill me after. Meat shields don&#39;t do much against machine guns.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="905935947655430215" id="message-905935947655430215" title="Message sent: 04-Nov-21 05:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Machine guns...</em>
+
+<em>HOLY SHIT HE HAS A MACHINE GUN??!?!??!?!</em>
+
+<em>Excited vibing because guns are cool.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/cd00632efd618dc6b5ee3baabd8bca03-AA2A9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jack Rylie#0000" data-user-id="904856797163188254" style="">Jack Rylie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="905936079239122954" id="message-905936079239122954" title="Message sent: 04-Nov-21 05:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jack panicked on the inside.
+
+<em>holy shit, he has a machine gun.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="905936215394619482" id="message-905936215394619482" title="Message sent: 04-Nov-21 05:47 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote">&gt; &quot;No... I meant, what got you &#39;kicked out&#39; from being a host in the first place?&quot;
+</div>@Masami Okumura (<span class="mention" title="chunmoody#9240">@chunmoody</span>) - <a href="%3Chttps://discord.com/channels/@me/905923777626517585/905935607413477396%3E">jump</a>
+&quot;...it&#39;s none of your business. But our relationship has never been stable. Our deal fell apart when he realized he couldn&#39;t stand me doing my own thing.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="905936591657250858" id="message-905936591657250858" title="Message sent: 04-Nov-21 05:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Masami furrows her eyebrows. So a fallout was inevitable... and she didn&#39;t think ahead to prevent it? Masami holds back that thought. Hm. She doesn&#39;t know how any of this works and she doesn&#39;t know the depth of any of this, as she merely started scratching the surface, and so she takes a moment to humble herself.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="905936813150048287" id="message-905936813150048287" title="Message sent: 04-Nov-21 05:49 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Regardless...&quot;
+
+&quot;Finding those four paths will be hard. He has relocated them from where they were, at least from what I&#39;ve seen. It will require searching all over the place.&quot;
+&quot;...and from there, a plan can be formed. Though it would need to be more secret than... this pathetic meetup.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="905936921379876925" id="message-905936921379876925" title="Message sent: 04-Nov-21 05:49 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="quote">&quot;Do we assess a secret message system?&quot;</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="905936968192507925" id="message-905936968192507925" title="Message sent: 04-Nov-21 05:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;It was your idea.&quot; <em>He mutters. He doesn&#39;t want to be heard by Talia because :)</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="905937596272750633" id="message-905937596272750633" title="Message sent: 04-Nov-21 05:52 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...you&#39;ll learn how it works.&quot;
+
+She quietly pressed around buttons on the keyboard. They didn&#39;t really do anything, but the keys seemed to be...
+<div class="quote">T A P 8 A T D E L T A</div></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="i_am_looking">
+                                <img class="emoji emoji--small" alt="i_am_looking" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/800549138847760385-338CC.png" loading="lazy">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="905937748689571882" id="message-905937748689571882" title="Message sent: 04-Nov-21 05:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Delta room... but &quot;8&quot;?</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="905937786778050651" id="message-905937786778050651" title="Message sent: 04-Nov-21 05:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She did it in a way easily possible to note what keys she was pressing. Huh.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="905937989715263508" id="message-905937989715263508" title="Message sent: 04-Nov-21 05:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She quickly added.
+<div class="quote">I F D O O R I S F O U N D</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="905938545045295214" id="message-905938545045295214" title="Message sent: 04-Nov-21 05:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...that&#39;s good enough.&quot;
+
+She used a slim piece of metal to turn back the key on the Control Panel. It turned back &#39;off&#39; (or, well, standby).
+&quot;Wouldn&#39;t do you much to have access to it. Not without the purple keycard.&quot;
+
+&quot;...you may leave. I have nothing else to say.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1512f1c29b191f81f73de088dbf31736-F1FE7.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="koi ★#0533" data-user-id="486291559617134592" style="color: rgb(87,154,158)">koi★</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 05:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="905938655854604329" id="message-905938655854604329" title="Message sent: 04-Nov-21 05:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(there are my typing perms!! :D)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1a7e9e15083e1407fbc9907b27ea5d6d-452CA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miki Sunada#0000" data-user-id="904856797163188254" style="">Miki Sunada</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="905938810787991562" id="message-905938810787991562" title="Message sent: 04-Nov-21 05:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...Why were you typing random letters on the keyboard?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/faccf61bd8326d51a4d4586c7e82380e-18EB4.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Chunyu Tsuguri#0000" data-user-id="904856797163188254" style="">Chunyu Tsuguri</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="905938906627854406" id="message-905938906627854406" title="Message sent: 04-Nov-21 05:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>...8... Delta....</em>
+
+<em>He slept there!</em>
+<em>Hmm..... This is fascinating... He likes this.</em>
+
+<em>...He leaves the room in thought, but not before saying :</em>
+&quot;Thank you, Aelius Talia.&quot; <em>He leaves, ignoring Miki&#39;s stupidity.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/cd00632efd618dc6b5ee3baabd8bca03-AA2A9.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jack Rylie#0000" data-user-id="904856797163188254" style="">Jack Rylie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="905938946209501214" id="message-905938946209501214" title="Message sent: 04-Nov-21 05:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jack figured this had something to do with the Delta room.. but what could he do? He can&#39;t exactly get in there..
+Nonetheless, he follows along and leaves the room quietly.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="905938987288498207" id="message-905938987288498207" title="Message sent: 04-Nov-21 05:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Because I wished to.&quot;
+Obviously, she couldn&#39;t say <em>why</em>, but she was fine leaving Miki in the dark.</span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Nov-21 05:58 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/3b5cea48a50881e6251b0b8e9b75d18a-B7B1A.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Masami Okumura#0000" data-user-id="904856797163188254" style="">Masami Okumura</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="905939041210499103" id="message-905939041210499103" title="Message sent: 04-Nov-21 05:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Masami continues to fan herself slowly. Sigh. She snaps her fan shut and walks out, refusing to say farewell to Talia.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1a7e9e15083e1407fbc9907b27ea5d6d-452CA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miki Sunada#0000" data-user-id="904856797163188254" style="">Miki Sunada</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 05:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="905939464147316796" id="message-905939464147316796" title="Message sent: 04-Nov-21 05:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh... okay. Bye then.&quot; <em>She walked out the room. Miki can&#39;t spell. She&#39;s not going to figure out what words those letters were spelling.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/2c9f5334e4774d6cd6881ffac3160dd4-E0BBA.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="｢Codex Lemegeton｣#0000" data-user-id="904856797163188254" style="">｢Codex Lemegeton｣</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 06:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="905939639217578035" id="message-905939639217578035" title="Message sent: 04-Nov-21 06:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oh, people are leaving. Out they go, then.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20control-panel%20-%20Chapter%205%20Mini-Event%20%5B905923777626517585%5D.html_Files/1df647cbf5b5cba3c5a031d8d7a5c17d-2E254.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Talia Aelius#0000" data-user-id="904856797163188254" style="">Talia Aelius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Nov-21 06:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="905939741181091872" id="message-905939741181091872" title="Message sent: 04-Nov-21 06:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Talia leaves towards... somewhere.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 133 message(s)</div>
+</div>
+
+</body>
+
+</html>

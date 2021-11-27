@@ -1,0 +1,1808 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - Alice and Rui</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">library / Alice and Rui</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="CagiestMonkey8#0001" style="color: rgb(255,8,0)">Cagiest</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885221167139524638&#39;)">
+(Don’t mind me                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 01:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="885221245237481503" id="message-885221245237481503" title="Message sent: 08-Sep-21 01:53 PM">
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885221248186085397" id="message-885221248186085397" title="Message sent: 08-Sep-21 01:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Hello</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 01:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="885221318075764826" id="message-885221318075764826" title="Message sent: 08-Sep-21 01:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">:0</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885221345946910781" id="message-885221345946910781" title="Message sent: 08-Sep-21 01:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( you start?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 01:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="885221367262363659" id="message-885221367262363659" title="Message sent: 08-Sep-21 01:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Ok</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 01:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="885221461525164063" id="message-885221461525164063" title="Message sent: 08-Sep-21 01:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((oh ok</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 01:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="885222273060053113" id="message-885222273060053113" title="Message sent: 08-Sep-21 01:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Hola, Alice is here! She walks in looking for other people, as she enters however, she notices the page on the ground.  She bends down to look at it, soon asking</em> “What?” <em>to herself.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885222693262200842" id="message-885222693262200842" title="Message sent: 08-Sep-21 01:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Also ping me pls</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 02:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="885224379171078184" id="message-885224379171078184" title="Message sent: 08-Sep-21 02:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r: <em>Buenos dias. Rui esta en la biblioteca ahora. Cuando camina en el cuarto, el narracion empieza hablar en ingles porque este es dificiel por algun quien no tuvo una clase de espanol por dos anos.</em>
+
+<em>Rui watches Alice look at the floor, too uncertain to go search for the book they wanted before Alice got up or Rui understood what they were doing.</em> &quot;H-Hello? Is there, like. An insect? On the floor? Or something?&quot; <em>They ask.</em>
+
+( <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885224617373999164" id="message-885224617373999164" title="Message sent: 08-Sep-21 02:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((yo se que tupper no esta aqui pero me gusta siempre usar tupper prefixes</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Sep-21 02:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="885226457075425300" id="message-885226457075425300" title="Message sent: 08-Sep-21 02:13 PM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="augusty#1287">@augusty</span>, <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span> got an interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="augusty#1287" style="color: rgb(154,144,231)">augusty</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885224379171078184&#39;)">
+r: <em>Buenos dias. Rui esta en la biblioteca ahora. Cuando camina en el cuarto, el narracion empieza hablar en ingles porque este es dificiel por algun quien no tuvo una clase de espanol por dos anos.</em>
+
+<em>Rui watches Alice look at the floor, too uncertain to go search for the book they wanted before Alice got up or Rui understood what they were doing.</em> &quot;H-Hello? Is there, like. An insect? On the floor? Or something?&quot; <em>They ask.</em>
+
+( <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 02:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="885227278672478218" id="message-885227278672478218" title="Message sent: 08-Sep-21 02:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She stands up straight upon hearing Rui’s voice.</em> “Oh, hi! No, it’s just this weird page…..” <em>She picks it up and shows it to them.</em> “You wouldn’t happen to have any idea what that means do you?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="885228271942398033" id="message-885228271942398033" title="Message sent: 08-Sep-21 02:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r: &quot;What-- No? H-How would I, anyway? I just got here...?&quot; <em>Rui shies away a step, not because Alice is nearby, but from sort-of mental knockback from high energy people.</em> &quot;Um. What&#39;s it say?&quot;
+
+(( <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 02:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="885231314624708608" id="message-885231314624708608" title="Message sent: 08-Sep-21 02:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Makes sense, I have no idea what it is either.” <em>She watches him back away, but doesn’t comment on it.</em> “It’s just the title of the book, nothing else, it’s very weird.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885231322363211776" id="message-885231322363211776" title="Message sent: 08-Sep-21 02:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="augusty#1287">@augusty</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 02:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="885234460193357854" id="message-885234460193357854" title="Message sent: 08-Sep-21 02:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r: &quot;...Um. Y-Yeah.&quot; <em>Rui shrugs.</em> &quot;It&#39;s-- maybe. Yeah. Wh-Who are you? Were you the really loud one when we all woke up is that rude?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 03:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="885238462658269254" id="message-885238462658269254" title="Message sent: 08-Sep-21 03:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span> I fORGOT</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 03:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="885245049787527229" id="message-885245049787527229" title="Message sent: 08-Sep-21 03:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I’m Alice! Alice Betterman! Ultimate Humanitarian! You’re Rui right? A lot of people were all talking over each other…..so maybe? I don’t know, you’ll have to be more specific.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885245057064660993" id="message-885245057064660993" title="Message sent: 08-Sep-21 03:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="augusty#1287">@augusty</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 03:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="885248016645234708" id="message-885248016645234708" title="Message sent: 08-Sep-21 03:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r: &quot;I-I just remember two people complaining more than usual. That&#39;s all.&quot; <em>They pause.</em> &quot;Well--I guess it&#39;s not unwarranted to complain, like, it&#39;s not a bad thing, but...&quot; <em>Rui shakes their head.</em> &quot;Y-Yeah. That&#39;s me. It&#39;s nice to meet you, I think.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885249458428842014" id="message-885249458428842014" title="Message sent: 08-Sep-21 03:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885249558299439165" id="message-885249558299439165" title="Message sent: 08-Sep-21 03:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((refreshing brain with a 15 minute sleep so</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885249581942722640" id="message-885249581942722640" title="Message sent: 08-Sep-21 03:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((wil respond fast after that</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 04:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="885267623976263680" id="message-885267623976263680" title="Message sent: 08-Sep-21 04:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Don’t know then…… nice to meet you too! You been doing ok after all that craziness?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885267643009994782" id="message-885267643009994782" title="Message sent: 08-Sep-21 04:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="augusty#1287">@augusty</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 05:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="885272072337637546" id="message-885272072337637546" title="Message sent: 08-Sep-21 05:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r: &quot;...Honestly? No. It&#39;s, um. Hard to imagine anyone being okay. There&#39;s a corpse in this bunker with a couple rooms away and knives and poisons available for the asking. If you have that in mind it becomes hard to just... be okay.&quot; <em>Rui glances up at Alice from behind their scarf.</em> &quot;...What about you?&quot;
+
+(( <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="augusty#1287" style="color: rgb(154,144,231)">augusty</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885272072337637546&#39;)">
+r: &quot;...Honestly? No. It&#39;s, um. Hard to imagine anyone being okay. There&#39;s a corpse in this bunker with a couple rooms away and knives and poisons available for the asking. If you have that in mind it becomes hard to just... be okay.&quot; <em>Rui glances up at Alice from behind their scarf.</em> &quot;...What about you?&quot;
+
+(( <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 06:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="885290479527297116" id="message-885290479527297116" title="Message sent: 08-Sep-21 06:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“…..That’s understandable….but don’t worry! We’ll be outta here in no time!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885290487236407376" id="message-885290487236407376" title="Message sent: 08-Sep-21 06:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="augusty#1287">@augusty</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="885300091655688293" id="message-885300091655688293" title="Message sent: 08-Sep-21 07:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((i am in a game of phasmophobia brb sry</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 07:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="885308151451238400" id="message-885308151451238400" title="Message sent: 08-Sep-21 07:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r: &quot;...I-I don&#39;t know about that. Unless you mean you&#39;re-- you know. Gonna. Gonna kill someone.&quot; 
+
+(( <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="augusty#1287" style="color: rgb(154,144,231)">augusty</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885308151451238400&#39;)">
+r: &quot;...I-I don&#39;t know about that. Unless you mean you&#39;re-- you know. Gonna. Gonna kill someone.&quot; 
+
+(( <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span>                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 07:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="885310078587129876" id="message-885310078587129876" title="Message sent: 08-Sep-21 07:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Don’t even think about that! We’ll be fine! Why would we even want to kill anyone? We can live just fine here until someone finds us!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 08:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="885320109839761410" id="message-885320109839761410" title="Message sent: 08-Sep-21 08:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r: <em>Rui drops their head, despondent.</em> &quot;...D-Do you really think that? I mean. It&#39;s just. Even if you wouldn&#39;t want to-- you know. If you didn&#39;t kill someone, there&#39;s nineteen other people. And who knows what they&#39;re planning?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885320686040649789" id="message-885320686040649789" title="Message sent: 08-Sep-21 08:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <span class="mention" title="CagiestMonkey8#0001">@Cagiest</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 02:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="885955480218898533" id="message-885955480218898533" title="Message sent: 10-Sep-21 02:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="augusty#1287">@augusty</span> hi sorry I died and then forgot about it, do you wanna continue it or no?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 02:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="885955629347377152" id="message-885955629347377152" title="Message sent: 10-Sep-21 02:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(if you do sure
+(if you wanna call scene and do a different scene sometime later thats also fine</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885955654425128970" id="message-885955654425128970" title="Message sent: 10-Sep-21 02:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(since time splits can be weird</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="augusty#1287" style="color: rgb(154,144,231)">augusty</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885320109839761410&#39;)">
+r: <em>Rui drops their head, despondent.</em> &quot;...D-Do you really think that? I mean. It&#39;s just. Even if you wouldn&#39;t want to-- you know. If you didn&#39;t kill someone, there&#39;s nineteen other people. And who knows what they&#39;re planning?&quot;                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 02:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="885958147972419635" id="message-885958147972419635" title="Message sent: 10-Sep-21 02:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“We’re Ultimates! Do you really think Hope’s Peak would’ve chose us if we were the type of people to kill someone?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="CagiestMonkey8#0001" style="color: rgb(255,8,0)">Cagiest</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885958147972419635&#39;)">
+“We’re Ultimates! Do you really think Hope’s Peak would’ve chose us if we were the type of people to kill someone?”                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 02:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="885959953125359616" id="message-885959953125359616" title="Message sent: 10-Sep-21 02:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r: &quot;...Yes.&quot; <em>Rui looks up, coldly serious, and miserable about having to be cold and serious.</em> &quot;Prodigies are actually less mentally stable than their normal counterparts at times. Regular emotional adjustment escapes them because they live their lives doing other things. They&#39;re good students. They aren&#39;t necessarily good people.&quot; <em>Their eyes slip to the side, nervous.</em> &quot;I-I read that online, once.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="augusty#1287" style="color: rgb(154,144,231)">augusty</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885959953125359616&#39;)">
+r: &quot;...Yes.&quot; <em>Rui looks up, coldly serious, and miserable about having to be cold and serious.</em> &quot;Prodigies are actually less mentally stable than their normal counterparts at times. Regular emotional adjustment escapes them because they live their lives doing other things. They&#39;re good students. They aren&#39;t necessarily good people.&quot; <em>Their eyes slip to the side, nervous.</em> &quot;I-I read that online, once.&quot;                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 02:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="885960555259633694" id="message-885960555259633694" title="Message sent: 10-Sep-21 02:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“You can’t trust everything you read online…..just because someone said that doesn’t mean it’s true!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="CagiestMonkey8#0001" style="color: rgb(255,8,0)">Cagiest</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885960555259633694&#39;)">
+“You can’t trust everything you read online…..just because someone said that doesn’t mean it’s true!”                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 02:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="885962391282659398" id="message-885962391282659398" title="Message sent: 10-Sep-21 02:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r: &quot;Why are you more credible than a psychologist online? It&#39;s believing your, or it&#39;s believing them, and just because <em>you</em> say something doesn&#39;t mean it&#39;s true, either.&quot; 
+
+<em>Rui frowns, furrowing their brow. Remembering the details is hard.</em> &quot;I-I think it was a meta-study. A scientist gave all their students aptitude tests early on. Elementary school early. They split the class into those they wanted to grow into prodigies, and those they didn&#39;t. Geniuses came from both sides, so it was pointless in that regard, but later psychologists analyzed the results in a different way. The ones who were trained solely to be intelligent were labeled as less stable people than the &#39;normal students&#39; who grew to be the top of their field over time.&quot; 
+
+&quot;I-I can&#39;t cite anything, but. I think that&#39;s how it went.&quot; <em>Rui glances up at Alice.</em> &quot;...You see? Emotional and practical intelligence are-- you know. They&#39;re completely separate.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 03:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="885963105006399548" id="message-885963105006399548" title="Message sent: 10-Sep-21 03:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(I am definitely not gonna match that length sorry</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="augusty#1287" style="color: rgb(154,144,231)">augusty</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885962391282659398&#39;)">
+r: &quot;Why are you more credible than a psychologist online? It&#39;s believing your, or it&#39;s believing them, and just because <em>you</em> say something doesn&#39;t mean it&#39;s true, either.&quot; 
+
+<em>Rui frowns, furrowing their brow. Remembering the details is hard.</em> &quot;I-I think it was a meta-study. A scientist gave all their students aptitude tests early on. Elementary school early. They split the class into those they wanted to grow into prodigies, and those they didn&#39;t. Geniuses came from both sides, so it was pointless in that regard, but later psychologists analyzed the results in a different way. The ones who were trained solely to be intelligent were labeled as less stable people than the &#39;normal students&#39; who grew to be the top of their field over time.&quot; 
+
+&quot;I-I can&#39;t cite anything, but. I think that&#39;s how it went.&quot; <em>Rui glances up at Alice.</em> &quot;...You see? Emotional and practical intelligence are-- you know. They&#39;re completely separate.&quot;                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CagiestMonkey8#0001" data-user-id="422447246060158996" style="color: rgb(255,8,0)">Cagiest</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 03:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="885963509593161759" id="message-885963509593161759" title="Message sent: 10-Sep-21 03:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“You make a fair point, but most people, whether they’re Ultimates or not, are good enough people to not kill someone! Especially when we have no reason to not believe someone is looking for us!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/4ee69cb6515d87f82056d2ffcb0bcd30-09166.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="CagiestMonkey8#0001" style="color: rgb(255,8,0)">Cagiest</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;885963509593161759&#39;)">
+“You make a fair point, but most people, whether they’re Ultimates or not, are good enough people to not kill someone! Especially when we have no reason to not believe someone is looking for us!”                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20library%20-%20Alice%20and%20Rui%20%5B885221167139524638%5D.html_Files/68f578d30d49de10bb34dd5d72734686-5E368.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="augusty#1287" data-user-id="723768708433969243" style="color: rgb(154,144,231)">augusty</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 03:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="885965222345601084" id="message-885965222345601084" title="Message sent: 10-Sep-21 03:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r: &quot;I-I guess so. We should be a bit more positive. Sort of. I just don&#39;t want to be unprepared.&quot; <em>They cut themself off with a correction.</em> &quot;If-- If anything happens. Not that it will. Telling people to cheer up can&#39;t be too bad of a thing... Especially if they&#39;re worried. Probably.&quot;
+
+<em>They laugh uncomfortably.</em> &quot;You&#39;d think I&#39;d know because I&#39;m clearly very very worried but I somehow don&#39;t. Maybe everyone needs to be reminded to have a little more faith. I guess.&quot; <em>Rui exhales slowly.</em> &quot;So, um. Alice? Do you have any plans for anything? Are you-- I don&#39;t know. What are <em>you</em> going to do about, well. About <em>everything</em>?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 43 message(s)</div>
+</div>
+
+</body>
+
+</html>

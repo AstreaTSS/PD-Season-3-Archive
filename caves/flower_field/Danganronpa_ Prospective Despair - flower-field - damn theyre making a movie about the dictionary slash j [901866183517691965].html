@@ -1,0 +1,1636 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - damn theyre making a movie about the dictionary slash j</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">flower-field / damn theyre making a movie about the dictionary slash j</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="901866186650832958" id="message-901866186650832958" title="Message sent: 24-Oct-21 12:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Saga#0460">@Saga 1</span> enter.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="Fukt">
+                                <img class="emoji emoji--small" alt="Fukt" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/786629592814321685-315EF.png" loading="lazy">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="901866324723118200" id="message-901866324723118200" title="Message sent: 24-Oct-21 12:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">tHe tItLe I-//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="901866369837056011" id="message-901866369837056011" title="Message sent: 24-Oct-21 12:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(this is amazing already</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="901866899615383603" id="message-901866899615383603" title="Message sent: 24-Oct-21 12:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ZT: Curiously prancing into the flower field, Zo&#235; took a glance at the suspicious flowers. She knows she&#39;s not going insane— there&#39;s a surplus of these exact plants coating every single room.
+
+&quot;They&#39;re multiplying...&quot; She grumbles as she eyes one plant in particular.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="901866960789331969" id="message-901866960789331969" title="Message sent: 24-Oct-21 12:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((oh yeah tupper does not work in here</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="901867034613280798" id="message-901867034613280798" title="Message sent: 24-Oct-21 12:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yeah, I totally forgot//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="901867074090045450" id="message-901867074090045450" title="Message sent: 24-Oct-21 12:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((btw do you want pings or</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="901867176913416212" id="message-901867176913416212" title="Message sent: 24-Oct-21 12:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yes yes- same for you?//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="901867204558065704" id="message-901867204558065704" title="Message sent: 24-Oct-21 12:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((yes please!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="901868309778157589" id="message-901868309778157589" title="Message sent: 24-Oct-21 12:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Codex hums a soft lullaby. There&#39;s rather a lot of flowers about, aren&#39;t there? Like a contagion. A pandemic of flowers... it&#39;s a good thing, they suppose, that pollen allergies aren&#39;t contagious. The whole world would end in the spring.
+
+That being said, if there&#39;s a lot of flowers there&#39;s bound to be a reason for them. Maybe it <em>is</em> spring. Maybe someone sprinkled a bunch of seeds everywhere. Maybe a bunch of restless spirits are infesting the local flora and making them all bloom - it&#39;s about that time for the sexagenary cycle to reset.
+
+Or maybe, just maybe, it&#39;s Maybelline.
+
+In any case the archivist is here now, giving a cheerful little wave towards Zo&#235; (the diaeresis is so very important). &quot;Greetings Zo&#235; Taiga! How is Zo&#235; Taiga coping today?&quot;
+<div class="quote"><span class="mention" title="Saga#0460">@Saga 1</span></div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Oct-21 12:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="901868714255859752" id="message-901868714255859752" title="Message sent: 24-Oct-21 12:24 PM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="lunar eyes#4801">@lunar eyes</span>, <span class="mention" title="Saga#0460">@Saga 1</span> got an interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="901869319389061171" id="message-901869319389061171" title="Message sent: 24-Oct-21 12:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ZT: &quot;Huh? Oh- good morning Codex!&quot; Turning around to face the other, she returned the wave with a subtle one of her own. For a second, she took her eyes off of the abnormally oversized plant.
+
+&quot;I&#39;m fairing just as well as anyone else... say, don&#39;t you find these things to be quite peculiar?&quot;
+
+She motioned her hand behind her to the flora around.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="901869352628928522" id="message-901869352628928522" title="Message sent: 24-Oct-21 12:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="lunar eyes#4801">@lunar eyes</span> //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="901873233215758337" id="message-901873233215758337" title="Message sent: 24-Oct-21 12:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Codex gazes at the flowers, reaching up to brush the blue petals on some of the taller ones. &quot;The local flora <em>is</em> rather strange, to be growing in such a place, though there <em>are</em> flowers that are able to grow without much sunlight. For instance, there is <em>Dracaena trifasciata</em>, known commonly as &#39;snake plant&#39; or &#39;mother-in-law&#39;s tongue&#39;; certain species of the <em>Spathiphyllum</em> genus, known collectively as &#39;peace lilies&#39;; <em>Epipremnum aureum</em>, which is also known as &#39;golden pothos&#39;, &#39;devil&#39;s ivy&#39;, &#39;marble queen&#39;, &#39;taro vine&#39;, and &#39;money plant&#39;; the genus <em>Aglaonema</em>, which is more commonly known as the &#39;Chinese evergreen&#39;; <em>Columnea nematanthus</em>, known commonly as the &#39;goldfish plant&#39;; <em>Zamioculcas zamiifolia</em>, the singular species of genus <em>Zamioculcas</em>, also known as the &#39;Zanzibar gem&#39;, &#39;ZZ plant&#39;, &#39;aroid palm&#39;, &#39;eternity plant&#39;, and &#39;emerald palm&#39;; and <em>Maranta leuconeura</em>, known commonly as the &#39;prayer plant&#39;.&quot; They hum.
+
+&quot;However, these flowers resemble <em>Helianthus annuus</em>, which has the common name of &#39;sunflower&#39;. However... true blue as a pigment does not naturally occur in flowers. Blue flowers are either artificially dyed, commonly with cyanidin-3-glucoside, also known as chrysanthemin. Most naturally &#39;blue&#39; flowers are actually a blue-toned purple, blue-toned lavender, or possibly a cool-toned red.&quot;
+
+Oh god they&#39;re rambling.
+<div class="quote"><span class="mention" title="Saga#0460">@Saga 1</span></div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 12:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="901875701991485440" id="message-901875701991485440" title="Message sent: 24-Oct-21 12:52 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">During the entirety of Codex&#39;s ramble, Zo&#235; couldn&#39;t help but widen her eyes in shock. Moreso, confusion. The scientific terms Codex eloquently used were foreign— she was convinced they were speaking a different language for awhile!
+
+Zo&#235; nodded slowly in an attempt to appear as though she understood, although her expression gave away the lie. Upon coming to their end, Zo&#235; cleared her throat to hint her interest in speaking.
+
+&quot;Ah... you know much more about flowers than me, it seems. You&#39;re the ultimate... Archivist, I believe the handbook said?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="901875738003795978" id="message-901875738003795978" title="Message sent: 24-Oct-21 12:52 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="lunar eyes#4801">@lunar eyes</span> //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 01:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="901879583907934210" id="message-901879583907934210" title="Message sent: 24-Oct-21 01:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Well, technically Latin <em>is</em> a different language. Most of the fields of sciences and law have words from it. <em>Mens rea</em>, literally any species name... so many words. The archivist pauses in their floral rambling to process what Zo&#235; has said.
+
+&quot;Yes, Codex Lemegeton bears the title of Ultimate Archivist!&quot; They seem unnecessarily proud of this fact. &quot;Zo&#235; Taiga is the Ultimate Cinematographer! How novel!&quot;
+<div class="quote"><span class="mention" title="Saga#0460">@Saga 1</span></div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 01:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="901881580153356339" id="message-901881580153356339" title="Message sent: 24-Oct-21 01:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She nodded gleefully. &quot;That&#39;s grand! You certainly live up to such a title— and your memory is very impressive.&quot;
+
+In the middle of her flurry of complements, Zo&#235; curtsied. &quot;Yes, I am a cinematographer. Quite frankly the most talented over all.&quot;
+
+Zo&#235; shared their prideful manner when glossing over her talent.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="901881605684101140" id="message-901881605684101140" title="Message sent: 24-Oct-21 01:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="lunar eyes#4801">@lunar eyes</span> //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 01:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="901884226578841690" id="message-901884226578841690" title="Message sent: 24-Oct-21 01:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Codex nods. That makes sense. &quot;Of course Zo&#235; Taiga is the most talented - that is the point of being an Ultimate.&quot; It seems that her prideful boasting (?) has flown right over Codex&#39;s head. I blame their height (or rather, lack thereof).
+
+Seeing that the other has done a curtsy, the archivist decides to do a bow. Reciprocation of respect is very important.
+<div class="quote"><span class="mention" title="Saga#0460">@Saga 1</span></div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 01:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="901887502472859709" id="message-901887502472859709" title="Message sent: 24-Oct-21 01:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She chuckled. &quot;Yes... Imagine if there was another highly talented cinematographer out there, seeing that I&#39;ve suddenly stopped working in the movie industry. I wonder if they&#39;d still accept me as the original, or if they&#39;d give the title away.&quot; She shrugged.
+
+&quot;But nonetheless, who&#39;s to say that I&#39;ll stop working forever?&quot; The chuckle returned.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="901887540137717771" id="message-901887540137717771" title="Message sent: 24-Oct-21 01:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="lunar eyes#4801">@lunar eyes</span> //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 01:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="901890290334461962" id="message-901890290334461962" title="Message sent: 24-Oct-21 01:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;It is possible that Zo&#235; Taiga could die,&quot; Codex offers cheerfully, blissfully unaware that that&#39;s not a thing you can just say to people. &quot;Death tends to affect workplace efficacy and efficiency. At that point, the title would also be free to give to another.&quot;
+<div class="quote"><span class="mention" title="Saga#0460">@Saga 1</span></div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 01:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="901891773234819112" id="message-901891773234819112" title="Message sent: 24-Oct-21 01:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;. . . Quite shameful to hear... I hope it doesn&#39;t come to that.&quot; Her arms crossed stiffly with a short pause. &quot;In any case, I should have asked from the beginning— what brings you here? Come to examine the plants?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="901891840318521405" id="message-901891840318521405" title="Message sent: 24-Oct-21 01:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="lunar eyes#4801">@lunar eyes</span> //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 02:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="901892937804283926" id="message-901892937804283926" title="Message sent: 24-Oct-21 02:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The archivist blinks. What <em>did</em> bring them here- ah, that was it! &quot;Codex Lemegeton found the sudden floral population growth intriguing and therefore Codex Lemegeton decided to set out to find the root cause of the sudden floral population growth.&quot; Whether or not that pun was intentional is unknown, though it seems like they haven&#39;t noticed it at all.
+<div class="quote"><span class="mention" title="Saga#0460">@Saga 1</span></div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 02:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="901894546726731877" id="message-901894546726731877" title="Message sent: 24-Oct-21 02:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;<em>Root cause...</em>&quot; Zo&#235; mumbled to herself with a quiet snort.
+
+&quot;What do you think is happening here? Could the flowers be reproducing...? I would believe that they could grow in dark places such as the other rooms... Just look at how huge these are!&quot;
+
+Dramatically, she threw her hands up. Zo&#235; still might&#39;ve appeared inferior to the height of the plant— and Codex would appear even worse.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="901894568801345618" id="message-901894568801345618" title="Message sent: 24-Oct-21 02:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="lunar eyes#4801">@lunar eyes</span> //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 02:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="901896122505764904" id="message-901896122505764904" title="Message sent: 24-Oct-21 02:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Codex nods, agreeing with that thought. &quot;Even so, the rate at which the plants are blooming is surprisingly rapid, suggestive of plants of the genus <em>Pueraria</em>, known more commonly as &#39;Japanese arrowroot&#39;, &#39;Chinese arrowroot&#39;, or simply &#39;kudzu&#39;.&quot; It <em>is</em> rather worrying, but really plants are hardly the worst thing to have too much of unless they&#39;re not edible, or invasive species or...
+
+Well, no matter. &quot;Codex Lemegeton wonders if the plants in other places will reach a similar height.&quot;
+<div class="quote"><span class="mention" title="Saga#0460">@Saga 1</span></div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 02:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="901899453445832714" id="message-901899453445832714" title="Message sent: 24-Oct-21 02:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;If they do... then there&#39;s no doubt that they&#39;ll cause damage. I wonder if any of the hosts are concerned.&quot; She placed a curious finger to her bottom lip as she glanced upwards towards the ceiling. Although she was unable to locate it on a whim, she <em>knew</em> that there was at least one camera watching the two of them.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="901899476019601440" id="message-901899476019601440" title="Message sent: 24-Oct-21 02:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="lunar eyes#4801">@lunar eyes</span> //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 03:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="901908229578170389" id="message-901908229578170389" title="Message sent: 24-Oct-21 03:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Codex hums. &quot;Codex Lemegeton wonders if it may be that the hosts have caused this. A sudden bloom of flowers seems like something the hosts would do.&quot;
+<div class="quote"><span class="mention" title="Saga#0460">@Saga 1</span> wanna time bubble or end here for event?</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 03:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="901908313665568838" id="message-901908313665568838" title="Message sent: 24-Oct-21 03:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">We could end if you&#39;d like!//</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 03:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="901910744302489630" id="message-901910744302489630" title="Message sent: 24-Oct-21 03:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((okidoke! it is also your turn in the interaction so technically you could end it,</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/662027bd675b3a340c631b11508e3bb7-BD9A0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Saga#0460" data-user-id="475324575815565332" style="color: rgb(210,165,214)">Saga 1</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 03:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="901911977553707128" id="message-901911977553707128" title="Message sent: 24-Oct-21 03:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Speaking of hosts... we should go to whatever meeting they have planned for us. I feel it&#39;s going to be anything but civil...&quot; With a small shrug, she started towards the exit. Zo&#235; motioned for the other to follow.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="901912008616726700" id="message-901912008616726700" title="Message sent: 24-Oct-21 03:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="lunar eyes#4801">@lunar eyes</span> //</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20flower-field%20-%20damn%20theyre%20making%20a%20movie%20about%20the%20dictionary%20slash%20j%20%5B901866183517691965%5D.html_Files/a_35fcb16fff5765df798ca6bd38fb7eed-1DFDF.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lunar eyes#4801" data-user-id="397994270226907136" style="color: rgb(99,69,133)">lunar eyes</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 03:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="901914097614987274" id="message-901914097614987274" title="Message sent: 24-Oct-21 03:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Well, who knows what would happen if they <em>didn&#39;t</em> attend, so it&#39;d be better if they did. The archivist follows the cinematographer. Out they go!</span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Oct-21 03:24 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 37 message(s)</div>
+</div>
+
+</body>
+
+</html>

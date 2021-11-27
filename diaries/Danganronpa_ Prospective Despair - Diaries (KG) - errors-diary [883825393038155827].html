@@ -1,0 +1,1135 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - errors-diary</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">Diaries (KG) / errors-diary</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/b3ee417710c17a94a055c580f7bdf92d-B30DD.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Astrea#7171" data-user-id="229350299909881876" style="color: rgb(154,144,231)">Astrea of the Stars</span>
+
+
+        <span class="chatlog__timestamp">04-Sep-21 05:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="883825876138074132" id="message-883825876138074132" title="Message sent: 04-Sep-21 05:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507">@Curds</span> hey! this will be errors diary - itll appear in their dorm once the game starts irp
+you can do pretty much whatever here, though most of the time, people try to stay ic while doing stuff here
+by default, this diary is revealed if/when your oc dies - if you dont want that, just ask!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">04-Sep-21 05:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="883825934006894632" id="message-883825934006894632" title="Message sent: 04-Sep-21 05:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((aight! <img loading="lazy" class="emoji " alt="👍" title="thumbsup" src="https://twemoji.maxcdn.com/2/svg/1f44d.svg"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">06-Sep-21 07:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="884588320741535754" id="message-884588320741535754" title="Message sent: 06-Sep-21 07:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((error is writing this whenever they find the diary since they&#39;re hiding in their room rn <img loading="lazy" class="emoji " alt="yes" title="yes" src="https://cdn.discordapp.com/emojis/550481858257879070.png"> 
+((also not me breaking out the fancy borders <img loading="lazy" class="emoji " alt="🙄" title="rolling_eyes" src="https://twemoji.maxcdn.com/2/svg/1f644.svg"> 
+
+<img loading="lazy" class="emoji " alt="📂" title="open_file_folder" src="https://twemoji.maxcdn.com/2/svg/1f4c2.svg">╮<span class="pre pre--inline">ENTRY 1</span>
+╰ <img loading="lazy" class="emoji " alt="𐬹" title="𐬹" src="https://twemoji.maxcdn.com/2/svg/10b39.svg"> ̟ ︶︶꒷︶︶︶︶꒷︶︶꒷︶꒦꒷︶
+<div class="quote">I dont usually write in <s>diares</s> diaries but i found this so 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">i guess? 
+</div>�
+<div class="quote"><s>taking</s> talking to a book is kind of stupid though
+</div>---
+<div class="quote">well its either that or a cat
+</div>➾ ᓚᘏᗢ 
+<div class="quote">and someone might hear me if i talk to dumpster fire so
+</div>
+� (<em>the next portion has parts that are.. strangely enough, crossed out. <u>aggressively.</u></em>)
+<div class="quote">well my name is <span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)"><span class="pre pre--inline">      </span></span> or <span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)"><span class="pre pre--inline"> </span></span> for short. whyamitellingyouthis<s>yoyre</s>youreabook
+</div>---
+<div class="quote">I&#39;m technially the ultimate <span class="spoiler-text spoiler-text--hidden" onclick="showSpoiler(event, this)"><span class="pre pre--inline">       </span> <span class="pre pre--inline">  </span> <span class="pre pre--inline">    </span></span> but its really stupid 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">like everyone wants to be famous and stuff until they <s>atually</s> actually are and then they get all the stress and problems that comes with it
+</div>�
+<div class="quote">and then everyone starts wondering why you wanna be a nobody again
+</div>---
+<div class="quote">yet im here. as a freaking ultimate or <s>whatere</s> <s>whateverer</s> whatever.
+</div>➾ ᓚᘏᗢ 
+<div class="quote">but i <s>digreess</s> digress. 
+</div>�
+<div class="quote">well uh
+</div>---
+<div class="quote">this place is kinda stupid
+</div>➾ ᓚᘏᗢ 
+<div class="quote">this blond lady told us &quot;whoope e time for you guys to kill each other but its a game haha have fun&quot;  
+</div>�
+<div class="quote">Why?? the murder stuff was bad enough?? 
+</div>---
+<div class="quote">at least dumpster fire is here
+</div>➾ ᓚᘏᗢ 
+<div class="quote">hes waaaaaaaaayyyy better than everyone here
+</div>�
+<div class="quote"><s>thanfully</s> thankfully nobody pays attention to me regardless
+</div>---
+<div class="quote">which is good,.
+</div>➾ ᓚᘏᗢ 
+<div class="quote">just what i want/need right now
+</div>�
+<div class="quote">im not being sarcastic :( i pinky promise
+</div>---
+<div class="quote">theres nobody here asking for my autograph or for an interview or my friendship or how i did it or stuff (<s>clairifcation</s> for <s>clarifecation</s> clarification i was 4) like that they think im kinda normal 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">as normal you can get here anyways
+</div>�
+<div class="quote">some dude tried to talk to me through a door though
+</div>---
+<div class="quote">also wait how the hell am i supposed to sleep D: freaking bunk beds??
+</div>➾ ᓚᘏᗢ 
+<div class="quote">guess i&#39;ll sleep in the tub then :( 
+</div>�
+<div class="quote">But i dunno man the bed <s>feeled</s> felt really comfy
+</div>---
+<div class="quote">D: i wanna use it 
+</div>➾ ᓚᘏᗢ  
+<div class="quote">but no.
+</div>�
+<div class="quote">uh 
+</div>---
+<div class="quote">i kinda rambled a little oops
+</div>➾ ᓚᘏᗢ 
+<div class="quote">shouldn&#39;t do that again i&#39;ll waste paper heh
+</div>�
+<div class="quote">uh so bye <s>whyamisayingbyeyoureabook</s>
+</div>---
+<div class="quote">dont get stolen?? ifyoudoillbeverymad:(
+</div>
+<span class="pre pre--inline">Below, was a very childish drawing of something resembling a cat. [ERROR] is not the artist, can&#39;t you tell?</span></span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <div class="chatlog__attachment-generic">
+                                <svg class="chatlog__attachment-generic-icon">
+                                    <use href="#icon-attachment" />
+                                </svg>
+                                <div class="chatlog__attachment-generic-name">
+                                    <a href="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/IMG_5541-B1FFE.HEIC">
+                                        IMG_5541.HEIC
+                                    </a>
+                                </div>
+                                <div class="chatlog__attachment-generic-size">
+                                    964.93 KB
+                                </div>
+                            </div>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884588423623635004" id="message-884588423623635004" title="Message sent: 06-Sep-21 07:58 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/image0-4C443.jpg">
+                                <img class="chatlog__attachment-media" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/image0-4C443.jpg" alt="Image attachment" title="Image: image0.jpg (1.21 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884588433127903242" id="message-884588433127903242" title="Message sent: 06-Sep-21 07:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">▯▯▯▯▯▯▯ ◜<img loading="lazy" class="emoji " alt="🗑" title="🗑" src="https://twemoji.maxcdn.com/2/svg/1f5d1.svg">️◝ ▯▯▯▯▯▯▯</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884588461380739112" id="message-884588461380739112" title="Message sent: 06-Sep-21 07:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((image didn&#39;t initially send grrgrggrg</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">06-Sep-21 10:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="884629208440131655" id="message-884629208440131655" title="Message sent: 06-Sep-21 10:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="📂" title="open_file_folder" src="https://twemoji.maxcdn.com/2/svg/1f4c2.svg">╮<span class="pre pre--inline">﻿ENTRY 2</span>
+╰ <img loading="lazy" class="emoji " alt="𐬹" title="𐬹" src="https://twemoji.maxcdn.com/2/svg/10b39.svg"> ̟ ︶︶꒷︶︶︶︶꒷︶︶꒷︶꒦꒷︶
+<div class="quote">oksothismightbetoosoonidontknowtherulesonhowmuchyoucanwriteinadiary but <s>dumpsdter</s> dumpster fire was hungry right so i went out to get him some food 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">but then i ran into this weird guy :o( He had so much energy
+</div>�
+<div class="quote">more energy than dumpster fire did which is surprising saying that he was hungry 
+</div>---
+<div class="quote">dunno why he wanted to talk to me
+</div>➾ ᓚᘏᗢ 
+<div class="quote">thought i was a <s>cybord</s> cyborg it was funny
+</div>�
+<div class="quote">i dunno why i told you i was just bored you know
+</div>---
+<div class="quote">this room is nice but i can&#39;t sleep in my tv 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">I should set up a <s>fORK</s><s>FOT</s> FORT cause there are bunk beds
+</div>�
+<div class="quote">I think there&#39;s a storage room?? I&#39;m hoping there might be blankets or boards or something i could use 
+</div>---
+<div class="quote">dunno how i&#39;d put it together, but ill figure it out
+</div>➾ ᓚᘏᗢ 
+<div class="quote">anyways uhh
+</div>�
+<div class="quote">bye bye??? again this was very quick but don&#39;t get stolen &gt;:0 
+</div>---
+
+<span class="pre pre--inline">Below, was a crude drawing of [ERROR]&#39;s idea of how the fort would work. Definitely not foolproof, but...</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="06-Sep-21 10:41 PM">(edited)</span>
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/image0-4ADE5.png">
+                                <img class="chatlog__attachment-media" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/image0-4ADE5.png" alt="Image attachment" title="Image: image0.png (856.62 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884629227087990805" id="message-884629227087990805" title="Message sent: 06-Sep-21 10:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">▯▯▯▯▯▯▯ ◜<img loading="lazy" class="emoji " alt="🗑" title="🗑" src="https://twemoji.maxcdn.com/2/svg/1f5d1.svg">️◝ ▯▯▯▯▯▯▯</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 10:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="885357654162165841" id="message-885357654162165841" title="Message sent: 08-Sep-21 10:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="📂" title="open_file_folder" src="https://twemoji.maxcdn.com/2/svg/1f4c2.svg">╮<span class="pre pre--inline">﻿ENTRY 3﻿</span>
+╰ <img loading="lazy" class="emoji " alt="𐬹" title="𐬹" src="https://twemoji.maxcdn.com/2/svg/10b39.svg"> ̟ ︶︶꒷︶︶︶︶꒷︶︶꒷︶꒦꒷︶
+<div class="quote">i should update you more frequently but D: i keep running into people
+</div>➾ ᓚᘏᗢ 
+<div class="quote">first one i met was this stuck up hair girl??
+</div>�
+<div class="quote">she was trying to tell me how to deal <s>wiuth</s> with <s>dumspter</s> <s>duomper</s> dumpster fire
+</div>---
+<div class="quote">i dont think i like her
+</div>➾ ᓚᘏᗢ 
+<div class="quote">she thought i was a cyborg too though
+</div>�
+<div class="quote">haha &gt;:) Its kinda funny but it kinda makes me feel good in a way?
+</div>---
+<div class="quote">they don&#39;t suspect a thing
+</div>➾ ᓚᘏᗢ 
+<div class="quote">they don&#39;t know me :D
+</div>�
+<div class="quote">I&#39;m normal!!
+</div>---
+<div class="quote">I also met a cool person
+</div>➾ ᓚᘏᗢ 
+<div class="quote">i know i shouldn&#39;t trust them but they&#39;re really interesting
+</div>�
+<div class="quote">we think similarly i like it :D they also helped me during the whole magical adventure thing
+</div>---
+<div class="quote">about that.
+</div>➾ ᓚᘏᗢ 
+<div class="quote">some blond host dude that looks like the mean blond glasses <s>ladey</s> lady dragged us along on this magical adventure thing
+</div>�
+<div class="quote">we went on an airship that crashed into a building then crossy road then the floor is lava 
+</div>---
+<div class="quote">It was so weird
+</div>➾ ᓚᘏᗢ 
+<div class="quote">I don&#39;t even know how it happened or how my tv didn&#39;t fall off 
+</div>�
+<div class="quote">But yeah like i said Rui helped me and it was nice :D  
+</div>---
+<div class="quote">I also talked to the loud dude again 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">Josh i think??
+</div>�
+<div class="quote">He told me a lotta lot lot about himself it was weird
+</div>---
+<div class="quote">I dunno how he&#39;s <s>comfurt</s> <s>comfertable</s> comfortable dumping that on strangers 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">Josh i think??
+</div>�
+<div class="quote">Though I didn&#39;t like how he reminded me of old me D: 
+</div>---
+<div class="quote">He wants to make everyone happy so he feels like he can&#39;t act normal because of it :(
+</div>➾ ᓚᘏᗢ 
+<div class="quote">I don&#39;t wanna tell him <em>how</em> I know its tiring but I do know it is tiring 
+</div>�
+<div class="quote">Hopefully I was a good help to him 
+</div>---
+<div class="quote">I did my best 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">Hopefully it was enough
+</div>�
+<div class="quote">UHHHhhhhh hopefully that wasn&#39;t too long though!!
+</div>---
+<div class="quote">haven&#39;t made any progress on the fort yet sorry :((( 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">I&#39;ll finish it soon though!!
+</div>�
+<div class="quote">uhh <s>Nose</s> Nice talking to you again i guess?? No doodle this time im tireedd
+</div>---
+<div class="quote">Tooo theee tuuuubb biiiii gooooooo
+</div>▯▯▯▯▯▯▯ ◜<img loading="lazy" class="emoji " alt="🗑" title="🗑" src="https://twemoji.maxcdn.com/2/svg/1f5d1.svg">️◝ ▯▯▯▯▯▯▯</span>
+
+                                <span class="chatlog__edited-timestamp" title="09-Sep-21 04:08 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20Diaries%20%28KG%29%20-%20errors-diary%20%5B883825393038155827%5D.html_Files/876c4534403536693dfa0d7e259cebbc-3AED6.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="↳ ❝ [CurdsandThey] &#161;! ❞#8507" data-user-id="463875652718821377" style="color: rgb(87,154,158)">Curds</span>
+
+
+        <span class="chatlog__timestamp">14-Sep-21 10:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="887529684944973914" id="message-887529684944973914" title="Message sent: 14-Sep-21 10:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img loading="lazy" class="emoji " alt="📂" title="open_file_folder" src="https://twemoji.maxcdn.com/2/svg/1f4c2.svg">╮<span class="pre pre--inline">﻿ENTRY 4﻿</span>
+╰ <img loading="lazy" class="emoji " alt="𐬹" title="𐬹" src="https://twemoji.maxcdn.com/2/svg/10b39.svg"> ̟ ︶︶꒷︶︶︶︶꒷︶︶꒷︶꒦꒷︶
+<div class="quote">imsorryikeepnotogingtomyroom ;-;
+</div>➾ ᓚᘏᗢ 
+<div class="quote">but uh again a lot has <s>happeened</s> <s>happenned</s> happened since then
+</div>�
+<div class="quote">we had an uno game! there was a sleepover or something in the courtyard and i played uno there
+</div>---
+<div class="quote">I may have gotten <s>lost</s> last but i won in spirit :D
+</div>➾ ᓚᘏᗢ 
+<div class="quote">fear me. (don&#39;tactuallythatwasajoke)
+</div>�
+<div class="quote">but then the blond lady (Tina?) introduced this.. motive thing?
+</div>---
+<div class="quote">this poison stuff is making everyone hear things and i dont like it one bit 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">I already hear stuff inside of my head I don&#39;t need <em>more</em> 
+</div>�
+<div class="quote">I hate it ;-;
+</div>---
+<div class="quote">I wanna go home
+</div>➾ ᓚᘏᗢ 
+<div class="quote">I miss grandma and <s>doign</s>doing things with her
+</div>�
+<div class="quote">;n; c stop making yourself sad 
+</div>---
+<div class="quote">uhhh also 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">my fort is coming along well 
+</div>�
+<div class="quote">i got the blankets for it but not much else
+</div>---
+<div class="quote">maybe when i&#39;m not busy or sad i&#39;ll continue it 
+</div>➾ ᓚᘏᗢ 
+<div class="quote">uuhhhh
+</div>�
+<div class="quote">i was gonna tell you more but :d i forgor <img loading="lazy" class="emoji " alt="💀" title="skull" src="https://twemoji.maxcdn.com/2/svg/1f480.svg"> 
+</div>---
+<div class="quote">so uhhh byeee i guess :c see youuu later
+</div>▯▯▯▯▯▯▯ ◜<img loading="lazy" class="emoji " alt="🗑" title="🗑" src="https://twemoji.maxcdn.com/2/svg/1f5d1.svg">️◝ ▯▯▯▯▯▯▯</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 10 message(s)</div>
+</div>
+
+</body>
+
+</html>

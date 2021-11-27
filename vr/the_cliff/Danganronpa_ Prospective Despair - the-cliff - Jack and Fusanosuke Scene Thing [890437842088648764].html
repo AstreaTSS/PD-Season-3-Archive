@@ -1,0 +1,1303 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Danganronpa: Prospective Despair - Jack and Fusanosuke Scene Thing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/ec23daaa6a017faf05c3dc81f978a35e-39613.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Danganronpa: Prospective Despair</div>
+        <div class="preamble__entry">the-cliff / Jack and Fusanosuke Scene Thing</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol"></div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+                <span class="chatlog__reference-name" title="A Generic User#7302" style="color: rgb(220,20,60)">Decently Generic User</span>
+                <div class="chatlog__reference-content">
+                    <span class="chatlog__reference-link" onclick="scrollToMessage(event, &#39;890437842088648764&#39;)">
+(don&#39;t mind me, just making a thread here.)                    </span>
+
+                </div>
+        </div>
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">22-Sep-21 11:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="890437997839908894" id="message-890437997839908894" title="Message sent: 22-Sep-21 11:22 PM">
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="890439171141943337" id="message-890439171141943337" title="Message sent: 22-Sep-21 11:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ff:<em>The Ultimate Performer&#39;s brief wandering through the new area leads him to a curious place indeed - a cliff. Perhaps such a thing was fairly unremarkable on its own, but what was peculiar about it was what lay below. Nothingness - a void as black as midnight. Fusanosuke stands by the cliff&#39;s edge, seemingly staring out into the abyss... yet in reality, his eyes are closed, and he is immersing himself in the tranquil atmosphere... while pondering over the nature of the, well, nature that surrounds him.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="890439300313907260" id="message-890439300313907260" title="Message sent: 22-Sep-21 11:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="-AC24-#0099">@-AC24 ☆-</span> (Here&#39;s a ping, as requested.)</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="lenthumbsup">
+                                <img class="emoji emoji--small" alt="lenthumbsup" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/723005760899907684-F13E6.png" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/23778cfada448122e234e62a69e70d2d-79B60.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="-AC24-#0099" data-user-id="206616227588734983" style="color: rgb(67,120,252)">-AC24 ☆-</span>
+
+
+        <span class="chatlog__timestamp">22-Sep-21 11:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="890440366434713640" id="message-890440366434713640" title="Message sent: 22-Sep-21 11:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Having finally caved into trying out the VR and exploring what was inside the depths of this place, Jack finally stumbled upon the cliffside.. At first, he was enamored by the night sky that was above him, feeling the digital breeze, if there was one. He stretched his hands out, despite the unappealing void below, being this high up was more of a comfort than a terror.
+
+...He barely noticed Fusanosuke standing there until he finally looked down and noticed the other standing with their eyes closed.. had they not noticed him either?
+With a quiet voice, he spoke up as to not startle the other. &quot;Um.. It&#39;s.. It&#39;s nice up here, isn&#39;t it?&quot; He said a bit awkwardly, not really knowing where to start. He turned his head back up to the sky. &quot;Sorry to bother your peace, but I didn&#39;t want you to get startled when you look and I&#39;m just suddenly here..&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">22-Sep-21 11:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="890443667146424340" id="message-890443667146424340" title="Message sent: 22-Sep-21 11:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>It was a curious feeling, really. The world around Fusanosuke felt so... real. It was hard to believe that the surrounding area was simply constructed using the wonders of virtual reality, but... that was the truth, or so it seemed. Yet even still, as real as it felt... something felt off to Fusanosuke, yet he couldn&#39;t put his finger on why. Choosing not to worry himself too much over such a thing, Fusanosuke continues to stand in place, eyes remaining shut... at least, until he overhears some quiet words from nearby.</em>
+
+<em>Fusanosuke&#39;s eyes flick open in an instant, and his stoic expression shifts to one of interest - his usual smile making an appearance while his gaze rests upon the unfamiliar person in front of him. With his usual calm, he speaks up.</em> &quot;Ah, I wouldn&#39;t worry yourself about &#39;bothering my peace&#39;... &#39;tis always a delight to have a chat, no? Especially with a new face such as yours.&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="22-Sep-21 11:45 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="890444004519448608" id="message-890444004519448608" title="Message sent: 22-Sep-21 11:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(apologies for the delay on that. anyways, here&#39;s the next ping, also as requested. <span class="mention" title="-AC24-#0099">@-AC24 ☆-</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/23778cfada448122e234e62a69e70d2d-79B60.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="-AC24-#0099" data-user-id="206616227588734983" style="color: rgb(67,120,252)">-AC24 ☆-</span>
+
+
+        <span class="chatlog__timestamp">22-Sep-21 11:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="890445874390511678" id="message-890445874390511678" title="Message sent: 22-Sep-21 11:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh-&quot; Jack started, a bit surprised at the warm welcome.. this person wasn&#39;t at all tense around him.. usually, most people were tense around each other around here.. especially given.. what&#39;s happened.
+Nonetheless, he smiled a bit timidly as he continued to reply. &quot;Um.. yeah.. thanks. It&#39;s- It&#39;s nice to meet more of everyone..&quot; He said, speaking the first thought in his mind, ah right, introductions.
+&quot;I&#39;m Jack by the way.. I&#39;m the Ultimate Barista.&quot;
+
+He then turned his head to the digital moonlight soon after speaking his name, the meek barista practically enamored by it. &quot;...It feels nice out here, doesn&#39;t it..?&quot; He then paused, looking back down at Fusanosuke. &quot;I-I mean, I know it isn&#39;t real but..!&quot; He turned his head back to their surroundings. &quot;Just.. being outside in some kind of way, and up near the sky.. it&#39;s nice.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">23-Sep-21 12:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="890448589988438076" id="message-890448589988438076" title="Message sent: 23-Sep-21 12:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Fusanosuke notices Jack&#39;s smile - to which he delivers a simple nod to. It certainly wasn&#39;t as beaming as that Chichi girl&#39;s smile... but it, too, had a charm to it. At any rate, though, Fusanosuke thought it only fair to introduce himself as well.</em>
+
+&quot;My name is Fusanosuke Fukushima. I&#39;m but a humble performer, and a full-time fool...&quot; <em>Then, with reflexes like that of a viper - Fusanosuke reaches for his folding fan - then opens it with a graceful flourish.</em> &quot;... But more than anything, I am a <em>collector of smiles</em>! &#39;Tis a pleasure to meet, my friend!&quot; <em>He caps off his introduction with a formal bow.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="890449626069626890" id="message-890449626069626890" title="Message sent: 23-Sep-21 12:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;And, indeed. This land we find ourselves in... a sight for sore eyes, indeed! Oh, how I have yearned to see the grass and the trees once again!&quot; <em>Fusanosuke exclaims with a certain gusto, practically drinking in the sight of the nature around him.</em> &quot;Alas... as beautiful and as real as it may seem, it is but a hollow illusion, however...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="890450304997425192" id="message-890450304997425192" title="Message sent: 23-Sep-21 12:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="-AC24-#0099">@-AC24 ☆-</span> my bad, but here&#39;s another ping, as requested.)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/23778cfada448122e234e62a69e70d2d-79B60.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="-AC24-#0099" data-user-id="206616227588734983" style="color: rgb(67,120,252)">-AC24 ☆-</span>
+
+
+        <span class="chatlog__timestamp">23-Sep-21 12:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="890455857966510110" id="message-890455857966510110" title="Message sent: 23-Sep-21 12:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jack jumped slightly at the sudden appearance of the fan that snapped out in Fusanosuke&#39;s hand, but collected his surprise rather quickly. &quot;You&#39;re a performer? Must be very eventful and entertaining..&quot; He commented postively, smiling a bit.
+
+He then looked back up at the falsified stars, despite knowing this was all a facade, he was still comforted.. in some kind of way. Though, his smile didn&#39;t reach his eyes, in a way, it looked as if the barista was saddened by this false reality. &quot;..I wish I could be looking at the same sky... or er.. the real sky I mean.&quot;
+
+He stepped closer to the edge, extending both of his arms out on both sides, pretending to feel a breeze.. yet, digital breezes were little to none. &quot;Being so high up isn&#39;t as frightening.. but..&quot; He looked down at the void below, lowering his arms and stepping back. &quot;Not knowing where that endless void goes.. that&#39;s the scary thing.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="890455888622665749" id="message-890455888622665749" title="Message sent: 23-Sep-21 12:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//no worries, there&#39;s no rush!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">23-Sep-21 01:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="890463653642534933" id="message-890463653642534933" title="Message sent: 23-Sep-21 01:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Indeed... oh, even just looking at that void chills the bones! Nothingness, as far as the eye can see...&quot; <em>Fusanosuke turns back to said void, while tapping his hand fan against his own chin... but before long, his gaze turns to the trees and then to the night sky that hangs above.</em> &quot;Perhaps it is a mere imitation of the world we so love, but... I suppose it will suffice for now, no?&quot;
+
+<em>Slowly, the Ultimate Performer begins to lower himself onto the ground below. Fusanosuke is somewhat relieved that the grass feels as it should... but even still, the truth is that it is but a pale imitation of reality.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="890464309904302092" id="message-890464309904302092" title="Message sent: 23-Sep-21 01:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;However... this world certainly seems rather... <em>similar</em> to what Drake put us through a while back, don&#39;t you think? During that event where he sent us plummeting through the sky, and then onto that airship!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="890464607385305118" id="message-890464607385305118" title="Message sent: 23-Sep-21 01:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="-AC24-#0099">@-AC24 ☆-</span> here&#39;s the next ping, and all that good stuff.)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/bda13cd2bcfb866a9cfb5af8d2444d11-C2780.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Prospective Despair Bot#1095" data-user-id="847686380410241074" style="color: rgb(96,125,139)">Prospective Despair Bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Sep-21 06:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="890543183669366814" id="message-890543183669366814" title="Message sent: 23-Sep-21 06:20 AM">
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(46,186,225,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+
+                                            <div class="chatlog__embed-description">
+                                                <div class="markdown preserve-whitespace"><span class="mention" title="-AC24-#0099">@-AC24 ☆-</span>, <span class="mention" title="A Generic User#7302">@Decently Generic User</span> got an interaction!</div>
+                                            </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/23778cfada448122e234e62a69e70d2d-79B60.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="-AC24-#0099" data-user-id="206616227588734983" style="color: rgb(67,120,252)">-AC24 ☆-</span>
+
+
+        <span class="chatlog__timestamp">23-Sep-21 07:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="890739314533728317" id="message-890739314533728317" title="Message sent: 23-Sep-21 07:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//im sorryy i fell asleep then went to work</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="890739389498552380" id="message-890739389498552380" title="Message sent: 23-Sep-21 07:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">//I&#39;ll reply in a moment!!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/23778cfada448122e234e62a69e70d2d-79B60.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="-AC24-#0099" data-user-id="206616227588734983" style="color: rgb(67,120,252)">-AC24 ☆-</span>
+
+
+        <span class="chatlog__timestamp">23-Sep-21 09:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="890765493399601212" id="message-890765493399601212" title="Message sent: 23-Sep-21 09:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jack shuddered at the thought. &quot;I.. don&#39;t remember much of that. I likely repressed that memory..&quot; He sighed, slowly sitting in the digital grass himself. &quot;Normally I would love to just be in the sky but, that was... way too much..&quot; He frowned, looking up at the digital stars.
+
+&quot;This sky doesn&#39;t comfort me as much as the real one.. but yeah..&quot; He smiled a bit. &quot;I guess it&#39;s better than nothing right..?&quot; He looked worriedly at the cliff, not looking down at the void this time. &quot;...I&#39;m worried about this void.. someone could.. could fall in there..- I feel like I need to warn people not to just walk in here without looking closely at the ground..&quot; He said softly, looking down at the grass.
+
+&quot;I.. I don&#39;t want someone to die again..&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="23-Sep-21 09:04 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">23-Sep-21 11:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="890803463309643846" id="message-890803463309643846" title="Message sent: 23-Sep-21 11:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(i&#39;ll apologize for my delay, too. i&#39;m usually around at this time, but i slept after i stayed awake to watch a thing. i&#39;ll whip up a post in a couple minutes)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">23-Sep-21 11:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="890807452604444672" id="message-890807452604444672" title="Message sent: 23-Sep-21 11:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The mention of death swiftly vanquishes the smile Fusanosuke was wearing, instead replacing it with a hint of an uneasy frown..</em>
+&quot;You&#39;ve a good heart, my friend. Death is... perhaps I&#39;m stating the obvious, but it is too tragic for words.&quot; <em>Slowly, the Ultimate Performer crosses his arms, while slowly walking towards the cliff at a careful and steady pace - where he then gazes down to the void below.</em> 
+
+&quot;It&#39;s my belief that there is nothing more beautiful than this life we were gracefully given by the big man upstairs... no, I guess it&#39;d be more apt to say that I&#39;m adopting an old friend&#39;s ideal, but... ah, I&#39;m rambling.&quot; <em>With a hearty chuckle, Fusanosuke glances back towards the void... then back to Jack.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">23-Sep-21 11:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="890809713816666162" id="message-890809713816666162" title="Message sent: 23-Sep-21 11:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;From the sound of it, you want to protect the lives of others... and really, I cannot imagine something more noble than that.&quot; <em>Fusanosuke uncrosses his arms - before turning back yet again and now turning his attention to the moon, hanging above the virtual world.</em> &quot;To warn others of this dangerous cliff ahead of time - I think &#39;tis a fine idea. If you ever find yourself in need of a helping hand, then I will be ready to lend these hands of mine!&quot;
+
+<em>All of a sudden, Fusanosuke adopts a more serious tone than his norm.</em> &quot;But... let me tell you this. There is only so much we can-&quot; <em>Alas, said tone is swept away like leaves in the wind, as Fusanosuke takes up his usual mixture of calm enthusiasm.</em> &quot;Ah, forgive me! I&#39;m starting to ramble...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/23778cfada448122e234e62a69e70d2d-79B60.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="-AC24-#0099" data-user-id="206616227588734983" style="color: rgb(67,120,252)">-AC24 ☆-</span>
+
+
+        <span class="chatlog__timestamp">24-Sep-21 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="891133358048956496" id="message-891133358048956496" title="Message sent: 24-Sep-21 09:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jack stood up at Fusanosuke approached the void again, watching cautiously as they looked down below. Jack stepped back feeling a lot more relieved when Fusanosuke turned back to him and away from the dangerous fall behind him. &quot;...Thank you, and um.. please be careful yourself.&quot; He added, looking thankful for the offer as he smiled lightly.
+
+The barista&#39;s expression also changed as he watched Fusanosuke grow more serious for that brief moment, he glanced away, a grim expression on his face as he nodded. &quot;...I know.&quot;
+But then, Fusanosuke shook the subject away rather quickly, causing Jack to suddenly have to adapt to the return of the more calmer atmosphere of before. &quot;O-Oh uh! No it&#39;s alright, it&#39;s fine to ramble.. I do it a lot myself so..&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/3b7730e08bf56682814b639e1c7deeba-266D0.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="A Generic User#7302" data-user-id="248410976808992768" style="color: rgb(220,20,60)">Decently Generic User</span>
+
+
+        <span class="chatlog__timestamp">24-Sep-21 09:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="891138608373846086" id="message-891138608373846086" title="Message sent: 24-Sep-21 09:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Haha...! Then we are kindred spirits, in that sense. If that rambling urge ever looms over you, then feel free to ramble on as much as you like to this fool here,&quot; <em>Accompanied by an amused chuckle, Fusanosuke swiftly points towards himself using his folding fan.</em> &quot;Ah, &#39;tis a good way to get to know one another...!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="891138813156556910" id="message-891138813156556910" title="Message sent: 24-Sep-21 09:47 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(seems i forgot to do my ping last time. i&#39;d do one in this post, but i don&#39;t want to risk sending one out of nowhere or anything)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Danganronpa_%20Prospective%20Despair%20-%20the-cliff%20-%20Jack%20and%20Fusanosuke%20Scene%20Thing%20%5B890437842088648764%5D.html_Files/23778cfada448122e234e62a69e70d2d-79B60.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="-AC24-#0099" data-user-id="206616227588734983" style="color: rgb(67,120,252)">-AC24 ☆-</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 04:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="891424274013892629" id="message-891424274013892629" title="Message sent: 25-Sep-21 04:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jack looked a bit bewildered, but then quickly smiled. &quot;Yeah that.. that does sound nice huh? But..&quot; He then yawned, stretching his arms out. &quot;I think I need to head back out.. I have no idea what time it is outside but.. I&#39;m pretty tired so..&quot;
+
+He took a step back, raising a hand to wave. &quot;Maybe another time then?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 26 message(s)</div>
+</div>
+
+</body>
+
+</html>
